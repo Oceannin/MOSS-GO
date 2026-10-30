@@ -14,6 +14,10 @@ See [measured results](docs/BENCHMARK.md), [known limits](docs/RELEASE_NOTES.md)
 and the [Russian submission guide](docs/SUBMISSION_RU.md).
 The [example API graphs](workflows/README.md) show the ComfyUI pipeline directly.
 
+[Watch the 1:48 demo](https://oceannin.github.io/MOSS-GO/) · [Download the preview](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.1.0-rc.1)
+
+![MOSS GO after a local masked refinement](docs/assets/contest-preview.jpg)
+
 ## Run from source
 
 Use Python 3.11 or newer and a separate virtual environment. Follow the

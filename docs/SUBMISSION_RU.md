@@ -18,6 +18,14 @@
 
 ## 2. Подготовить ссылки и проверить их без авторизации
 
+Готовые адреса конкурсной версии:
+
+- **GitHub:** https://github.com/Oceannin/MOSS-GO
+- **Demo video URL:** https://oceannin.github.io/MOSS-GO/ — страница с видео 1:48.
+- **Прямой MP4:** https://oceannin.github.io/MOSS-GO/demo.mp4
+- **Release:** https://github.com/Oceannin/MOSS-GO/releases/tag/v0.1.0-rc.1
+- **Live link:** оставьте пустым: страница демо показывает запись, генератор работает локально.
+
 Понадобятся:
 
 - Публичный GitHub-репозиторий с исходниками, workflow, открытой лицензией и установкой.
@@ -43,14 +51,11 @@ live-ссылки для жюри. Записанное или статичес�
 SFW-содержимое всех кадров, заголовков, обложки и репозитория. Не добавляйте музыку,
 права на которую неизвестны. Английские подписи должны позволять понять демо без звука.
 
-Черновик социального текста, который следует сверить с финальными возможностями:
+Скачайте `demo.mp4` со страницы демо или Release и прикрепите к социальному посту.
+Готовый короткий текст:
 
-> MOSS GO is a local image studio built on ComfyUI. Bring an original character,
-> create scenes, refine a selected area, and keep the workflow and recipe.
-> Open weights, inspectable steps, your hardware.
->
-> Demo: [вставить подтверждённую ссылку]
-> Source and setup: [вставить публичный репозиторий]
+> Built MOSS GO: a local ComfyUI studio for character scenes, masked edits and portable recipes. Open source, open weights, your GPU.
+> Source: https://github.com/Oceannin/MOSS-GO
 > #OpenSourceHiggsfield
 
 Опубликуйте пост на одной из площадок из формы — например, X или Reddit — и скопируйте
@@ -76,6 +81,14 @@ SFW-содержимое всех кадров, заголовков, облож
 | Parts of ComfyUI used | Comfy API; другие пункты — только если они действительно используются |
 | Generative models used | Все модели финального приложения и демо, с указанием необязательного помощника |
 | Other tools or techniques | Собственная подготовка графов, управление заданиями, маска, переносимые рецепты; сторонние адаптации с авторством |
+
+Текст для **Generative models used**:
+
+> Demo: FLUX.2 Klein distilled 4B FP8, Qwen3 4B text encoder, FLUX.2 VAE. The app also supports MOSS-Image SFT and an optional local Qwen3 4B Instruct 2507 prompt assistant. Experimental CharRef is outside the default packs and was not used in this demo. Pinned sources and licenses are documented in the repository.
+
+Текст для **Other tools or techniques** / объяснения устройства:
+
+> A standalone Python/aiohttp studio with a local HTML/CSS/JS interface over the ComfyUI API. Explicit graphs, reference-latent conditioning, a context crop for local edits, feathered compositing back to the original image, durable take/version history, idempotent launches and portable ZIP recipes with native workflows. Original character examples are bundled. The demo ran locally on RTX 4070 Ti SUPER 16 GB with 32 GB RAM.
 
 Не отмечайте SDK, Router, Cloud Agent или MCP только потому, что приложение написано
 с помощью ИИ. Эти пункты относятся к использованным механизмам ComfyUI.

@@ -126,6 +126,6 @@ saved attempt verified version linkage using cached computation.
 
 High precision and experimental MOSS CharRef use additional files. They are not
 included in these verified default packs. Remaining release work includes the
-GPU runtime dependency lock and clean install, hosted Windows/Linux CI and the
-experimental adapter audit. The standalone studio has its own hashed dependency
-locks and fresh Windows source/wheel checks; see [INSTALL.md](INSTALL.md).
+GPU runtime dependency lock and clean install and the experimental adapter audit.
+The standalone studio has its own hashed dependency locks, fresh Windows
+source/wheel checks and passing hosted Windows/Ubuntu CPU CI; see [INSTALL.md](INSTALL.md).

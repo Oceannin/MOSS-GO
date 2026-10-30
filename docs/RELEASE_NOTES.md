@@ -15,6 +15,11 @@ loading an example nor preparing settings starts image generation.
   on RTX 4070 Ti SUPER 16 GB / 32 GB system RAM, Windows. See [BENCHMARK](BENCHMARK.md).
 - Fresh standalone studio installation from source and wheel on Windows Python 3.12,
   without Torch or ComfyUI in the studio environment.
+- Hosted installed-wheel CPU checks passed on Windows and Ubuntu with Python
+  3.11 and 3.13: [four passing jobs](https://github.com/Oceannin/MOSS-GO/actions/runs/41044203888).
+- The recorded release-candidate demo completed a real reference scene and a
+  masked color edit. Both retained 768×1024 output; pixels outside the softened
+  edit mask matched the source. [Demo details](DEMO.md).
 - CPU tests cover persistence, validation, recipe handling, launch recovery,
   addressed queue ownership and controlled memory-failure handling.
 - Responsive checks cover both themes and languages at five viewport sizes.
@@ -22,8 +27,9 @@ loading an example nor preparing settings starts image generation.
 
 ## Known limits
 
-- This is a release candidate. A clean GPU-runtime installation, Linux and physical
-  12/24 GB cards have not been validated locally. Hardware profiles are recommendations.
+- This is a release candidate. A clean ComfyUI GPU-runtime installation and physical
+  12/24 GB cards have not been validated. Linux GPU execution is unverified;
+  the standalone studio has passing Ubuntu CPU CI. Hardware profiles are recommendations.
 - Experimental MOSS CharRef and High precision need additional weights outside
   the verified default packs. CharRef is excluded from the contest demonstration.
 - Sampling-stage cancellation still needs a manual check. Earlier ownership

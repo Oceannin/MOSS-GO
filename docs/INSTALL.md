@@ -2,8 +2,9 @@
 
 This is the 0.1.0-rc.1 contest preview. Both wheel and source installation have been tested
 in fresh Windows Python 3.12 environments without Torch or ComfyUI. A full
-new ComfyUI GPU environment and the Windows/Linux GitHub matrix remain release
-checks. See [release limits](RELEASE_NOTES.md). The studio can run without a GPU
+new ComfyUI GPU environment remains unverified. The installed-wheel CPU matrix
+passed on GitHub for Windows/Ubuntu and Python 3.11/3.13. See
+[release limits](RELEASE_NOTES.md). The studio can run without a GPU
 runtime; image generation requires a separately configured ComfyUI.
 
 ## Studio from source
@@ -20,7 +21,7 @@ python -m venv .venv
 .\.venv\Scripts\moss-go.exe
 ```
 
-Linux commands prepared for the CI matrix:
+Linux studio commands exercised by the CI matrix:
 
 ```sh
 python3 -m venv .venv
@@ -85,5 +86,6 @@ tests the packaging path rather than only an editable checkout.
 
 The GitHub workflow uses the same installed-wheel checks on Windows/Linux with
 Python 3.11/3.13, plus JavaScript tests, syntax and formatting. The official actions
-are pinned to immutable commits. Actual hosted results must be verified after
-the repository is published; a workflow file alone is not a passing CI run.
+are pinned to immutable commits. The first successful hosted run is
+[Core checks](https://github.com/Oceannin/MOSS-GO/actions/runs/41044203888).
+These CPU checks do not establish GPU-runtime compatibility.
