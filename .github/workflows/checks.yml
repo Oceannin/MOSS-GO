@@ -25,7 +25,8 @@ jobs:
           cache-dependency-path: |
             requirements.lock
             build-requirements.lock
-      - run: python -m pip install --require-hashes --only-binary=:all: -r build-requirements.lock
+      - run: >-
+          python -m pip install --require-hashes --only-binary=:all: -r build-requirements.lock
       - run: python -c "from setuptools.build_meta import build_sdist; build_sdist('dist')"
       - run: python -m pip wheel --no-deps --no-build-isolation --wheel-dir dist .
       - run: python scripts/check_archives.py dist
