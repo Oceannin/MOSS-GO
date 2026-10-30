@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "runtime": {
+    "comfyui_revision": "08ff3c11b3a85eb07c2c06f21cb378ac2e086840",
+    "moss_plugin_repository": "https://github.com/OpenMOSS/MOSS-Image",
+    "moss_plugin_revision": "599a039ec6f8108eecdd0d8c107ceade6863145e",
+    "moss_plugin_path": "comfyui/moss-image",
+    "loader_family": "OpenMOSS plugin; not native moss_image loaders"
+  },
+  "packs": {
+    "moss-balanced": {
+      "engine": "moss",
+      "profile": "balanced",
+      "verified_on": "RTX 4070 Ti SUPER 16 GB; Windows; recorded development benchmark",
+      "files": [
+        {
+          "role": "model",
+          "category": "diffusion_models",
+          "filename": "moss_image_sft_int8_convrot.safetensors",
+          "repository": "Epyan/MOSS-Image-SFT-ComfyUI",
+          "revision": "8b31b8214b29861078be74964656ccd944f99e66",
+          "path": "diffusion_models/moss_image_sft_int8_convrot.safetensors",
+          "size": 5413724040,
+          "sha256": "ffd98820ac8f0f57c48386bd98852720de50c3acb502f73fd641d0cd9df6d0af",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/Epyan/MOSS-Image-SFT-ComfyUI/blob/8b31b8214b29861078be74964656ccd944f99e66/README.md"
+        },
+        {
+          "role": "clip",
+          "category": "text_encoders",
+          "filename": "qwen3.5_9b_moss_image_sft_w4a8_gptq.safetensors",
+          "repository": "Epyan/MOSS-Image-SFT-ComfyUI",
+          "revision": "8b31b8214b29861078be74964656ccd944f99e66",
+          "path": "text_encoders/qwen3.5_9b_moss_image_sft_w4a8_gptq.safetensors",
+          "size": 5428937108,
+          "sha256": "b5f31a430e4912decb152f3a0761350f52282176823b597edd43b2e3f6403da4",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/Epyan/MOSS-Image-SFT-ComfyUI/blob/8b31b8214b29861078be74964656ccd944f99e66/README.md"
+        },
+        {
+          "role": "vae",
+          "category": "vae",
+          "filename": "moss_image_vae_bf16.safetensors",
+          "repository": "Epyan/MOSS-Image-SFT-ComfyUI",
+          "revision": "8b31b8214b29861078be74964656ccd944f99e66",
+          "path": "vae/moss_image_vae_bf16.safetensors",
+          "size": 124774710,
+          "sha256": "81a27c7135775f149648fa35a58eec6d78a3e6a9bb9273885b51895cbc212d5d",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/Epyan/MOSS-Image-SFT-ComfyUI/blob/8b31b8214b29861078be74964656ccd944f99e66/README.md"
+        }
+      ]
+    },
+    "flux-balanced": {
+      "engine": "flux-klein",
+      "profile": "balanced",
+      "verified_on": "RTX 4070 Ti SUPER 16 GB; Windows; recorded reference/refinement benchmark",
+      "files": [
+        {
+          "role": "model",
+          "category": "diffusion_models",
+          "filename": "flux-2-klein-4b-fp8.safetensors",
+          "repository": "black-forest-labs/FLUX.2-klein-4b-fp8",
+          "revision": "5b4408e59397a4a37ccb46afe426d8ed86379441",
+          "path": "flux-2-klein-4b-fp8.safetensors",
+          "size": 4070624520,
+          "sha256": "97ed34fe0567e436200f2faee3939b88f2b5d99f8af2a4dc16532c4245c0ccb6",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-fp8/blob/5b4408e59397a4a37ccb46afe426d8ed86379441/README.md"
+        },
+        {
+          "role": "clip",
+          "category": "text_encoders",
+          "filename": "qwen_3_4b.safetensors",
+          "repository": "Comfy-Org/Flux-2-Klein-4B",
+          "revision": "5b3abca5c0dc1ecd4eaf3340868d09063fc1c965",
+          "path": "split_files/text_encoders/qwen_3_4b.safetensors",
+          "size": 8044982048,
+          "sha256": "6c671498573ac2f7a5501502ccce8d2b08ea6ca2f661c458e708f36b36edfc5a",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/Comfy-Org/Flux-2-Klein-4B/blob/5b3abca5c0dc1ecd4eaf3340868d09063fc1c965/README.md"
+        },
+        {
+          "role": "vae",
+          "category": "vae",
+          "filename": "flux2-vae.safetensors",
+          "repository": "Comfy-Org/flux2-dev",
+          "revision": "9630c1b4b6e690497ae0c19bb6b1b35d4ebedcb7",
+          "path": "split_files/vae/flux2-vae.safetensors",
+          "size": 336213556,
+          "sha256": "d64f3a68e1cc4f9f4e29b6e0da38a0204fe9a49f2d4053f0ec1fa1ca02f9c4b5",
+          "license": "Apache-2.0",
+          "model_card": "https://huggingface.co/Comfy-Org/flux2-dev/blob/9630c1b4b6e690497ae0c19bb6b1b35d4ebedcb7/README.md",
+          "license_evidence": "https://bfl.ai/blog/flux-2",
+          "license_scope": "VAE only: the publisher explicitly releases FLUX.2 VAE under Apache-2.0. No FLUX.2 dev diffusion model is selected."
+        }
+      ]
+    }
+  }
+}

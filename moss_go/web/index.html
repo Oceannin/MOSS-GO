@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en" data-theme="comfy">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="A local studio for images, character scenes and careful refinements. Powered by ComfyUI."
+    />
+    <title>MOSS GO — Image studio</title>
+    <link rel="icon" href="/moss-go/assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/moss-go/assets/studio.css" />
+    <script type="module" src="/moss-go/assets/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a
+        class="wordmark"
+        href="/moss-go/"
+        aria-label="MOSS GO home"
+        data-i18n-aria-label="homeLabel"
+        ><strong>MOSS</strong><em>GO</em></a
+      >
+      <nav
+        class="mode-switch"
+        aria-label="Workspace mode"
+        data-i18n-aria-label="modeLabel"
+      >
+        <button
+          type="button"
+          data-mode="create"
+          aria-pressed="false"
+          data-i18n="create"
+        >
+          Create
+        </button>
+        <button
+          type="button"
+          data-mode="reference"
+          aria-pressed="true"
+          data-i18n="reference"
+        >
+          Reference
+        </button>
+        <button
+          type="button"
+          data-mode="refine"
+          aria-pressed="false"
+          data-i18n="refine"
+        >
+          Refine
+        </button>
+      </nav>
+      <div class="top-actions">
+        <button
+          type="button"
+          id="models-open"
+          class="quiet connection"
+          title="Models and connection"
+          data-i18n-title="modelsTitle"
+        >
+          <span class="status-dot" id="connection-dot"></span
+          ><span id="connection-label" data-i18n="connecting">Connecting</span>
+        </button>
+        <button
+          type="button"
+          id="theme"
+          class="icon-button"
+          aria-label="Change color theme"
+          title="Change color theme"
+          data-i18n-aria-label="changeTheme"
+          data-i18n-title="changeTheme"
+        ></button>
+        <button
+          type="button"
+          id="language"
+          class="quiet language"
+          aria-label="Change language"
+          data-i18n-aria-label="changeLanguage"
+        >
+          EN
+        </button>
+      </div>
+    </header>
+    <nav
+      class="mobile-workspace-nav"
+      aria-label="Workspace sections"
+      data-i18n-aria-label="workspaceSections"
+    >
+      <a href="#settings-title" data-i18n="imageSettings">Image settings</a>
+      <a href="#workspace-title" data-i18n="viewWorkspace">View workspace</a>
+    </nav>
+    <main class="workspace">
+      <h1 class="sr-only" data-i18n="studioTitle">MOSS GO image studio</h1>
+      <aside
+        class="inspector"
+        aria-label="Image settings"
+        data-i18n-aria-label="imageSettings"
+      >
+        <h2
+          id="settings-title"
+          class="sr-only"
+          tabindex="-1"
+          data-i18n="imageSettings"
+        >
+          Image settings
+        </h2>
+        <form id="settings-form" class="settings-form">
+          <fieldset id="settings-fields" class="settings-fields">
+            <section class="settings-section input-section" id="input-section">
+              <div class="section-heading">
+                <h2 data-i18n="input">Input image</h2>
+                <button
+                  type="button"
+                  id="input-clear"
+                  class="text-button"
+                  hidden
+                  data-i18n="remove"
+                >
+                  Remove
+                </button>
+              </div>
+              <input
+                id="input-file"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                class="file-input"
+                tabindex="-1"
+                aria-hidden="true"
+              />
+              <button type="button" id="input-pick" class="dropzone">
+                <img
+                  id="input-preview"
+                  alt="Selected input image"
+                  data-i18n-alt="inputAlt"
+                  hidden
+                />
+                <span
+                  id="upload-icon"
+                  class="upload-icon"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  class="dropzone-title"
+                  id="input-title"
+                  data-i18n="dropTitle"
+                  >Choose a reference image</span
+                >
+                <span class="hint" id="input-hint" data-i18n="dropHint"
+                  >or drop it here · PNG, JPEG, WebP</span
+                >
+              </button>
+              <button
+                type="button"
+                id="examples-open"
+                class="text-button"
+                data-i18n="tryExample"
+              >
+                Try an original example
+              </button>
+            </section>
+            <section class="settings-section">
+              <div class="section-heading">
+                <h2 id="prompt-label" data-i18n="sceneDescription">
+                  Describe the new scene
+                </h2>
+                <span class="optional" data-i18n="yourDirection"
+                  >Your direction</span
+                >
+              </div>
+              <textarea
+                id="prompt"
+                aria-labelledby="prompt-label"
+                name="prompt"
+                rows="5"
+                maxlength="12000"
+                placeholder="Same character, waiting at a quiet train station. Morning light, a wide composition."
+              ></textarea>
+              <div class="prompt-tools">
+                <button
+                  type="button"
+                  id="character-open"
+                  class="text-button"
+                  data-i18n="character"
+                >
+                  Character traits</button
+                ><button
+                  type="button"
+                  id="assistant-open"
+                  class="text-button"
+                  data-i18n="refinePrompt"
+                >
+                  Refine prompt
+                </button>
+              </div>
+              <p class="trait-summary hint" id="trait-summary" hidden></p>
+              <button
+                type="button"
+                id="scenes-open"
+                class="text-button"
+                data-i18n="addScenes"
+              >
+                Add scenes
+              </button>
+              <p class="hint" id="scene-summary" hidden></p>
+              <div class="starter-row" id="starters">
+                <span class="hint" data-i18n="tryScene">Try a scene</span
+                ><button
+                  type="button"
+                  data-starter="station"
+                  data-i18n="station"
+                >
+                  Station</button
+                ><button
+                  type="button"
+                  data-starter="workshop"
+                  data-i18n="workshop"
+                >
+                  Workshop</button
+                ><button type="button" data-starter="rain" data-i18n="rain">
+                  After rain
+                </button>
+              </div>
+            </section>
+            <section class="settings-section">
+              <div class="section-heading">
+                <h2 data-i18n="output">Output</h2>
+              </div>
+              <div class="field-row">
+                <label
+                  ><span data-i18n="format">Format</span
+                  ><select id="format">
+                    <option value="portrait" data-i18n="portrait">
+                      Portrait · 3:4
+                    </option>
+                    <option value="square" data-i18n="square">
+                      Square · 1:1
+                    </option>
+                    <option value="landscape" data-i18n="landscape">
+                      Landscape · 4:3
+                    </option>
+                  </select></label
+                >
+                <label
+                  ><span data-i18n="variants">Variations</span
+                  ><select id="variants">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4" selected>4</option>
+                  </select></label
+                >
+              </div>
+              <label class="full-field"
+                ><span data-i18n="quality">Quality</span
+                ><select id="quality">
+                  <option value="draft" data-i18n="draft">Draft</option>
+                  <option value="standard" selected data-i18n="standard">
+                    Standard
+                  </option>
+                  <option value="detailed" data-i18n="detailed">
+                    Detailed
+                  </option>
+                </select></label
+              >
+              <p class="hint" id="effective-size">
+                768 × 1024 · 30 steps · sequential variations
+              </p>
+              <div class="refine-settings" id="refine-settings" hidden>
+                <label class="full-field"
+                  ><span data-i18n="strength">Refinement strength</span
+                  ><input
+                    id="strength"
+                    type="range"
+                    min="0.05"
+                    max="0.8"
+                    step="0.05"
+                    value="0.3"
+                /></label>
+                <p id="mask-hint" class="hint" data-i18n="maskHint">
+                  Paint the area to change. The rest of the image stays in
+                  place.
+                </p>
+                <button
+                  type="button"
+                  id="paint-open"
+                  class="secondary"
+                  data-i18n="paintArea"
+                >
+                  Paint an area
+                </button>
+                <button
+                  type="button"
+                  id="full-mask"
+                  class="quiet"
+                  data-i18n="wholeImage"
+                >
+                  Whole image
+                </button>
+              </div>
+            </section>
+            <details class="settings-section advanced">
+              <summary data-i18n="advanced">Advanced settings</summary>
+              <div class="details-content">
+                <label
+                  ><span data-i18n="engine">Image engine</span
+                  ><select id="engine">
+                    <option value="flux-klein">FLUX.2 Klein · 4B</option>
+                    <option value="moss-charref">
+                      MOSS · CharRef · Experimental
+                    </option>
+                  </select></label
+                >
+                <label
+                  ><span data-i18n="memory">Memory profile</span
+                  ><select id="profile">
+                    <option value="auto" data-i18n="auto">Automatic</option>
+                    <option value="economy" data-i18n="economy">
+                      Memory saver
+                    </option>
+                    <option value="balanced" data-i18n="balanced">
+                      Balanced
+                    </option>
+                    <option value="quality" data-i18n="highPrecision">
+                      High precision
+                    </option>
+                  </select></label
+                >
+                <p class="hint" data-i18n="profileNote">
+                  Profiles are recommendations. Only measured hardware is marked
+                  verified.
+                </p>
+                <label
+                  ><span>Seed</span
+                  ><input
+                    id="seed"
+                    type="number"
+                    min="0"
+                    max="9007199254740991"
+                    step="1"
+                    value="42"
+                /></label>
+                <label
+                  ><span data-i18n="negative">Negative prompt</span
+                  ><textarea id="negative" rows="2" maxlength="4000"></textarea>
+                </label>
+              </div>
+            </details>
+          </fieldset>
+        </form>
+        <div class="submit-area">
+          <button
+            type="button"
+            id="setup-open"
+            class="text-button"
+            data-i18n="modelsTitle"
+            hidden
+          >
+            Models & connection
+          </button>
+          <p id="pending-launch" class="hint" role="status" hidden></p>
+          <div id="form-error" class="form-error" role="alert" hidden></div>
+          <button
+            type="button"
+            id="recover-take"
+            class="secondary"
+            data-i18n="recoverTake"
+            hidden
+          >
+            Load this take's settings
+          </button>
+          <button
+            type="submit"
+            form="settings-form"
+            id="generate"
+            aria-describedby="effective-size"
+            class="primary"
+            data-i18n="generate"
+          >
+            Generate variations
+          </button>
+          <button
+            type="button"
+            id="cancel"
+            class="secondary"
+            hidden
+            data-i18n="cancel"
+          >
+            Cancel this batch
+          </button>
+          <p class="local-note">
+            <span class="tiny-dot"></span
+            ><span data-i18n="localNote">Runs locally through ComfyUI</span>
+          </p>
+        </div>
+      </aside>
+      <section
+        class="output-panel"
+        id="output-panel"
+        aria-label="Image workspace"
+        data-i18n-aria-label="workspaceLabel"
+      >
+        <div class="canvas-toolbar">
+          <div class="output-heading">
+            <h2 id="workspace-title" tabindex="-1" data-i18n="workspace">
+              Workspace
+            </h2>
+            <span id="image-label" class="hint" data-i18n="noSelection"
+              >No image selected</span
+            >
+          </div>
+          <div class="canvas-actions">
+            <button
+              type="button"
+              id="zoom-open"
+              class="icon-button"
+              aria-label="Inspect image"
+              title="Inspect image"
+              data-i18n-aria-label="inspectImage"
+              data-i18n-title="inspectImage"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10" cy="10" r="6" />
+                <path d="m15 15 5 5M10 7v6M7 10h6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="use-result"
+              class="quiet"
+              hidden
+              data-i18n="useForRefine"
+            >
+              Refine selected</button
+            ><button
+              type="button"
+              id="compare"
+              class="quiet"
+              aria-pressed="false"
+              hidden
+              data-i18n="compare"
+            >
+              Compare</button
+            ><a
+              id="download"
+              class="secondary small"
+              hidden
+              data-i18n="download"
+              >Download</a
+            ><button
+              type="button"
+              id="recipe"
+              class="quiet"
+              hidden
+              data-i18n="recipe"
+            >
+              Recipe
+            </button>
+          </div>
+        </div>
+        <div class="canvas" id="canvas">
+          <div class="empty-state" id="empty-state">
+            <h2 id="empty-title" data-i18n="emptyTitle">
+              One character. A new scene.
+            </h2>
+            <p id="empty-copy" data-i18n="emptyCopy">
+              Choose a reference and describe where the story goes next. Your
+              variations will appear here.
+            </p>
+            <span class="empty-footnote" data-i18n="emptyNote"
+              >You choose the direction. Keep the takes that work.</span
+            >
+          </div>
+          <img
+            id="result-image"
+            class="result-image"
+            alt="Selected generated image"
+            data-i18n-alt="resultAlt"
+            hidden
+          />
+          <div class="compare-layer" id="compare-layer" hidden>
+            <img
+              id="compare-image"
+              alt="Input image for comparison"
+              data-i18n-alt="compareAlt"
+            /><span class="compare-tag" data-i18n="input">Input image</span>
+          </div>
+          <input
+            id="compare-slider"
+            class="compare-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            aria-label="Compare input and result"
+            data-i18n-aria-label="compareLabel"
+            hidden
+          />
+          <div class="running-indicator" id="running-indicator" hidden>
+            <span class="status-dot busy"></span
+            ><span id="running-text">Preparing models</span
+            ><progress
+              id="progress"
+              aria-label="Generation progress"
+              data-i18n-aria-label="progressLabel"
+            ></progress>
+          </div>
+        </div>
+        <div class="results-bar">
+          <div class="results-title">
+            <h2 data-i18n="takes">Takes & versions</h2>
+            <span id="result-count" class="hint">0</span>
+            <label class="history-filter"
+              ><span class="sr-only" data-i18n="filterHistory"
+                >Filter history</span
+              ><select id="history-scope">
+                <option value="all" data-i18n="allWork">All work</option>
+                <option value="saved" data-i18n="savedTakes">
+                  Saved takes
+                </option>
+                <option value="batch" data-i18n="selectedBatch">
+                  Selected batch
+                </option>
+                <option value="versions" data-i18n="relatedVersions">
+                  Related versions
+                </option>
+              </select></label
+            >
+            <button
+              type="button"
+              id="import-recipe"
+              class="text-button"
+              data-i18n="importRecipe"
+            >
+              Import recipe
+            </button>
+            <input
+              id="recipe-file"
+              type="file"
+              accept=".json,.zip"
+              hidden
+              tabindex="-1"
+              aria-hidden="true"
+            />
+          </div>
+          <div
+            id="results"
+            class="results"
+            role="list"
+            aria-label="Generated takes"
+            data-i18n-aria-label="takesLabel"
+          >
+            <p class="hint results-empty" data-i18n="historyHint">
+              Your saved work stays here between sessions.
+            </p>
+          </div>
+        </div>
+        <footer class="workspace-footer">
+          <span id="device-label" data-i18n="checkingDevice"
+            >Checking your connection…</span
+          ><span
+            id="footer-status"
+            role="status"
+            aria-atomic="true"
+            data-i18n="connecting"
+            >Connecting</span
+          >
+        </footer>
+      </section>
+    </main>
+    <dialog
+      id="scene-dialog"
+      class="dialog"
+      aria-labelledby="scene-dialog-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="scene-dialog-title" data-i18n="scenePack">Scene pack</h2>
+        <button
+          type="button"
+          data-close="scene-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="dialog-content">
+        <p class="hint" data-i18n="sceneHint">
+          Your main description applies to every scene. Add up to four settings
+          or actions; variations run one at a time.
+        </p>
+        <div id="scene-fields" class="scene-fields"></div>
+        <button
+          type="button"
+          id="scene-add"
+          class="secondary"
+          data-i18n="addScene"
+        >
+          Add scene
+        </button>
+      </div>
+      <div class="dialog-footer">
+        <button
+          type="button"
+          id="scene-clear"
+          class="quiet"
+          data-i18n="singleScene"
+        >
+          Use main description only
+        </button>
+        <button
+          type="button"
+          id="scene-apply"
+          class="primary"
+          data-i18n="saveScenes"
+        >
+          Save scenes
+        </button>
+      </div>
+    </dialog>
+    <dialog
+      id="recipe-dialog"
+      class="dialog"
+      aria-labelledby="recipe-dialog-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="recipe-dialog-title" data-i18n="reviewRecipe">
+          Review imported recipe
+        </h2>
+        <button
+          type="button"
+          data-close="recipe-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div id="recipe-content" class="dialog-content"></div>
+    </dialog>
+    <dialog id="export-dialog" class="dialog" aria-labelledby="export-title">
+      <div class="dialog-heading">
+        <h2 id="export-title" data-i18n="exportWork">Export work</h2>
+        <button
+          type="button"
+          data-close="export-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="dialog-content export-choices">
+        <p class="hint" data-i18n="exportHint">
+          ZIP packs include source images, results, available native workflows
+          and a contact sheet. JSON contains settings only.
+        </p>
+        <a
+          id="export-take"
+          class="secondary"
+          download="moss-go-take.zip"
+          data-i18n="exportTake"
+          >Selected take · ZIP</a
+        >
+        <a
+          id="export-pack"
+          class="secondary"
+          download="moss-go-scene-pack.zip"
+          data-i18n="exportPack"
+          >Whole batch · ZIP</a
+        >
+        <p id="export-wait" class="hint" data-i18n="exportWait" hidden>
+          Complete all takes in this batch to export it together.
+        </p>
+        <a
+          id="export-json"
+          class="quiet"
+          download="moss-go-recipe.json"
+          data-i18n="exportJSON"
+          >Selected recipe · JSON</a
+        >
+      </div>
+    </dialog>
+    <dialog id="models-dialog" class="dialog" aria-labelledby="models-title">
+      <div class="dialog-heading">
+        <h2 id="models-title" data-i18n="modelsTitle">Models & connection</h2>
+        <button
+          type="button"
+          data-close="models-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div id="models-content" class="dialog-content"></div>
+      <div class="dialog-footer">
+        <button
+          type="button"
+          id="refresh-system"
+          class="secondary"
+          data-i18n="checkAgain"
+        >
+          Check again
+        </button>
+      </div>
+    </dialog>
+    <dialog
+      id="character-dialog"
+      class="dialog"
+      aria-labelledby="character-title"
+    >
+      <div class="dialog-heading">
+        <div>
+          <h2 id="character-title" data-i18n="character">Character traits</h2>
+          <p class="hint" data-i18n="characterHint">
+            Keep the details that make your character recognizable.
+          </p>
+        </div>
+        <button
+          type="button"
+          data-close="character-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="dialog-content character-editor-body">
+        <div class="character-preset-toolbar">
+          <label
+            ><span data-i18n="characterPreset">Character preset</span
+            ><select id="character-preset" class="character-control">
+              <option value="" data-i18n="customCharacter">
+                Custom character
+              </option>
+            </select></label
+          >
+          <button
+            type="button"
+            id="import-character"
+            class="quiet character-control"
+            data-i18n="importPreset"
+          >
+            Import preset
+          </button>
+          <button
+            type="button"
+            id="export-character"
+            class="quiet character-control"
+            data-i18n="exportPreset"
+          >
+            Export preset
+          </button>
+          <input
+            id="character-file"
+            type="file"
+            accept=".json"
+            hidden
+            tabindex="-1"
+            aria-hidden="true"
+          />
+        </div>
+        <p class="hint character-pin-hint" data-i18n="pinHint">
+          Pinned traits stay when you randomize. Nothing changes in your
+          workspace until you apply.
+        </p>
+        <p id="character-notice" class="hint" role="status" hidden></p>
+        <button
+          type="button"
+          id="character-retry"
+          class="secondary"
+          data-i18n="checkAgain"
+          hidden
+        >
+          Check again
+        </button>
+        <div id="character-fields" class="character-fields"></div>
+        <details class="character-prompt-preview" open>
+          <summary data-i18n="characterPromptPreview">
+            Description preview
+          </summary>
+          <p id="character-prompt-text" class="hint"></p>
+        </details>
+      </div>
+      <div class="dialog-footer">
+        <button
+          type="button"
+          id="random-character"
+          class="secondary character-control"
+          data-i18n="randomizeUnlocked"
+        >
+          Randomize unlocked</button
+        ><button
+          type="button"
+          id="clear-character"
+          class="quiet character-control"
+          data-i18n="resetTraits"
+        >
+          Reset traits</button
+        ><button
+          type="button"
+          id="apply-character"
+          class="primary character-control"
+          data-i18n="applyTraits"
+        >
+          Apply traits
+        </button>
+      </div>
+    </dialog>
+    <dialog
+      id="assistant-dialog"
+      class="dialog"
+      aria-labelledby="assistant-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="assistant-title" data-i18n="refinePrompt">Refine prompt</h2>
+        <button
+          type="button"
+          data-close="assistant-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="dialog-content">
+        <p class="hint" data-i18n="assistantExplanation">
+          The optional local assistant suggests a clearer description. Nothing
+          changes until you apply it.
+        </p>
+        <div id="assistant-content"></div>
+      </div>
+      <div id="assistant-actions" class="dialog-footer" hidden>
+        <p class="hint" data-i18n="reviewSuggestion">
+          Review the wording before applying it.
+        </p>
+        <button
+          id="assistant-apply"
+          type="button"
+          class="primary"
+          data-i18n="applySuggestion"
+          disabled
+        >
+          Apply suggestion
+        </button>
+      </div>
+    </dialog>
+    <dialog id="example-dialog" class="dialog" aria-labelledby="example-title">
+      <div class="dialog-heading">
+        <h2 id="example-title" data-i18n="originalExamples">
+          Original examples
+        </h2>
+        <button
+          type="button"
+          data-close="example-dialog"
+          class="quiet"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="dialog-content example-body">
+        <div class="example-controls">
+          <label for="example-choice" data-i18n="chooseExample"
+            >Choose a character</label
+          >
+          <select id="example-choice" disabled></select>
+          <p class="hint" data-i18n="exampleCredit">
+            Original characters created for MOSS GO with MOSS-Image SFT.
+          </p>
+          <p class="hint" data-i18n="exampleChanges">
+            Loading replaces the input image and clears character traits. Your
+            description stays; an empty reference description gets a starter
+            scene.
+          </p>
+          <p id="example-status" class="hint" role="status"></p>
+          <button
+            type="button"
+            id="example-retry"
+            class="secondary"
+            data-i18n="checkAgain"
+            hidden
+          >
+            Check again
+          </button>
+        </div>
+        <div class="example-image-stage">
+          <img id="example-preview" alt="" hidden />
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button
+          type="button"
+          id="example-apply"
+          class="primary"
+          data-i18n="loadExample"
+          disabled
+        >
+          Load image
+        </button>
+      </div>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </body>
+</html>

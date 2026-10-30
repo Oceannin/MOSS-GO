@@ -1,0 +1,127 @@
+{
+  "model": {
+    "class_type": "MOSSImageUNETLoader",
+    "inputs": {
+      "unet_name": "moss_image_sft_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "clip": {
+    "class_type": "MOSSImageCLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3.5_9b_moss_image_sft_w4a8_gptq.safetensors",
+      "device": "default"
+    }
+  },
+  "vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "moss_image_vae_bf16.safetensors"
+    }
+  },
+  "positive": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark."
+    }
+  },
+  "negative": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": ""
+    }
+  },
+  "sampling": {
+    "class_type": "ModelSamplingSD3",
+    "inputs": {
+      "model": [
+        "model",
+        0
+      ],
+      "shift": 5.0
+    }
+  },
+  "slg": {
+    "class_type": "SkipLayerGuidanceDiTSimple",
+    "inputs": {
+      "model": [
+        "sampling",
+        0
+      ],
+      "double_layers": "",
+      "single_layers": "22",
+      "start_percent": 0.0,
+      "end_percent": 1.0
+    }
+  },
+  "latent": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "sample": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "slg",
+        0
+      ],
+      "seed": 42,
+      "steps": 30,
+      "cfg": 3.0,
+      "sampler_name": "euler",
+      "scheduler": "sgm_uniform",
+      "positive": [
+        "positive",
+        0
+      ],
+      "negative": [
+        "negative",
+        0
+      ],
+      "latent_image": [
+        "latent",
+        0
+      ],
+      "denoise": 1.0
+    }
+  },
+  "decode": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "sample",
+        0
+      ],
+      "vae": [
+        "vae",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "save": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "decode",
+        0
+      ],
+      "filename_prefix": "MOSS-GO/examples/moss-create-api"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "notes": "Original fictional adult characters. Fixed seeds are repeatability controls, not equivalent noise across different model families.",
+  "characters": [
+    {
+      "id": "mira",
+      "name": "Mira",
+      "seed": 42,
+      "markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "description": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+      "appearance": "short silver bob haircut, green eyes, a red star hair clip, mustard yellow raincoat, navy trousers, red boots, red messenger bag"
+    },
+    {
+      "id": "theo",
+      "name": "Theo",
+      "seed": 26002,
+      "markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "description": "Character design reference of an original adult male anime clockmaker, age 32, shown as a single complete figure from head to boots, three-quarter front view. He has short curly black hair, warm brown eyes, round brass glasses, and a small neat dark beard. He wears a short brown work jacket over blue overalls, dark brown practical boots, and a compact orange backpack with two visible shoulder straps. His hands are relaxed and visible. Friendly, thoughtful expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+      "appearance": "short curly black hair, brown eyes, round brass glasses, neat dark beard, brown work jacket, blue overalls, dark boots, orange backpack"
+    },
+    {
+      "id": "nia",
+      "name": "Nia",
+      "seed": 26004,
+      "markers": [
+        "dark skin",
+        "two long purple braids",
+        "cream flight jacket",
+        "navy trousers and teal boots",
+        "large crescent moon pin"
+      ],
+      "description": "One single adult female anime pilot, age 29, standing in a relaxed three-quarter front view, her entire body visible from head to boots. One person in one view only. She has dark brown skin, two long deep purple braids reaching her waist, and amber eyes. She wears a cream flight jacket with a large simple blue crescent moon pin on its left chest, navy blue straight trousers, and teal ankle boots. Her hands are relaxed and visible. Confident, composed expression. Clean cel-shaded anime illustration with confident linework and soft natural shading. Plain pale warm gray background, soft studio daylight. A single illustration, not a character sheet, not a turnaround, no panels, no extra views. No text, no logos, no watermark.",
+      "appearance": "dark brown skin, two long purple braids, amber eyes, cream flight jacket, a blue crescent moon pin, navy trousers, teal boots",
+      "revision": 2,
+      "negative": "character sheet, turnaround, multiple views, multiple panels, duplicate person, multiple people"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "station",
+      "description": "Create a NEW illustration of the reference character standing at a quiet railway station in soft morning light. Pose the right arm bent at the elbow and clearly hold ONE small paper ticket between the right thumb and fingers, with its rectangular outline readable. Three-quarter front view, full body, clear face. Preserve the identity and exact outfit from the input image, but change the arm position and background. Clean cel-shaded anime illustration. No text, signatures or logos."
+    },
+    {
+      "id": "workshop",
+      "description": "Create a NEW illustration of the reference character sitting at a wooden workbench in a cozy clock repair workshop. The right hand lifts ONE small brass pocket watch to face level, the eyes looking at the watch, while the left hand rests on the bench. Medium-wide three-quarter front view with clear face and signature accessory. Preserve identity and exact outfit, but change the pose and setting. Warm window light, clean cel-shaded anime illustration. No text, signatures or logos."
+    },
+    {
+      "id": "rain",
+      "description": "Create a NEW illustration of the reference character caught mid-stride WALKING toward the viewer along a calm city street after rain. Clearly change the standing pose: the left boot steps forward onto wet pavement, the right heel is visibly lifted behind, and the arms swing naturally in opposite directions. Full-body three-quarter front view, face clearly visible. Preserve the identity, hairstyle, signature accessory and exact outfit from the input image. The input provides character design only; do not copy its standing pose. Soft evening light, reflections, clean cel-shaded anime illustration. No text, signatures or logos."
+    }
+  ],
+  "seeds": [
+    42,
+    3141
+  ],
+  "acceptance": {
+    "minimum_usable_per_engine": 15,
+    "total_per_engine": 18,
+    "minimum_visible_identity_markers": 4
+  },
+  "round": "action-adherence-v2",
+  "rationale": "Preserve all characters, scenes and seeds. Strengthen action and pose instructions without replacing failed cases. Follow-up focuses on FLUX because baseline identity/style retention was stronger; no claim of a new two-engine comparison."
+}

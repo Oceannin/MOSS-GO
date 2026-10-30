@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "fields": {
+    "role": {"label": "Role", "label_ru": "Занятие", "group": "identity", "options": [
+      ["a courier", "Курьер"], ["a clockmaker", "Часовщик"], ["a pilot", "Пилот"], ["a botanist", "Ботаник"], ["a photographer", "Фотограф"], ["a mechanic", "Механик"], ["an explorer", "Исследователь"], ["an illustrator", "Иллюстратор"]
+    ]},
+    "build": {"label": "Silhouette", "label_ru": "Телосложение", "group": "identity", "options": [
+      ["a compact silhouette", "Компактный силуэт"], ["a tall, slender build", "Высокое, стройное"], ["broad shoulders", "Широкие плечи"], ["an athletic build", "Атлетическое"], ["an average-height, balanced build", "Средний рост, пропорциональное"], ["a stocky build", "Коренастое"]
+    ]},
+    "skin_tone": {"label": "Skin tone", "label_ru": "Тон кожи", "group": "identity", "options": [
+      ["fair skin", "Светлый"], ["olive skin", "Оливковый"], ["light brown skin", "Светло-коричневый"], ["medium brown skin", "Коричневый"], ["dark brown skin", "Тёмно-коричневый"], ["deep brown skin", "Глубокий коричневый"]
+    ]},
+    "hair": {"label": "Hair", "label_ru": "Волосы", "group": "identity", "options": [
+      ["short black hair", "Короткие чёрные"], ["long black hair", "Длинные чёрные"], ["short silver hair", "Короткие серебристые"], ["long silver hair", "Длинные серебристые"], ["wavy brown hair", "Волнистые каштановые"], ["red bob haircut", "Рыжее каре"], ["short blue hair", "Короткие синие"], ["pink braided hair", "Розовые косы"], ["short silver bob haircut", "Серебристое каре"], ["short curly black hair", "Короткие чёрные кудри"], ["two long purple braids", "Две длинные фиолетовые косы"], ["a dark brown ponytail", "Тёмно-каштановый хвост"], ["short sandy blond hair", "Короткие песочно-светлые"]
+    ]},
+    "eyes": {"label": "Eyes", "label_ru": "Глаза", "group": "identity", "options": [
+      ["brown eyes", "Карие"], ["blue eyes", "Голубые"], ["green eyes", "Зелёные"], ["amber eyes", "Янтарные"], ["gray eyes", "Серые"], ["violet eyes", "Фиолетовые"]
+    ]},
+    "face_detail": {"label": "Face detail", "label_ru": "Деталь лица", "group": "identity", "options": [
+      ["light freckles across the nose", "Лёгкие веснушки на носу"], ["a small scar through one eyebrow", "Небольшой шрам на брови"], ["a neat dark beard", "Аккуратная тёмная борода"], ["thick expressive eyebrows", "Густые выразительные брови"], ["a dimpled smile", "Улыбка с ямочками"], ["a narrow, angular face", "Узкое угловатое лицо"]
+    ]},
+    "outfit": {"label": "Outfit", "label_ru": "Одежда", "group": "wardrobe", "options": [
+      ["a charcoal trench coat", "Угольный тренч"], ["a yellow raincoat", "Жёлтый дождевик"], ["a blue utility jacket", "Синяя рабочая куртка"], ["a green hiking jacket", "Зелёная походная куртка"], ["a white flight suit", "Белый лётный комбинезон"], ["a red scarf and dark jacket", "Красный шарф и тёмная куртка"], ["a cream sweater and blue trousers", "Кремовый свитер и синие брюки"], ["a yellow raincoat and navy trousers", "Жёлтый дождевик и тёмно-синие брюки"], ["a brown work jacket over blue overalls", "Коричневая рабочая куртка поверх синего комбинезона"], ["a cream flight jacket and navy trousers", "Кремовая лётная куртка и тёмно-синие брюки"], ["a green apron over a linen shirt", "Зелёный фартук поверх льняной рубашки"], ["a navy sweater and gray cargo trousers", "Тёмно-синий свитер и серые брюки карго"]
+    ]},
+    "footwear": {"label": "Footwear", "label_ru": "Обувь", "group": "wardrobe", "options": [
+      ["red ankle boots", "Красные ботильоны"], ["teal ankle boots", "Бирюзовые ботинки"], ["brown work boots", "Коричневые рабочие ботинки"], ["white canvas sneakers", "Белые кеды"], ["black lace-up boots", "Чёрные ботинки на шнуровке"], ["green hiking boots", "Зелёные походные ботинки"]
+    ]},
+    "headwear": {"label": "Headwear", "label_ru": "Головной убор", "group": "wardrobe", "options": [
+      ["a navy cap", "Тёмно-синяя кепка"], ["a gray knitted beanie", "Серая вязаная шапка"], ["a wide-brimmed sun hat", "Широкополая шляпа"], ["a brown aviator cap", "Коричневый авиаторский шлем"], ["a red wool beret", "Красный шерстяной берет"]
+    ]},
+    "accessory": {"label": "Signature detail", "label_ru": "Отличительная деталь", "group": "wardrobe", "options": [
+      ["round glasses", "Круглые очки"], ["rectangular glasses", "Прямоугольные очки"], ["a small star-shaped hair clip", "Маленькая заколка-звёздочка"], ["a red messenger bag", "Красная сумка через плечо"], ["a brass compass", "Латунный компас"], ["an orange backpack", "Оранжевый рюкзак"], ["a small enamel moon pin", "Маленький эмалевый значок-луна"], ["a red star hair clip and a red messenger bag", "Красная заколка-звезда и красная сумка"], ["round brass glasses and an orange backpack", "Круглые очки в латунной оправе и оранжевый рюкзак"], ["a large blue crescent moon pin", "Большой синий значок-полумесяц"]
+    ]},
+    "expression": {"label": "Expression", "label_ru": "Выражение лица", "group": "direction", "options": [
+      ["a calm, attentive expression", "Спокойное и внимательное"], ["a confident smile", "Уверенная улыбка"], ["a surprised expression", "Удивлённое"], ["a thoughtful expression", "Задумчивое"], ["a determined expression", "Решительное"], ["a cheerful smile", "Радостная улыбка"]
+    ]},
+    "style": {"label": "Medium", "label_ru": "Техника", "group": "direction", "options": [
+      ["anime illustration", "Аниме-иллюстрация"], ["cel-shaded animation still", "Кадр с сел-шейдингом"], ["watercolor illustration", "Акварельная иллюстрация"], ["editorial photography", "Редакционная фотография"], ["graphic novel illustration", "Иллюстрация графического романа"], ["soft 3D illustration", "Мягкая 3D-иллюстрация"]
+    ]}
+  },
+  "presets": [
+    {"id": "mira", "label": "Mira · Courier", "label_ru": "Мира · Курьер", "character": {"role": "a courier", "skin_tone": "fair skin", "hair": "short silver bob haircut", "eyes": "green eyes", "outfit": "a yellow raincoat and navy trousers", "footwear": "red ankle boots", "accessory": "a red star hair clip and a red messenger bag", "expression": "a calm, attentive expression", "style": "anime illustration"}, "locks": ["skin_tone", "hair", "eyes", "outfit", "footwear", "accessory"]},
+    {"id": "theo", "label": "Theo · Clockmaker", "label_ru": "Тео · Часовщик", "character": {"role": "a clockmaker", "hair": "short curly black hair", "eyes": "brown eyes", "face_detail": "a neat dark beard", "outfit": "a brown work jacket over blue overalls", "footwear": "brown work boots", "accessory": "round brass glasses and an orange backpack", "expression": "a thoughtful expression", "style": "anime illustration"}, "locks": ["hair", "eyes", "face_detail", "outfit", "footwear", "accessory"]},
+    {"id": "nia", "label": "Nia · Pilot", "label_ru": "Ния · Пилот", "character": {"role": "a pilot", "skin_tone": "dark brown skin", "hair": "two long purple braids", "eyes": "amber eyes", "outfit": "a cream flight jacket and navy trousers", "footwear": "teal ankle boots", "accessory": "a large blue crescent moon pin", "expression": "a confident smile", "style": "anime illustration"}, "locks": ["skin_tone", "hair", "eyes", "outfit", "footwear", "accessory"]}
+  ]
+}

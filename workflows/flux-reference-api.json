@@ -1,0 +1,197 @@
+{
+  "model": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-4b-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "clip": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "source": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "mira.png"
+    }
+  },
+  "positive": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": "Create a NEW illustration of the reference character standing at a quiet railway station in soft morning light. Pose the right arm bent at the elbow and clearly hold ONE small paper ticket between the right thumb and fingers, with its rectangular outline readable. Three-quarter front view, full body, clear face. Preserve the identity and exact outfit from the input image, but change the arm position and background. Clean cel-shaded anime illustration. No text, signatures or logos."
+    }
+  },
+  "negative": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "positive",
+        0
+      ]
+    }
+  },
+  "reference_size": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "source",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 0.786432,
+      "resolution_steps": 16
+    }
+  },
+  "reference_encode": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "reference_size",
+        0
+      ],
+      "vae": [
+        "vae",
+        0
+      ]
+    }
+  },
+  "reference_positive": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "positive",
+        0
+      ],
+      "latent": [
+        "reference_encode",
+        0
+      ]
+    }
+  },
+  "reference_negative": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "negative",
+        0
+      ],
+      "latent": [
+        "reference_encode",
+        0
+      ]
+    }
+  },
+  "latent": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "noise": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "sampler": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "guider": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "model",
+        0
+      ],
+      "positive": [
+        "reference_positive",
+        0
+      ],
+      "negative": [
+        "reference_negative",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "sigmas": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "sample": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "noise",
+        0
+      ],
+      "guider": [
+        "guider",
+        0
+      ],
+      "sampler": [
+        "sampler",
+        0
+      ],
+      "sigmas": [
+        "sigmas",
+        0
+      ],
+      "latent_image": [
+        "latent",
+        0
+      ]
+    }
+  },
+  "decode": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "sample",
+        0
+      ],
+      "vae": [
+        "vae",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "save": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "decode",
+        0
+      ],
+      "filename_prefix": "MOSS-GO/examples/flux-reference-api"
+    }
+  }
+}

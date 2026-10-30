@@ -1,0 +1,249 @@
+{
+  "model": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-4b-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "clip": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "source": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "mira.png"
+    }
+  },
+  "positive": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": "Change the raincoat to deep blue. Keep the character's identity, pose and all unmasked details. Clean cel-shaded anime illustration."
+    }
+  },
+  "negative": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "positive",
+        0
+      ]
+    }
+  },
+  "reference_size": {
+    "class_type": "ImageScaleToTotalPixels",
+    "inputs": {
+      "image": [
+        "source",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "megapixels": 0.786432,
+      "resolution_steps": 16
+    }
+  },
+  "reference_encode": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "reference_size",
+        0
+      ],
+      "vae": [
+        "vae",
+        0
+      ]
+    }
+  },
+  "reference_positive": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "positive",
+        0
+      ],
+      "latent": [
+        "reference_encode",
+        0
+      ]
+    }
+  },
+  "reference_negative": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "negative",
+        0
+      ],
+      "latent": [
+        "reference_encode",
+        0
+      ]
+    }
+  },
+  "base_size": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "source",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 768,
+      "height": 1024,
+      "crop": "disabled"
+    }
+  },
+  "latent": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "mask": {
+    "class_type": "LoadImageMask",
+    "inputs": {
+      "image": "mira-edit-mask.png",
+      "channel": "red"
+    }
+  },
+  "feather": {
+    "class_type": "MossGoFeatherMask",
+    "inputs": {
+      "mask": [
+        "mask",
+        0
+      ],
+      "width": 768,
+      "height": 1024,
+      "radius": 8
+    }
+  },
+  "noise": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "sampler": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "guider": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "model",
+        0
+      ],
+      "positive": [
+        "reference_positive",
+        0
+      ],
+      "negative": [
+        "reference_negative",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "sigmas": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "sample": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "noise",
+        0
+      ],
+      "guider": [
+        "guider",
+        0
+      ],
+      "sampler": [
+        "sampler",
+        0
+      ],
+      "sigmas": [
+        "sigmas",
+        0
+      ],
+      "latent_image": [
+        "latent",
+        0
+      ]
+    }
+  },
+  "decode": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "sample",
+        0
+      ],
+      "vae": [
+        "vae",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "composite": {
+    "class_type": "ImageCompositeMasked",
+    "inputs": {
+      "destination": [
+        "source",
+        0
+      ],
+      "source": [
+        "decode",
+        0
+      ],
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "mask": [
+        "feather",
+        0
+      ]
+    }
+  },
+  "save": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "composite",
+        0
+      ],
+      "filename_prefix": "MOSS-GO/examples/flux-masked-refine-api"
+    }
+  }
+}

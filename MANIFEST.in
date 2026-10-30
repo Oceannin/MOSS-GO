@@ -1,0 +1,11 @@
+include __init__.py run.py models.py run_tests.py
+include README.md CHANGELOG.md LICENSE THIRD_PARTY_NOTICES.md
+include requirements.txt requirements.lock build-requirements.lock uv.lock
+include package.json package-lock.json
+recursive-include scripts *.py *.mjs
+recursive-include tests *.py *.mjs
+recursive-include docs *.md *.png *.jpg
+recursive-include workflows *.json *.md *.png
+recursive-include .github/workflows *.yml
+global-exclude __pycache__ *.py[cod]
+exclude PROJECT_STATUS.md

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "images": [
+    {
+      "id": "mira",
+      "label": "Mira · Courier",
+      "label_ru": "Мира · Курьер",
+      "filename": "mira.png",
+      "sha256": "6d5cb1431fe2a82d5ecfaf6950f012214e81e2f5da87723843e7453ac735a0e7",
+      "width": 768,
+      "height": 1024,
+      "source": "Original fictional character created for MOSS GO with MOSS-Image SFT.",
+      "source_job_id": "a81d735e08304b4b851b19bbcb970b53"
+    },
+    {
+      "id": "theo",
+      "label": "Theo · Clockmaker",
+      "label_ru": "Тео · Часовщик",
+      "filename": "theo.png",
+      "sha256": "8086be692bccc55f7a494ec7929770c3cd924fc4105829206772712aa61e0c29",
+      "width": 768,
+      "height": 1024,
+      "source": "Original fictional character created for MOSS GO with MOSS-Image SFT.",
+      "source_job_id": "7017b540392547e589510b51fb150f6d"
+    },
+    {
+      "id": "nia",
+      "label": "Nia · Pilot",
+      "label_ru": "Ния · Пилот",
+      "filename": "nia.png",
+      "sha256": "25cb1a2ddd20950eb96f728951206ff266276c3cec872ed2c064237862992952",
+      "width": 768,
+      "height": 1024,
+      "source": "Original fictional character created for MOSS GO with MOSS-Image SFT.",
+      "source_job_id": "819bfb97ad974445b7da01aee9d37f95"
+    }
+  ]
+}
