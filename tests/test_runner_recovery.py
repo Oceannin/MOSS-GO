@@ -73,7 +73,7 @@ class RecoveryTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         self.folder = tempfile.TemporaryDirectory()
         self.store = Store(self.folder.name)
-        self.job = self.store.create_batch(validate_request({"mode": "create", "prompt": "A blue ceramic cup.", "variants": 1}))["jobs"][0]
+        self.job = self.store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "A blue ceramic cup.", "variants": 1}))["jobs"][0]
         self.native = NativeSimulation(self.job["id"])
         self.sleep = patch("moss_go.runner.asyncio.sleep", new_callable=AsyncMock)
         self.sleep.start()
@@ -139,7 +139,7 @@ class RecoveryTests(unittest.IsolatedAsyncioTestCase):
     async def test_compiled_workflow_keeps_canonical_character_traits_without_duplicate_injection(self):
         character = next(item["character"] for item in CHARACTER_PRESETS if item["id"] == "nia")
         description = "A pilot holding one closed notebook at a tram stop."
-        job = self.store.create_batch(validate_request({"mode": "create", "prompt": description, "character": character, "variants": 1}))["jobs"][0]
+        job = self.store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": description, "character": character, "variants": 1}))["jobs"][0]
         native = NativeSimulation(job["id"])
         with self.assertRaises(StudioError):
             await Runner(self.store, native).execute(job)

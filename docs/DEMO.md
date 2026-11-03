@@ -1,26 +1,42 @@
-# Recorded contest demonstration
+# FLUX 3 demonstration — 0.2.0-rc.1
 
-[Watch the demo](https://oceannin.github.io/MOSS-GO/) or download
+[Watch](https://oceannin.github.io/MOSS-GO/) or download
 [the MP4](https://oceannin.github.io/MOSS-GO/demo.mp4).
 
-The 1:48 English walkthrough uses real captures of the installed 0.1.0rc1
-studio, with pauses edited and generation waiting explicitly shortened. It has
-English captions and no music. The comparison wipe was operated through the
-application's own keyboard-accessible slider.
+The **1:46 English walkthrough** uses actual MOSS GO interface captures and
+real FLUX 3 outputs. It is an edited screenshot walkthrough, not a continuous
+screen recording. Processing waits are omitted and explicitly labeled. Captions
+explain the flow without audio; no music or synthetic promotional imagery is used.
 
-The demo starts from the bundled original Mira reference, generates a railway
-station scene with a paper ticket, then changes the messenger bag to teal through
-a selected mask. Both jobs completed in the installed wheel against the local
-ComfyUI runtime. No model weights or paid APIs were fetched for the recording.
+Create shows the actual generated original courier. Reference shows the bundled
+original Mira in a station scene. Refine shows the bag selection, teal result,
+keyboard comparison, observed expanded prompt and portable recipe export. The
+Theo scene strip uses the original anchor and three actual FLUX 3 scene outputs.
+Original bundled anchors were created with MOSS-Image SFT; new scenes and edits
+use FLUX 3. The separate evaluation records all 13 cases, including the failed
+Mira walking pose.
 
-- Engine: FLUX.2 Klein distilled 4B FP8, Qwen3 4B encoder and FLUX.2 VAE.
-- Reference and final image: 768×1024; seed 42; four sampling steps.
-- Machine: RTX 4070 Ti SUPER 16 GB, 32 GB system RAM, Windows.
-- Edit: 8 px Gaussian feather radius, context crop and composite into the original.
-  Pixels outside the resulting softened mask matched the source in this case.
-- The two saved takes and their parent/version relationship survived page reload.
-- The exported example ZIP includes source, mask, result, actual native graph,
-  recipe manifest and contact sheet. It is attached to the release.
+The initial three UI jobs used the FLUX 3 integration build. Final result,
+mask, comparison and export captures use the freshly installed 0.2.0rc1 wheel.
+Its new-seed Refine job `e1d21a731e634242a5a2c58300f789d0` completed in 35.11 s
+with actual prompt and image computation (model-loader/input nodes were cached).
+A repeated seed-42 job reused execution cache in 2.09 s; that is not claimed as
+uncached generation latency. Saved execution metadata preserves its original
+runtime version; exporting it later does not rewrite its provenance.
 
-This is a bounded demonstration, not a general identity or hardware guarantee.
-The broader development benchmark and limitations are in [BENCHMARK.md](BENCHMARK.md).
+- FLUX 3 Image Klein distilled INT8 ConvRot; official Qwen3-VL 4B INT8 encoder,
+  Qwen3.5 9B INT8 prompt upsampler and compatible VAE.
+- Euler/simple, CFG 1, 16 steps, shift ln(16); seed 42 in the original three jobs,
+  seed 43 in the final installed-wheel edit.
+- RTX 4070 Ti SUPER 16 GB, 32 GB RAM, Windows / isolated ComfyUI 0.41.2.
+- Original seed-42 UI edit: 768×1024 retained, 8 px feather radius, 38,105 changed
+  pixels, zero outside the effective mask. The close-up refers to that edit.
+- Three release ZIPs contain actual Create, Reference and Refine recipes with
+  input files, masks where applicable, result, observed caption and native graph.
+  Import into 0.2.0rc1 and old 0.1 FLUX.2 ZIP import both prepared work without jobs.
+- Exported Refine replay in native ComfyUI used no cached nodes and produced a
+  pixel-identical result. See [complete evidence](FLUX3_BENCHMARK.md).
+
+The previous FLUX.2 demo remains attached to the
+[0.1.0-rc.1 release](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.1.0-rc.1).
+This public page is a recorded demonstration, not a remote inference endpoint.

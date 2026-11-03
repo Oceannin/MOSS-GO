@@ -1,5 +1,17 @@
 # Third-party notices
 
+- **FLUX 3 workflow-derived API paths and prompt upsampler system prompts** are
+  adapted from the official BFL ComfyUI templates at revision
+  `9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1`. Those workflow files are MIT licensed,
+  Copyright (c) 2023-present Comfy Org. The full notice is included in
+  `moss_go/assets/flux3_workflow_LICENSE.txt`.
+- **FLUX 3 Image Klein distilled weights** are separately licensed by Black
+  Forest Labs under the FLUX Kommunity License v1.0. They are not Apache-2.0,
+  are not bundled, and require the user's accepted Hugging Face access.
+  The Qwen3-VL encoder and official Qwen3.5 prompt upsampler are Apache-2.0;
+  the compatible FLUX.2 VAE retains its upstream Apache-2.0 license.
+  Exact component sources and hashes are in the model manifest and model guide.
+
 - **Mira, Theo and Nia reference images** are original fictional characters
   created for this project with MOSS-Image SFT. They are bundled project assets
   under the project license; they are not downloaded third-party character art.
@@ -26,7 +38,8 @@
   assistant. Its tested Ollama manifest digest is in
   `moss_go/assets/assistant_model.json`; see [assistant setup](docs/ASSISTANT.md).
 - **MOSS CharRef** is experimental. Its additional adapter is not included in the
-  verified default model packs; its source/weight audit remains a release gate.
+  verified default model packs; its published Apache-2.0 declaration and exact local weight hash are recorded in
+  `docs/DEPENDENCIES.md`.
   No model weights are included in this repository or covered by its code license.
 - **ComfyUI** is an external runtime, not bundled or relicensed by this application.
 - This is an independent project. The theme references Comfy's published palette;

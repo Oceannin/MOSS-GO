@@ -4,25 +4,29 @@ import math
 
 from .settings import PROFILES, choose_profile, validate_request
 from .workflows import build_workflow, resolve_models
+from .flux3 import compatibility_issues
 
 
 ENGINE_MODES = {"moss": ("create", "refine"), "moss-charref": ("reference",),
-                "flux-klein": ("create", "reference", "refine")}
+                "flux-klein": ("create", "reference", "refine"),
+                "flux3-klein": ("create", "reference", "refine")}
 
 
-def required_nodes(engine, mode):
+def required_nodes(engine, mode, *, prompt_upsampler=True):
     settings = validate_request({"engine": engine, "mode": mode, "profile": "balanced",
                                  "prompt": "Readiness probe; never submitted.", "variants": 1,
                                  "input_id": "a" * 32 if mode != "create" else None,
-                                 "mask_id": "b" * 32 if mode == "refine" else None})
+                                 "mask_id": "b" * 32 if mode == "refine" else None,
+                                 "prompt_upsampler": prompt_upsampler})
     # Include the full source restoration and focused-mask paths that may be
     # needed after the user uploads an image. Optional LoRAs remain optional.
     if mode == "refine":
         settings.update(source_width=1536, source_height=2048)
-        if engine == "flux-klein":
+        if engine in {"flux-klein", "flux3-klein"}:
             settings["edit_region"] = {"x": 200, "y": 200, "width": 320, "height": 320}
     graph = build_workflow(settings, {"model": "probe.safetensors", "clip": "probe.safetensors",
-                                     "vae": "probe.safetensors", "reference_lora": "probe.safetensors"},
+                                     "vae": "probe.safetensors", "reference_lora": "probe.safetensors",
+                                     "upsampler": "probe.safetensors"},
                            input_image="probe.png" if mode != "create" else None,
                            mask_image="probe-mask.png" if mode == "refine" else None)
     return {node["class_type"] for node in graph.values()}
@@ -31,20 +35,25 @@ def required_nodes(engine, mode):
 def engine_readiness(inventory):
     engines = {}
     for engine, supported in ENGINE_MODES.items():
-        modes = {}
-        for mode in ("create", "reference", "refine"):
-            missing_nodes = sorted(required_nodes(engine, mode) - inventory["nodes"]) if mode in supported else []
-            modes[mode] = {"supported": mode in supported, "missing_nodes": missing_nodes}
+        issues = compatibility_issues(inventory) if engine == "flux3-klein" else []
+        def checked_profile(profile, upsampler=True):
+            models, missing = resolve_models(engine, inventory, profile, prompt_upsampler=upsampler)
+            modes = {}
+            for mode in ("create", "reference", "refine"):
+                absent = sorted(required_nodes(engine, mode, prompt_upsampler=upsampler) - inventory["nodes"]) if mode in supported else []
+                modes[mode] = {"supported": mode in supported, "missing_nodes": absent,
+                               "missing_capabilities": issues,
+                               "ready": mode in supported and not missing and not absent and not issues}
+            return {"models": models, "missing": missing, "modes": modes,
+                    "missing_capabilities": issues, "ready": any(item["ready"] for item in modes.values())}
         profiles = {}
         for profile in PROFILES:
-            models, missing = resolve_models(engine, inventory, profile)
-            checked = {mode: {**details, "ready": details["supported"] and not missing and not details["missing_nodes"]}
-                       for mode, details in modes.items()}
-            profiles[profile] = {"models": models, "missing": missing, "modes": checked,
-                                 "ready": any(item["ready"] for item in checked.values())}
+            profiles[profile] = checked_profile(profile)
+            if engine == "flux3-klein":
+                profiles[profile]["caption_only"] = checked_profile(profile, False)
         balanced = profiles["balanced"]
         engines[engine] = {**balanced, "profiles": profiles, "quality_verified": False,
-                           "missing_nodes": sorted({node for mode in modes.values() for node in mode["missing_nodes"]})}
+                           "missing_nodes": sorted({node for mode in balanced["modes"].values() for node in mode["missing_nodes"]})}
     return engines
 
 

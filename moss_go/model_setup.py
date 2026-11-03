@@ -1,4 +1,4 @@
-"""Pinned public model downloads. No ComfyUI imports, credentials or GPU needed."""
+"""Pinned model downloads. Gated packs require the author's own accepted access."""
 
 import argparse
 from contextlib import contextmanager
@@ -10,6 +10,7 @@ from pathlib import Path, PurePosixPath
 import re
 import sys
 import urllib.request
+import urllib.error
 
 
 MANIFEST = Path(__file__).with_name("assets") / "model_manifest.json"
@@ -104,7 +105,20 @@ def download_file(models_root, item, *, opener=urllib.request.urlopen, report=pr
             if offset:
                 headers["Range"] = f"bytes={offset}-"
             request = urllib.request.Request(url, headers=headers)
-            with opener(request, timeout=30) as response:
+            if item.get("requires_hf_access"):
+                token = hub_token()
+                if not token:
+                    raise ValueError(f"Accept the model terms at https://huggingface.co/{item['repository']} and authenticate with hf auth login or HF_TOKEN. No access terms are accepted automatically.")
+                # urllib does not copy unredirected headers onto signed CDN
+                # redirects. Never forward the user's hub token to a CDN.
+                request.add_unredirected_header("Authorization", "Bearer " + token)
+            try:
+                response = opener(request, timeout=30)
+            except urllib.error.HTTPError as exc:
+                if item.get("requires_hf_access") and exc.code in {401, 403}:
+                    raise ValueError(f"Hugging Face access denied. Review and accept the model conditions at https://huggingface.co/{item['repository']} using the account associated with your local credential.") from None
+                raise
+            with response:
                 status = response.status
                 if response.headers.get("Content-Encoding", "identity") != "identity":
                     raise ValueError("Unexpected encoded model response.")
@@ -146,6 +160,19 @@ def download_file(models_root, item, *, opener=urllib.request.urlopen, report=pr
             part.unlink()
         report(f"Installed and verified {path.name}")
         return "installed"
+
+
+def hub_token():
+    """Read the existing local HF credential; never log or persist it."""
+    token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+    if token:
+        return token.strip()
+    cache = Path(os.environ.get("HF_HOME", Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "huggingface"))
+    path = Path(os.environ.get("HF_TOKEN_PATH", cache / "token"))
+    try:
+        return path.read_text(encoding="utf-8").strip() or None
+    except (OSError, UnicodeError):
+        return None
 
 
 def main(argv=None):

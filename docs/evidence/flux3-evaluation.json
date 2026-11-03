@@ -1,0 +1,4028 @@
+{
+  "date": "2026-11-03",
+  "hardware": "RTX 4070 Ti SUPER 16 GB / 32 GB RAM / Windows",
+  "review": "Assistant visual review; not blinded or independently scored.",
+  "config_sha256": "2929a35dbe877170690f74f6f94084f47d85b6f24f1276ead7d51fc21c14a51c",
+  "measurement_scope": "Sampled device-wide VRAM, process RSS and system-wide RAM; other applications included.",
+  "runs": [
+    {
+      "key": "create/portrait",
+      "job_id": "92e295bb9ca04d378a968f118d565ef9",
+      "settings": {
+        "mode": "create",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "create",
+      "result": {
+        "status": "done",
+        "output_id": "3d0cc86ed360543422f353e660efe76e",
+        "elapsed": 26.85,
+        "error": null,
+        "prompt_id": "dd14e2e4-e4ec-4ded-9113-d9bcc837188a"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16410214400,
+        "comfy_rss_bytes": 15053799424,
+        "system_used_bytes": 31256133632
+      },
+      "execution": {
+        "graph": {
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+              "system_prompt": "You are the prompt upsampler of a text-to-image model. Expand the user's short request into ONE detailed, self-contained caption: the exact text the image model receives. Output only the caption, with no greetings, explanations, refusals, questions, Markdown, headings, JSON, coordinates, ids or angle-bracket tokens, and no quotes around it. If the input is not clearly an image request, caption a visualization of its concept. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas (wide spreads content sideways, tall stacks it) and never mention the ratio or the canvas.\n\nFidelity and planning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording; never contradict, substitute, drop or narrow the request, and keep an abstract concept abstract. Decide everything left open as ONE concrete, consistent plan; never offer alternatives or hedge. Never re-express a stated constraint through another mechanism; add camera optics (depth of field, bokeh, blur) only when asked for or implied. Without a stated style, plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Full-color indoor photograph, ...\", \"Studio photograph, ...\", \"Close-up photograph, ...\"); keep \"Photorealistic\" for renders, and turn \"photorealistic\" or \"realistic\" requests for photos into the photograph convention. Give a photograph a few ordinary, non-ideal specifics drawn from the scene's own objects instead of the stock-photo ideal. Do not invent names, brands, logos or celebrities; keep user-named ones. A long request keeps its content but not its wording: drop appraisal and sales vocabulary, turn moods into observable physical facts, and add only new concrete content with positions. Time of day is lighting, not rendered text.\n\nCaption format: one continuous prose block in the generative voice, never \"this image shows\", \"we can see\" or \"is visible\". Lead with medium and style, then scene, lighting and camera, then the subjects with concrete colors, materials and state. Every person in focus gets an observable profile: ethnicity, gender, age range, skin tone (\"fair skin\", \"brown skin\"), hair and clothing. Make the layout reconstructable from words: frame-relative positions (frame-left, frame-right, upper, lower, foreground, midground, background), sentence-initial anchors (\"On the left, ...\", \"In the background, ...\"), relations (holds, faces, behind) and a consistent order; describe up to about ten instances one by one, beyond that give the exact count and arrangement. Out-of-focus or distant planes are shapes, colors and silhouettes, never identities or readable text, and the background takes about a sixth of the caption. Be definite: no hedging adverbs, no quality or emotion judgments, no closing sentence about mood; state negations as what is present. Rendered text: transcribe every wording verbatim inside double quotes in its original language and script, keep the line breaks of multi-line text, and give its typography, color and placement; author concrete, domain-correct wording when the request needs text it does not supply, and name canonical structures (calendar, keyboard, periodic table) exactly with their full layout. All prose is English; only quoted text keeps its language. Typical length is 100 to 350 words, more for complex scenes.\n\nOutput only the caption.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 1.5,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off"
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/92e295bb9ca04d378a968f118d565ef9"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "987b7233b00e44209e54fccc58f6ac78",
+          "mode": "create",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": null,
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703571.98217,
+        "runtime": {
+          "original_prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+          "expanded_prompt": "Clean cel-shaded anime character design reference on a neutral pale warm gray background, with soft studio daylight and restrained shadows. A single original adult female courier, age 26, stands centered as one complete figure from head to boots in a three-quarter front view, shown at full-body scale with generous empty space around her silhouette. She has fair skin, vivid green eyes, and a short silver bob haircut ending near the jaw, with neat tapered bangs and a small red five-pointed star hair clip above her left temple. Her eyebrows rest level, her mouth is closed, and her steady gaze faces forward with an attentive expression. She wears a mustard yellow hooded raincoat with a simple folded collar, long sleeves, a front zipper, and minimal seam lines; the hood rests behind her neck rather than covering her hair. Navy blue straight-cut trousers fall into plain red ankle boots with low soles and rounded toes. A compact red messenger bag crosses her torso diagonally, its wide strap running from her right shoulder to the bag resting at her left hip. Both hands are relaxed and fully visible beside the bag, hanging open with loosely curved fingers. Confident dark linework defines the face, clothing folds, bag seams, and boot shapes, while restrained cel shading adds soft tonal transitions beneath the chin, along the coat folds, and under the messenger bag. The uncluttered background contains only a diffuse grounding shadow beneath her boots.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "create/environment",
+      "job_id": "fb7bdf294d8549239b0c14ced78886f5",
+      "settings": {
+        "mode": "create",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "size": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "create",
+      "result": {
+        "status": "done",
+        "output_id": "7fe95e6ec0a295ee9d9d478a926dd802",
+        "elapsed": 28.78,
+        "error": null,
+        "prompt_id": "6ecde443-345f-40fd-8442-60b4adeac46e"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16376659968,
+        "comfy_rss_bytes": 15008866304,
+        "system_used_bytes": 31270973440
+      },
+      "execution": {
+        "graph": {
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+              "system_prompt": "You are the prompt upsampler of a text-to-image model. Expand the user's short request into ONE detailed, self-contained caption: the exact text the image model receives. Output only the caption, with no greetings, explanations, refusals, questions, Markdown, headings, JSON, coordinates, ids or angle-bracket tokens, and no quotes around it. If the input is not clearly an image request, caption a visualization of its concept. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas (wide spreads content sideways, tall stacks it) and never mention the ratio or the canvas.\n\nFidelity and planning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording; never contradict, substitute, drop or narrow the request, and keep an abstract concept abstract. Decide everything left open as ONE concrete, consistent plan; never offer alternatives or hedge. Never re-express a stated constraint through another mechanism; add camera optics (depth of field, bokeh, blur) only when asked for or implied. Without a stated style, plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Full-color indoor photograph, ...\", \"Studio photograph, ...\", \"Close-up photograph, ...\"); keep \"Photorealistic\" for renders, and turn \"photorealistic\" or \"realistic\" requests for photos into the photograph convention. Give a photograph a few ordinary, non-ideal specifics drawn from the scene's own objects instead of the stock-photo ideal. Do not invent names, brands, logos or celebrities; keep user-named ones. A long request keeps its content but not its wording: drop appraisal and sales vocabulary, turn moods into observable physical facts, and add only new concrete content with positions. Time of day is lighting, not rendered text.\n\nCaption format: one continuous prose block in the generative voice, never \"this image shows\", \"we can see\" or \"is visible\". Lead with medium and style, then scene, lighting and camera, then the subjects with concrete colors, materials and state. Every person in focus gets an observable profile: ethnicity, gender, age range, skin tone (\"fair skin\", \"brown skin\"), hair and clothing. Make the layout reconstructable from words: frame-relative positions (frame-left, frame-right, upper, lower, foreground, midground, background), sentence-initial anchors (\"On the left, ...\", \"In the background, ...\"), relations (holds, faces, behind) and a consistent order; describe up to about ten instances one by one, beyond that give the exact count and arrangement. Out-of-focus or distant planes are shapes, colors and silhouettes, never identities or readable text, and the background takes about a sixth of the caption. Be definite: no hedging adverbs, no quality or emotion judgments, no closing sentence about mood; state negations as what is present. Rendered text: transcribe every wording verbatim inside double quotes in its original language and script, keep the line breaks of multi-line text, and give its typography, color and placement; author concrete, domain-correct wording when the request needs text it does not supply, and name canonical structures (calendar, keyboard, periodic table) exactly with their full layout. All prose is English; only quoted text keeps its language. Typical length is 100 to 350 words, more for complex scenes.\n\nOutput only the caption.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 1.5,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off"
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 1024,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 1024,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/fb7bdf294d8549239b0c14ced78886f5"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "479b7d2cc0784732991ea5e30ebceb5d",
+          "mode": "create",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 1024,
+          "height": 1024,
+          "prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": null,
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703598.8630211,
+        "runtime": {
+          "original_prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+          "expanded_prompt": "Full-color indoor architectural photograph, wide-angle view from eye level inside an old railway station conservatory at dawn. A long central aisle runs from the foreground to a pair of tall arched doors in the distant center, with clear separation between the surrounding structures and the open passage. Above, a broad glass vaulted ceiling spans the frame, its weathered panes divided by dark iron ribs; several panes carry beads of condensation while pale blue dawn light fills the upper structure. Slender black iron columns rise at regular intervals along both sides, supporting the arches without signs or lettering. Soft amber sunlight enters through the eastern glass panels and crosses the wet terracotta floor in broad diagonal bands, catching shallow puddles and irregular reflections between worn reddish tiles. Along the left side, dense ferns spill from large clay planters beneath the vault, their fronds overlapping the bases of the columns. Three empty wooden benches stand in a straight line along the center aisle: one in the near midground, one farther back, and one near the far arches, each made from dark aged timber with curved ends and separated by open floor space. On the right, a substantial wooden ticket counter rests against the columns, built from dark stained planks with paneled fronts, a worn countertop, and a recessed service opening containing only shadow. The remaining walls are bare and unmarked. Beyond the far arched doors, cool mist obscures the exterior into pale blue-grey layers, with no tracks or buildings resolved. The damp floor remains darker around the doorway, while the amber light fades across the terracotta toward the misty background.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "create/composition",
+      "job_id": "6e35263b61424b8683a6e89c8f174bc6",
+      "settings": {
+        "mode": "create",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "size": {
+          "width": 1024,
+          "height": 768
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "create",
+      "result": {
+        "status": "done",
+        "output_id": "9e8e20d477f9397eb21b59b791821ab3",
+        "elapsed": 26.63,
+        "error": null,
+        "prompt_id": "dcef62e3-3732-4550-a516-f0497ac68410"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16310599680,
+        "comfy_rss_bytes": 15068057600,
+        "system_used_bytes": 31254224896
+      },
+      "execution": {
+        "graph": {
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+              "system_prompt": "You are the prompt upsampler of a text-to-image model. Expand the user's short request into ONE detailed, self-contained caption: the exact text the image model receives. Output only the caption, with no greetings, explanations, refusals, questions, Markdown, headings, JSON, coordinates, ids or angle-bracket tokens, and no quotes around it. If the input is not clearly an image request, caption a visualization of its concept. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas (wide spreads content sideways, tall stacks it) and never mention the ratio or the canvas.\n\nFidelity and planning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording; never contradict, substitute, drop or narrow the request, and keep an abstract concept abstract. Decide everything left open as ONE concrete, consistent plan; never offer alternatives or hedge. Never re-express a stated constraint through another mechanism; add camera optics (depth of field, bokeh, blur) only when asked for or implied. Without a stated style, plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Full-color indoor photograph, ...\", \"Studio photograph, ...\", \"Close-up photograph, ...\"); keep \"Photorealistic\" for renders, and turn \"photorealistic\" or \"realistic\" requests for photos into the photograph convention. Give a photograph a few ordinary, non-ideal specifics drawn from the scene's own objects instead of the stock-photo ideal. Do not invent names, brands, logos or celebrities; keep user-named ones. A long request keeps its content but not its wording: drop appraisal and sales vocabulary, turn moods into observable physical facts, and add only new concrete content with positions. Time of day is lighting, not rendered text.\n\nCaption format: one continuous prose block in the generative voice, never \"this image shows\", \"we can see\" or \"is visible\". Lead with medium and style, then scene, lighting and camera, then the subjects with concrete colors, materials and state. Every person in focus gets an observable profile: ethnicity, gender, age range, skin tone (\"fair skin\", \"brown skin\"), hair and clothing. Make the layout reconstructable from words: frame-relative positions (frame-left, frame-right, upper, lower, foreground, midground, background), sentence-initial anchors (\"On the left, ...\", \"In the background, ...\"), relations (holds, faces, behind) and a consistent order; describe up to about ten instances one by one, beyond that give the exact count and arrangement. Out-of-focus or distant planes are shapes, colors and silhouettes, never identities or readable text, and the background takes about a sixth of the caption. Be definite: no hedging adverbs, no quality or emotion judgments, no closing sentence about mood; state negations as what is present. Rendered text: transcribe every wording verbatim inside double quotes in its original language and script, keep the line breaks of multi-line text, and give its typography, color and placement; author concrete, domain-correct wording when the request needs text it does not supply, and name canonical structures (calendar, keyboard, periodic table) exactly with their full layout. All prose is English; only quoted text keeps its language. Typical length is 100 to 350 words, more for complex scenes.\n\nOutput only the caption.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 1.5,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off"
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 1024,
+              "height": 768,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 1024,
+              "height": 768
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/6e35263b61424b8683a6e89c8f174bc6"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "5310f09e93e744bf826476b58e283e67",
+          "mode": "create",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 1024,
+          "height": 768,
+          "prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": null,
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703627.6758928,
+        "runtime": {
+          "original_prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+          "expanded_prompt": "Clean editorial still-life illustration on a pale gray tabletop, rendered with crisp contours, restrained cel shading, and a muted neutral palette. Exactly three separate objects are arranged in one horizontal row with generous empty space between them, each fully visible without overlapping silhouettes. On the left sits a red ceramic teapot with a rounded body, short curved spout pointing left, arched handle, fitted lid, and a small circular knob; its unmarked surface is divided into simple red highlight and darker crimson shadow shapes. At center stands one blue ceramic cup, shown upright with a clean oval rim, open interior, and compact curved handle on its right side. On the right rests a neatly folded yellow cloth, formed as a low rectangular stack with two visible folds and angular shaded planes. Soft afternoon light falls from the upper left, creating pale highlights along the upper-left edges of all three objects and broad, understated gray shadows extending toward the lower right. The background remains an uninterrupted pale gray field with no additional props, patterns, lettering, or logos.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/mira-1",
+      "job_id": "b6116d23e054492ba2da7f638e32b91b",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "b7f8a352994555bbaad8a0e9b070068b",
+        "elapsed": 35.06,
+        "error": null,
+        "prompt_id": "8c4d9307-c00e-4f67-98e5-72ba05d25db1"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16410214400,
+        "comfy_rss_bytes": 15120109568,
+        "system_used_bytes": 31272771584
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/b6116d23e054492ba2da7f638e32b91b"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "e758dbbfe2dc4599a08df762e1ceaea9",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703654.3391047,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character standing at a quiet railway station in morning sunlight, shown full body at eye level in a three-quarter front view. Preserve her exact youthful face, fair skin, large green eyes, short silver bob with straight bangs, and red five-pointed star hair clip. Keep her bright yellow hooded rain jacket with its high collar, dark snap details, flap pockets, and visible seams; retain the red crossbody strap and red flap bag at her left hip, navy trousers, and red mid-calf boots with black soles. Place one small pale ticket naturally in her right hand, held beside her hip with the fingers clearly visible, while her left arm rests by her side. Set her on a simple station platform with a painted safety line, a wooden bench, a station clock, and a modest sign reading \"PLATFORM 1\". Behind her, include parallel steel rails, overhead wires, and a stationary cream-and-blue local train. Warm morning sunlight enters from frame-left, casting long clean cel-shaded shadows across the platform and illuminating the station architecture, while keeping her face fully visible and unobstructed.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/mira-2",
+      "job_id": "d05864fa2d264a67b96d85a6ab898fb8",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "27f4894016a95d39b6b94ae9056d37f1",
+        "elapsed": 34.96,
+        "error": null,
+        "prompt_id": "b8ab2241-20c1-4725-a442-66ba3355558d"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16379805696,
+        "comfy_rss_bytes": 15043395584,
+        "system_used_bytes": 31279497216
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/d05864fa2d264a67b96d85a6ab898fb8"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "63114d754eaa45d7aa652a7fea8acbba",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703689.431422,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character seated at a clock repair workbench in warm afternoon window light, using a waist-up composition from a slightly elevated side angle with her face held in a readable three-quarter view. Preserve her pale skin, short silver bob with straight bangs, vivid green eyes, red star hair clip, and calm youthful facial identity. Keep her bright yellow hooded rain jacket with its high collar, dark snap details, and red crossbody strap, along with the red messenger bag resting against her side. She holds a small brass pocket watch close to her face with both hands, lifting its open case and delicate exposed gears for careful inspection without covering her eyes. Surround her with a wooden workbench crowded with a brass magnifying loupe, fine tweezers, a screwdriver, tiny gears, coiled springs, a half-open watch case, and a compact clockmaker’s tray. Behind her, angled amber sunlight enters through a workshop window, casting long geometric highlights across the bench and her jacket. Include a small clock face, stacked wooden drawers, and pinned clock diagrams on the wall, with clean linework, restrained cel shading, and warm ochre, red, navy, and brass colors.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/mira-3",
+      "job_id": "a8873f63dc1d4e879ccf9a2499d1bc86",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "a40c5ee9c8bb1326faecf11c8c988962",
+        "elapsed": 35.07,
+        "error": null,
+        "prompt_id": "989a6ca8-f92e-40f1-b298-2aac70c4959a"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16489906176,
+        "comfy_rss_bytes": 14981251072,
+        "system_used_bytes": 31269363712
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/a8873f63dc1d4e879ccf9a2499d1bc86"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "3846a0ee13ce45728970af620839b78b",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703724.429366,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character walking along a rain-soaked city street at blue hour, shown full-body from a low camera angle with her face fully readable. Preserve her pale skin, short silver bob with straight bangs, vivid green eyes, and red five-pointed star hair clip. Keep her exact bright yellow hooded rain jacket with its high collar, dark snap details and flap pockets, navy trousers, red crossbody strap, red flap bag at her hip, and red mid-calf boots with black soles. Show her in a clear walking stride, one red-booted foot stepping forward while the other rear heel is raised, arms swinging naturally with the motion. Her head remains near the reference’s three-quarter angle, turned toward the viewer. Surround her with dark blue evening buildings, simple storefronts, and a warm amber-lit window directly behind her. The wet paving reflects cool blue sky and the warm window light in long broken streaks, with shallow puddles, small raindrops, and a few scattered leaves. Use clean cel-shaded forms, defined linework, cool blue-hour shadows, and restrained amber highlights from the window.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/theo-1",
+      "job_id": "fadc9dbc1c724ad8a798e9c7b58cd511",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "41483a388d8cd6b60f029476215b8eb9",
+        "elapsed": 35.36,
+        "error": null,
+        "prompt_id": "0bbfed0b-9e66-40b4-8c6d-9d4599c499fd"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16511926272,
+        "comfy_rss_bytes": 15024218112,
+        "system_used_bytes": 31244410880
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/a5a7b6f9a05fe425432a3a0e0319675e.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/fadc9dbc1c724ad8a798e9c7b58cd511"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "febb13f7ad99436ebafee441e44e1488",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703759.5410104,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character standing at a quiet railway station in morning sunlight, shown full body at eye level in the same three-quarter front view as the reference. Preserve his exact face, warm tan skin, large brown eyes, round black-rimmed glasses, thick curly black hair, neatly trimmed dark beard and mustache, and calm expression. Keep his complete outfit unchanged: the brown work jacket with rolled cuffs over a beige buttoned shirt, vivid blue bib overalls, orange backpack with broad orange straps and the small side pouch, and tall dark-brown leather boots. Place one small cream-colored railway ticket naturally in his right hand, held beside his hip with the fingers clearly visible; his left arm rests loosely at his side. Set him on a simple station platform with a painted edge line, a modest station sign, a wooden bench, and a stationary passenger train behind him. Include steel rails, overhead wires, and a pale station canopy casting long morning shadows. Warm sunlight enters from frame-left, creating clean golden highlights and defined cel-shaded shadows across the character, platform, and train.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/theo-2",
+      "job_id": "04da1ab99b3c44e59cee8be69cd3a154",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "284975cb012d2279c406f8599d3b97ec",
+        "elapsed": 35.21,
+        "error": null,
+        "prompt_id": "6a76f449-8a17-442f-aefc-93f28052ce13"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16449011712,
+        "comfy_rss_bytes": 15079768064,
+        "system_used_bytes": 31250931712
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/a5a7b6f9a05fe425432a3a0e0319675e.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/04da1ab99b3c44e59cee8be69cd3a154"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "8a22a8e23e87420c810d4bf98c3055b7",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703794.9365273,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character seated at a clock repair workbench in warm afternoon window light, using a waist-up composition from a slightly elevated side angle with his face held in a readable three-quarter view. Preserve the first character’s exact identity: light olive skin, thick curly black hair, round black-rimmed glasses, dark eyebrows, short full beard and mustache, and calm attentive eyes. Keep his brown work jacket with rolled cuffs over the beige buttoned shirt and blue bib overalls, along with the orange backpack and its broad orange shoulder straps. He leans forward, holding a small brass pocket watch close to his face with both hands, lifting its open case and delicate exposed mechanism for close inspection without obscuring his features. Surround him with a wooden workbench covered by a green repair mat, tiny screwdrivers, tweezers, a loupe, loose gears, coiled springs, and several open clock movements. Place a compact brass clockmaker’s lamp and a small wooden clock case nearby. Warm sunlight enters through a frame-left window, casting amber highlights across his hair, glasses, hands, and workbench, with simple cel-shaded shadows and a softly rendered workshop background.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "reference/theo-3",
+      "job_id": "32cb3a42aa2148f593c57cd2fa896ae1",
+      "settings": {
+        "mode": "reference",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+        "size": {
+          "width": 768,
+          "height": 1024
+        }
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "mode": "reference",
+      "result": {
+        "status": "done",
+        "output_id": "faaea87600852dda94912de0877701b9",
+        "elapsed": 35.0,
+        "error": null,
+        "prompt_id": "01eeec4e-0a47-4eb9-bf04-3e364800d6ce"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16323182592,
+        "comfy_rss_bytes": 15049936896,
+        "system_used_bytes": 31242321920
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/a5a7b6f9a05fe425432a3a0e0319675e.png"
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "source",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.75,
+              "images.image0": [
+                "source",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 1024,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 1024
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "decode",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/32cb3a42aa2148f593c57cd2fa896ae1"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "2ac54e5a441f487e9f43e864743fbf00",
+          "mode": "reference",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 1024,
+          "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "a5a7b6f9a05fe425432a3a0e0319675e",
+          "mask_id": null,
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703830.1852372,
+        "runtime": {
+          "original_prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+          "expanded_prompt": "Create a cel-shaded anime illustration of the reference character walking along a rain-soaked city street at blue hour, shown full-body from a low camera angle with his face fully readable. Preserve the man’s exact identity: warm tan skin, thick curly black hair, round black-rimmed glasses, dark eyebrows, short full beard and mustache, and calm attentive expression. Keep his exact outfit and accessories: brown work jacket with rolled cuffs over a light beige button-up shirt, vivid blue bib overalls, tall dark-brown leather boots, and orange backpack with broad orange shoulder straps and the slim tool case attached at its side. Show him in a clear walking stride, one boot stepping forward and the rear heel raised, arms swinging naturally with the motion. Place him on reflective wet paving stones beneath a deep blue evening sky, with puddles and elongated reflections of cool blue streetlight. Behind him, include a warm amber-lit shop window that casts a golden reflection across the pavement. Add simple dark building facades, a few raindrops, and restrained blue-hour silhouettes of distant windows and streetlamps, while keeping the character unobstructed and dominant in the composition.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "refine/recolor",
+      "job_id": "81451df0560e4e46bf3bf6dcbcc4343a",
+      "settings": {
+        "mode": "refine",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "mask_id": "b83b6eb6246f79459e354db87268892b",
+        "feather": 8
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "refine",
+      "result": {
+        "status": "done",
+        "output_id": "e30d0b6a74f1dd43f732324e1e6925c8",
+        "elapsed": 33.2,
+        "error": null,
+        "prompt_id": "b60728ba-56d7-4e3e-ace4-2f8f047aaf76"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16526606336,
+        "comfy_rss_bytes": 15126593536,
+        "system_used_bytes": 31237283840
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "focus_image": {
+            "class_type": "ImageCrop",
+            "inputs": {
+              "image": [
+                "source",
+                0
+              ],
+              "x": 84,
+              "y": 93,
+              "width": 684,
+              "height": 684
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.5625,
+              "images.image0": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 768,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 768
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "mask": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "image": "moss-go/b83b6eb6246f79459e354db87268892b.png",
+              "channel": "red"
+            }
+          },
+          "feather": {
+            "class_type": "MossGoFeatherMask",
+            "inputs": {
+              "mask": [
+                "mask",
+                0
+              ],
+              "width": 768,
+              "height": 1024,
+              "radius": 8
+            }
+          },
+          "focus_mask": {
+            "class_type": "CropMask",
+            "inputs": {
+              "mask": [
+                "feather",
+                0
+              ],
+              "x": 84,
+              "y": 93,
+              "width": 684,
+              "height": 684
+            }
+          },
+          "restore_size": {
+            "class_type": "ImageScale",
+            "inputs": {
+              "image": [
+                "decode",
+                0
+              ],
+              "upscale_method": "lanczos",
+              "width": 684,
+              "height": 684,
+              "crop": "disabled"
+            }
+          },
+          "composite": {
+            "class_type": "ImageCompositeMasked",
+            "inputs": {
+              "destination": [
+                "source",
+                0
+              ],
+              "source": [
+                "restore_size",
+                0
+              ],
+              "x": 84,
+              "y": 93,
+              "resize_source": false,
+              "mask": [
+                "focus_mask",
+                0
+              ]
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "composite",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/81451df0560e4e46bf3bf6dcbcc4343a"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "8b73b4b55fb84b4b96d2f0da18a212a7",
+          "mode": "refine",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 768,
+          "prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": "b83b6eb6246f79459e354db87268892b",
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "source_width": 768,
+          "source_height": 1024,
+          "edit_region": {
+            "x": 84,
+            "y": 93,
+            "width": 684,
+            "height": 684
+          },
+          "original_prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703865.22573,
+        "runtime": {
+          "original_prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+          "expanded_prompt": "Create an anime-style character illustration preserving the first image exactly as the canvas, changing only the red messenger bag to teal blue. Keep the same young woman in the identical three-quarter standing pose, with her pale skin, short silver bob, bright green eyes, calm expression, and gaze directed toward frame-left. Preserve her mustard-yellow hooded raincoat with its seams, pockets, snaps, folds, and shading, along with the dark navy trousers, relaxed hands, and plain light-gray background. Retain the messenger bag’s exact shape, size, flap, stitching, side pocket, and placement against her back and hip, but recolor its body and shoulder strap a uniform teal blue. Keep the black rectangular buckle, black strap hardware, and all dark attachment details unchanged. Preserve the diagonal strap running from her shoulder across the raincoat to the bag, with the same width, tension, and contact shadows. Do not alter the character’s face, hair, clothing, body proportions, pose, linework, lighting, or any other element; only the messenger bag’s red color becomes teal blue.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "refine/accessory",
+      "job_id": "64ee702818744615ae2b88f3cfc4b4d0",
+      "settings": {
+        "mode": "refine",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "mask_id": "1cf2cbcbbf52adb55026b7858d9c0039",
+        "feather": 8
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "refine",
+      "result": {
+        "status": "done",
+        "output_id": "2a458bfa6850cb29779ca1a6043300df",
+        "elapsed": 34.95,
+        "error": null,
+        "prompt_id": "c621d244-a61d-4c2a-be88-69f9034a6485"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16443768832,
+        "comfy_rss_bytes": 15276814336,
+        "system_used_bytes": 31233957888
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "focus_image": {
+            "class_type": "ImageCrop",
+            "inputs": {
+              "image": [
+                "source",
+                0
+              ],
+              "x": 226,
+              "y": 112,
+              "width": 240,
+              "height": 240
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.5625,
+              "images.image0": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 768,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 768
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "mask": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "image": "moss-go/1cf2cbcbbf52adb55026b7858d9c0039.png",
+              "channel": "red"
+            }
+          },
+          "feather": {
+            "class_type": "MossGoFeatherMask",
+            "inputs": {
+              "mask": [
+                "mask",
+                0
+              ],
+              "width": 768,
+              "height": 1024,
+              "radius": 8
+            }
+          },
+          "focus_mask": {
+            "class_type": "CropMask",
+            "inputs": {
+              "mask": [
+                "feather",
+                0
+              ],
+              "x": 226,
+              "y": 112,
+              "width": 240,
+              "height": 240
+            }
+          },
+          "restore_size": {
+            "class_type": "ImageScale",
+            "inputs": {
+              "image": [
+                "decode",
+                0
+              ],
+              "upscale_method": "lanczos",
+              "width": 240,
+              "height": 240,
+              "crop": "disabled"
+            }
+          },
+          "composite": {
+            "class_type": "ImageCompositeMasked",
+            "inputs": {
+              "destination": [
+                "source",
+                0
+              ],
+              "source": [
+                "restore_size",
+                0
+              ],
+              "x": 226,
+              "y": 112,
+              "resize_source": false,
+              "mask": [
+                "focus_mask",
+                0
+              ]
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "composite",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/64ee702818744615ae2b88f3cfc4b4d0"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "4d2a266f4aa8439f8394df6b7dfe7c61",
+          "mode": "refine",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 768,
+          "prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": "1cf2cbcbbf52adb55026b7858d9c0039",
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "source_width": 768,
+          "source_height": 1024,
+          "edit_region": {
+            "x": 226,
+            "y": 112,
+            "width": 240,
+            "height": 240
+          },
+          "original_prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703898.496751,
+        "runtime": {
+          "original_prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+          "expanded_prompt": "Create an anime-style illustration preserving the first image exactly as the canvas: retain the same square composition, plain light-gray background, soft even illumination, and the same close three-quarter viewpoint. Keep the silver-haired young woman unchanged, including her short bob with straight bangs, vivid green eyes, fair skin, calm neutral expression, and unchanged posture. Preserve the bright yellow hooded raincoat exactly, including its raised collar, hood, drawstrings, seams, lapel structure, shading, and every existing fold and crease. Keep the red diagonal crossbody strap with its black buckle and dark edging in precisely the same position. Add only one small round blue enamel pin to the yellow raincoat lapel, attached near the upper chest area. The pin is a simple circular disc with a saturated blue enamel face, a narrow dark-blue rim, and a tiny highlight consistent with the original illustration lighting. Match its scale, perspective, and contact shadow to the lapel so it sits naturally against the fabric without altering any other element. Preserve the character’s hair, skin, clothing, accessories, pose, linework, color palette, and clean anime illustration style exactly as shown.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "refine/remove",
+      "job_id": "5eed87c88c86498bb4f512cb4a4662e4",
+      "settings": {
+        "mode": "refine",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "mask_id": "d9e0f3c0537bd7d0c3afa2b92dae49b1",
+        "feather": 8
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "refine",
+      "result": {
+        "status": "done",
+        "output_id": "071a0468fdbcef704c2a3bfd87944a49",
+        "elapsed": 34.74,
+        "error": null,
+        "prompt_id": "5f191994-cba0-4415-beaa-b10c65fd1446"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16409165824,
+        "comfy_rss_bytes": 15251361792,
+        "system_used_bytes": 31262068736
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "focus_image": {
+            "class_type": "ImageCrop",
+            "inputs": {
+              "image": [
+                "source",
+                0
+              ],
+              "x": 257,
+              "y": 0,
+              "width": 240,
+              "height": 240
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.5625,
+              "images.image0": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 768,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 768
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "mask": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "image": "moss-go/d9e0f3c0537bd7d0c3afa2b92dae49b1.png",
+              "channel": "red"
+            }
+          },
+          "feather": {
+            "class_type": "MossGoFeatherMask",
+            "inputs": {
+              "mask": [
+                "mask",
+                0
+              ],
+              "width": 768,
+              "height": 1024,
+              "radius": 8
+            }
+          },
+          "focus_mask": {
+            "class_type": "CropMask",
+            "inputs": {
+              "mask": [
+                "feather",
+                0
+              ],
+              "x": 257,
+              "y": 0,
+              "width": 240,
+              "height": 240
+            }
+          },
+          "restore_size": {
+            "class_type": "ImageScale",
+            "inputs": {
+              "image": [
+                "decode",
+                0
+              ],
+              "upscale_method": "lanczos",
+              "width": 240,
+              "height": 240,
+              "crop": "disabled"
+            }
+          },
+          "composite": {
+            "class_type": "ImageCompositeMasked",
+            "inputs": {
+              "destination": [
+                "source",
+                0
+              ],
+              "source": [
+                "restore_size",
+                0
+              ],
+              "x": 257,
+              "y": 0,
+              "resize_source": false,
+              "mask": [
+                "focus_mask",
+                0
+              ]
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "composite",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/5eed87c88c86498bb4f512cb4a4662e4"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "639c41afa8024f86b80fe46af0affc9d",
+          "mode": "refine",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 768,
+          "prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": "d9e0f3c0537bd7d0c3afa2b92dae49b1",
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "source_width": 768,
+          "source_height": 1024,
+          "edit_region": {
+            "x": 257,
+            "y": 0,
+            "width": 240,
+            "height": 240
+          },
+          "original_prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703933.621169,
+        "runtime": {
+          "original_prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+          "expanded_prompt": "Create an anime-style character portrait preserving the first image exactly as the canvas, with the same square composition, plain light beige background, soft even lighting, and the same three-quarter head angle and gaze. Keep the character’s youthful face, fair skin, large bright green eyes, small neutral mouth, pointed chin, and calm expression unchanged. Preserve the short silver bob hairstyle exactly, including its rounded silhouette, side-swept bangs, layered ends, and cool gray shading. Remove only the red five-pointed star hair clip from the frame-right side of the hair and fill its former area seamlessly with matching silver hair strands that follow the existing strand direction, color, highlights, and shading. Keep the hairstyle outline intact without any gap, clip, or replacement object. Leave every other element unchanged: the raised yellow hood, mustard-yellow jacket with dark trim and snap details, the visible white collar, the dark strap at frame-left, the character’s shoulder placement, and the original background and framing.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    },
+    {
+      "key": "refine/clothing",
+      "job_id": "21c179d421a945728f2da941f7c2118a",
+      "settings": {
+        "mode": "refine",
+        "engine": "flux3-klein",
+        "profile": "balanced",
+        "prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+        "seed": 42,
+        "prompt_upsampler": true,
+        "flux3_steps": 16,
+        "format": "portrait",
+        "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+        "mask_id": "3af5bc55122af95e95eae802c15a1dbd",
+        "feather": 8
+      },
+      "purpose": "evaluation",
+      "engine": "flux3-klein",
+      "identity_markers": null,
+      "mode": "refine",
+      "result": {
+        "status": "done",
+        "output_id": "2f2a1df6c1288af86fd69d2ba7c25638",
+        "elapsed": 30.51,
+        "error": null,
+        "prompt_id": "70129703-a8fd-42e5-a5c8-9ed3b336f237"
+      },
+      "sampled_peak": {
+        "gpu_device_used_bytes": 16373514240,
+        "comfy_rss_bytes": 15429554176,
+        "system_used_bytes": 31261233152
+      },
+      "execution": {
+        "graph": {
+          "source": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "moss-go/e0f651be99a6942bc07f15383ff0bcd5.png"
+            }
+          },
+          "focus_image": {
+            "class_type": "ImageCrop",
+            "inputs": {
+              "image": [
+                "source",
+                0
+              ],
+              "x": 186,
+              "y": 220,
+              "width": 372,
+              "height": 372
+            }
+          },
+          "upsampler_model": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "upsample": {
+            "class_type": "TextGenerate",
+            "inputs": {
+              "clip": [
+                "upsampler_model",
+                0
+              ],
+              "prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+              "system_prompt": "You are the prompt upsampler of an image-editing model. You see the reference image(s), attached in order (the first image, the second image, ...), and the user's short request. Expand it into ONE detailed, self-contained instruction: the caption the editing model receives together with the same images. Output only the instruction as one continuous English prose block, with no greetings, explanations, Markdown, JSON, coordinates, ids or angle-bracket tokens. Read a vague or conversational request as the most plausible edit of the supplied images.\n\nPick the voice by task shape. When one reference stays and gets bounded changes, write an imperative editing instruction on it (\"Remove the ...\", \"Change the ... to ...\", \"Zoom in on ...\"); a whole-image transformation opens with its scope (\"Convert the entire image into ...\", \"Apply a ... filter over the entire scene\", \"Horizontally flip the entire image so that ...\", \"Shift the camera viewpoint to ...\", then where the major elements should now be). When the references are drawn into a newly composed frame (combining subjects, a new scene, a garment, object or style donor), write a generation request (\"Create a photograph of ...\", \"Create an anime-style illustration of ...\", \"Generate a new image featuring ...\") that says what to take from each image, by ordinal, and what is newly generated.\n\nKeep every explicit edit, constraint, count, position, style cue and piece of wording, and decide what is left open as one concrete plan. Ground everything in what is actually visible: identify each referent unambiguously by its real appearance, never mention content that is not there, and use every image the user attached. State every end state concretely (which color, how large, which pose, which material) and give new content enough appearance to be generated. Cover the knock-on effects of the change (shadows, reflections, occlusion, perspective, scale, lighting) and say what fills a removed region. A zoom-in names what stays in frame and which neighbors are cropped out; an outpainting continues the scene in the same medium. Describe the change, not the whole scene, and close an editing instruction with one compact clause naming what stays unchanged; transferred people keep their identity, face and accessories unless asked otherwise. Transcribe on-image text verbatim in its original language inside double quotes, with line breaks as \\n, and match the original font, size and color when replacing it. Name recognizable public figures, brands and landmarks you can see. Directions are frame-relative; use no evaluative or quality words. Typical length is 50 to 150 words.\n\nOutput only the instruction.",
+              "max_length": 3584,
+              "sampling_mode": "on",
+              "sampling_mode.temperature": 1.0,
+              "sampling_mode.top_k": 1,
+              "sampling_mode.top_p": 0.95,
+              "sampling_mode.min_p": 0.0,
+              "sampling_mode.repetition_penalty": 1.0,
+              "sampling_mode.seed": 42,
+              "sampling_mode.presence_penalty": 0.0,
+              "thinking": false,
+              "use_default_template": true,
+              "mtp": "off",
+              "image": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "expanded_prompt": {
+            "class_type": "PreviewAny",
+            "inputs": {
+              "source": [
+                "upsample",
+                0
+              ]
+            }
+          },
+          "model": {
+            "class_type": "UNETLoader",
+            "inputs": {
+              "unet_name": "flux3-image-klein-int8-convrot.safetensors",
+              "weight_dtype": "default"
+            }
+          },
+          "clip": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+              "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+              "type": "flux3",
+              "device": "default"
+            }
+          },
+          "vae": {
+            "class_type": "VAELoader",
+            "inputs": {
+              "vae_name": "flux3-vae.safetensors"
+            }
+          },
+          "positive": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": [
+                "expanded_prompt",
+                0
+              ]
+            }
+          },
+          "negative": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {
+              "clip": [
+                "clip",
+                0
+              ],
+              "text": ""
+            }
+          },
+          "reference": {
+            "class_type": "ReferenceMultiLatent",
+            "inputs": {
+              "positive": [
+                "positive",
+                0
+              ],
+              "negative": [
+                "negative",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "resolution": "resize",
+              "resolution.megapixels": 0.5625,
+              "images.image0": [
+                "focus_image",
+                0
+              ]
+            }
+          },
+          "latent": {
+            "class_type": "EmptyFlux2LatentImage",
+            "inputs": {
+              "width": 768,
+              "height": 768,
+              "batch_size": 1
+            }
+          },
+          "sampling": {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+              "model": [
+                "model",
+                0
+              ],
+              "max_shift": 2.772588722239781,
+              "base_shift": 2.772588722239781,
+              "width": 768,
+              "height": 768
+            }
+          },
+          "sample": {
+            "class_type": "KSampler",
+            "inputs": {
+              "model": [
+                "sampling",
+                0
+              ],
+              "positive": [
+                "reference",
+                0
+              ],
+              "negative": [
+                "reference",
+                1
+              ],
+              "latent_image": [
+                "latent",
+                0
+              ],
+              "seed": 42,
+              "steps": 16,
+              "cfg": 1.0,
+              "sampler_name": "euler",
+              "scheduler": "simple",
+              "denoise": 1.0
+            }
+          },
+          "decode": {
+            "class_type": "VAEDecodeTiled",
+            "inputs": {
+              "samples": [
+                "sample",
+                0
+              ],
+              "vae": [
+                "vae",
+                0
+              ],
+              "tile_size": 512,
+              "overlap": 64,
+              "temporal_size": 64,
+              "temporal_overlap": 8
+            }
+          },
+          "mask": {
+            "class_type": "LoadImageMask",
+            "inputs": {
+              "image": "moss-go/3af5bc55122af95e95eae802c15a1dbd.png",
+              "channel": "red"
+            }
+          },
+          "feather": {
+            "class_type": "MossGoFeatherMask",
+            "inputs": {
+              "mask": [
+                "mask",
+                0
+              ],
+              "width": 768,
+              "height": 1024,
+              "radius": 8
+            }
+          },
+          "focus_mask": {
+            "class_type": "CropMask",
+            "inputs": {
+              "mask": [
+                "feather",
+                0
+              ],
+              "x": 186,
+              "y": 220,
+              "width": 372,
+              "height": 372
+            }
+          },
+          "restore_size": {
+            "class_type": "ImageScale",
+            "inputs": {
+              "image": [
+                "decode",
+                0
+              ],
+              "upscale_method": "lanczos",
+              "width": 372,
+              "height": 372,
+              "crop": "disabled"
+            }
+          },
+          "composite": {
+            "class_type": "ImageCompositeMasked",
+            "inputs": {
+              "destination": [
+                "source",
+                0
+              ],
+              "source": [
+                "restore_size",
+                0
+              ],
+              "x": 186,
+              "y": 220,
+              "resize_source": false,
+              "mask": [
+                "focus_mask",
+                0
+              ]
+            }
+          },
+          "save": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "images": [
+                "composite",
+                0
+              ],
+              "filename_prefix": "MOSS-GO/21c179d421a945728f2da941f7c2118a"
+            }
+          }
+        },
+        "models": {
+          "model": "flux3-image-klein-int8-convrot.safetensors",
+          "clip": "qwen3vl_4b_int8_convrot.safetensors",
+          "upsampler": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "vae": "flux3-vae.safetensors"
+        },
+        "settings": {
+          "request_id": "75cfc1bdf64e4ef79e1a34ab9c3459aa",
+          "mode": "refine",
+          "engine": "flux3-klein",
+          "profile": "balanced",
+          "requested_profile": "balanced",
+          "quality": "standard",
+          "format": "portrait",
+          "width": 768,
+          "height": 768,
+          "prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+          "negative": "",
+          "seed": 42,
+          "variants": 1,
+          "scenes": [],
+          "steps": 16,
+          "text_device": "default",
+          "prompt_upsampler": true,
+          "flux3_steps": 16,
+          "input_id": "e0f651be99a6942bc07f15383ff0bcd5",
+          "mask_id": "3af5bc55122af95e95eae802c15a1dbd",
+          "parent_id": null,
+          "strength": 0.3,
+          "feather": 8,
+          "character": {},
+          "loras": [],
+          "source_width": 768,
+          "source_height": 1024,
+          "edit_region": {
+            "x": 186,
+            "y": 220,
+            "width": 372,
+            "height": 372
+          },
+          "original_prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+          "runtime_versions": {
+            "comfyui_version": "0.41.2",
+            "python_version": "3.13.12 (tags/v3.13.12:1cbe481, Feb  3 2026, 18:22:25) [MSC v.1944 64 bit (AMD64)]",
+            "pytorch_version": "2.14.1+cu130"
+          }
+        },
+        "recorded_at": 1793703968.5427904,
+        "runtime": {
+          "original_prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+          "expanded_prompt": "Create a 2D anime-style character illustration preserving the first image exactly as the canvas: retain the plain light-gray background, the same straight-on composition, the cropped figure’s pose, yellow raincoat, red crossbody strap with black hardware, red backpack at frame-right, navy trousers, and both visible hands. Change only the small yellow rectangular flap on the lower chest pocket into a solid navy blue flap, matching the existing flap’s exact shape, dimensions, placement, and orientation. Preserve the flap’s original outline, edge seams, and all existing coat folds, shading, highlights, and contour lines so the navy surface follows the same illustrated volume and perspective. Keep the larger lower pocket flap unchanged in yellow, and leave every other element untouched, including the raincoat’s yellow color, black buttons, seams, sleeve folds, red strap, backpack flap and buckle, and the figure’s hand positions.",
+          "prompt_upsampler": true,
+          "metadata_source": "ComfyUI execution history / PreviewAny"
+        }
+      }
+    }
+  ],
+  "pixel_checks": [
+    {
+      "case": "create/portrait",
+      "job_id": "92e295bb9ca04d378a968f118d565ef9",
+      "elapsed": 26.85,
+      "output_id": "3d0cc86ed360543422f353e660efe76e"
+    },
+    {
+      "case": "create/environment",
+      "job_id": "fb7bdf294d8549239b0c14ced78886f5",
+      "elapsed": 28.78,
+      "output_id": "7fe95e6ec0a295ee9d9d478a926dd802"
+    },
+    {
+      "case": "create/composition",
+      "job_id": "6e35263b61424b8683a6e89c8f174bc6",
+      "elapsed": 26.63,
+      "output_id": "9e8e20d477f9397eb21b59b791821ab3"
+    },
+    {
+      "case": "reference/mira-1",
+      "job_id": "b6116d23e054492ba2da7f638e32b91b",
+      "elapsed": 35.06,
+      "output_id": "b7f8a352994555bbaad8a0e9b070068b"
+    },
+    {
+      "case": "reference/mira-2",
+      "job_id": "d05864fa2d264a67b96d85a6ab898fb8",
+      "elapsed": 34.96,
+      "output_id": "27f4894016a95d39b6b94ae9056d37f1"
+    },
+    {
+      "case": "reference/mira-3",
+      "job_id": "a8873f63dc1d4e879ccf9a2499d1bc86",
+      "elapsed": 35.07,
+      "output_id": "a40c5ee9c8bb1326faecf11c8c988962"
+    },
+    {
+      "case": "reference/theo-1",
+      "job_id": "fadc9dbc1c724ad8a798e9c7b58cd511",
+      "elapsed": 35.36,
+      "output_id": "41483a388d8cd6b60f029476215b8eb9"
+    },
+    {
+      "case": "reference/theo-2",
+      "job_id": "04da1ab99b3c44e59cee8be69cd3a154",
+      "elapsed": 35.21,
+      "output_id": "284975cb012d2279c406f8599d3b97ec"
+    },
+    {
+      "case": "reference/theo-3",
+      "job_id": "32cb3a42aa2148f593c57cd2fa896ae1",
+      "elapsed": 35.0,
+      "output_id": "faaea87600852dda94912de0877701b9"
+    },
+    {
+      "case": "refine/recolor",
+      "job_id": "81451df0560e4e46bf3bf6dcbcc4343a",
+      "elapsed": 33.2,
+      "output_id": "e30d0b6a74f1dd43f732324e1e6925c8",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "changed_pixels": 33855,
+      "changed_outside_effective_mask": 0
+    },
+    {
+      "case": "refine/accessory",
+      "job_id": "64ee702818744615ae2b88f3cfc4b4d0",
+      "elapsed": 34.95,
+      "output_id": "2a458bfa6850cb29779ca1a6043300df",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "changed_pixels": 7336,
+      "changed_outside_effective_mask": 0
+    },
+    {
+      "case": "refine/remove",
+      "job_id": "5eed87c88c86498bb4f512cb4a4662e4",
+      "elapsed": 34.74,
+      "output_id": "071a0468fdbcef704c2a3bfd87944a49",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "changed_pixels": 4840,
+      "changed_outside_effective_mask": 0
+    },
+    {
+      "case": "refine/clothing",
+      "job_id": "21c179d421a945728f2da941f7c2118a",
+      "elapsed": 30.51,
+      "output_id": "2f2a1df6c1288af86fd69d2ba7c25638",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "changed_pixels": 10781,
+      "changed_outside_effective_mask": 0
+    }
+  ],
+  "replay": {
+    "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+    "elapsed_seconds": 64.87,
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705659215
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [],
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705659223
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705723737
+          }
+        ]
+      ]
+    },
+    "original_graph_sha256": "382b2dd74041e18e3dd73241349a02d9ec3075bbecc6d5f6fa274922e3e8479c",
+    "changes": "Node identifiers and their link references prefixed replay_; parameters unchanged.",
+    "dimensions": [
+      768,
+      1024
+    ],
+    "pixel_identical": true,
+    "difference_bbox": null
+  },
+  "visual_limitations": [
+    "reference/mira-3 retains a standing pose instead of the requested walking action.",
+    "Reference identity recognizable in 6/6 cases; requested pose/action 5/6."
+  ]
+}

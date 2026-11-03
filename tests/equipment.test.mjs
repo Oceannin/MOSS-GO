@@ -2,6 +2,40 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { effectiveProfile, modeReadiness } from "../moss_go/web/equipment.js";
 
+test("FLUX 3 full-caption bypass uses its own readiness without hiding core gaps", () => {
+  const system = {
+    engines: {
+      "flux3-klein": {
+        profiles: {
+          balanced: {
+            missing: [{ filename: "upsampler.safetensors" }],
+            modes: { create: { ready: false } },
+            caption_only: {
+              missing: [],
+              modes: {
+                create: { ready: true },
+                refine: { ready: false, missing_nodes: ["MossGoFeatherMask"] },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+  assert.equal(
+    modeReadiness(system, "flux3-klein", "balanced", "create", true).ready,
+    false,
+  );
+  assert.equal(
+    modeReadiness(system, "flux3-klein", "balanced", "create", false).ready,
+    true,
+  );
+  assert.equal(
+    modeReadiness(system, "flux3-klein", "balanced", "refine", false).ready,
+    false,
+  );
+});
+
 test("unknown hardware stays conservative and cached VRAM does not downgrade capacity", () => {
   assert.equal(effectiveProfile(null, "auto"), "economy");
   assert.equal(

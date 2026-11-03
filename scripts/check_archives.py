@@ -22,6 +22,8 @@ SOURCE_FILES = {"__init__.py", "run.py", "models.py", "run_tests.py", "README.md
                 "uv.lock", "package-lock.json", "scripts/check_install.py", "scripts/installed_smoke.py",
                 "scripts/check_archives.py", "tests/test_examples.py", "docs/MODELS.md", "docs/SUBMISSION_RU.md"}
 SOURCE_FILES.update({"CHANGELOG.md", "docs/RELEASE_NOTES.md", "docs/MANUAL_CHECK_RU.md", "workflows/README.md",
+                     "docs/FLUX3_BENCHMARK.md", "docs/licenses/FLUX-KOMMUNITY-LICENSE.md", "docs/licenses/FLUX3-NOTICE.md",
+                     "workflows/flux3-create-api.json", "workflows/flux3-reference-api.json", "workflows/flux3-masked-refine-api.json",
                      "workflows/moss-create-api.json", "workflows/flux-create-api.json", "workflows/flux-reference-api.json",
                      "workflows/flux-masked-refine-api.json", "workflows/mira-edit-mask.png"})
 

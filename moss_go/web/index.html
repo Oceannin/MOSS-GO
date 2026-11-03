@@ -266,6 +266,27 @@
               <p class="hint" id="effective-size">
                 768 × 1024 · 30 steps · sequential variations
               </p>
+              <div id="flux3-controls">
+                <label class="full-field"
+                  ><span data-i18n="flux3Steps">FLUX 3 sampling steps</span>
+                  <select id="flux3-steps">
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                    <option value="16" selected>16</option>
+                  </select>
+                </label>
+                <label class="checkbox-row"
+                  ><input id="flux3-upsampler" type="checkbox" checked /><span
+                    data-i18n="flux3Upsampler"
+                    >Expand with the official local prompt upsampler</span
+                  ></label
+                >
+                <p class="hint" data-i18n="flux3UpsamplerHint">
+                  Uses the reference image when present. Turn off only for an
+                  already detailed caption. Both descriptions are kept with the
+                  result.
+                </p>
+              </div>
               <div class="refine-settings" id="refine-settings" hidden>
                 <label class="full-field"
                   ><span data-i18n="strength">Refinement strength</span
@@ -305,6 +326,9 @@
                 <label
                   ><span data-i18n="engine">Image engine</span
                   ><select id="engine">
+                    <option value="flux3-klein" data-i18n="flux3Recommended">
+                      FLUX 3 Image Klein — Recommended
+                    </option>
                     <option value="flux-klein">FLUX.2 Klein · 4B</option>
                     <option value="moss-charref">
                       MOSS · CharRef · Experimental
@@ -456,6 +480,15 @@
               data-i18n="recipe"
             >
               Recipe
+            </button>
+            <button
+              type="button"
+              id="execution-details"
+              class="quiet"
+              hidden
+              data-i18n="executionDetails"
+            >
+              Details
             </button>
           </div>
         </div>
@@ -654,7 +687,8 @@
       <div class="dialog-content export-choices">
         <p class="hint" data-i18n="exportHint">
           ZIP packs include source images, results, available native workflows
-          and a contact sheet. JSON contains settings only.
+          and a contact sheet. JSON keeps recipe settings and recorded execution
+          details without image files.
         </p>
         <a
           id="export-take"
@@ -901,6 +935,24 @@
           Load image
         </button>
       </div>
+    </dialog>
+    <dialog
+      id="execution-dialog"
+      class="dialog"
+      aria-labelledby="execution-title"
+    >
+      <div class="dialog-heading">
+        <h2 id="execution-title" data-i18n="executionDetails">Details</h2>
+        <button
+          type="button"
+          class="quiet"
+          data-close="execution-dialog"
+          data-i18n="close"
+        >
+          Close
+        </button>
+      </div>
+      <div id="execution-content" class="dialog-content"></div>
     </dialog>
     <div id="toast" class="toast" role="status" hidden></div>
   </body>

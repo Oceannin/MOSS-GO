@@ -14,9 +14,11 @@ export function effectiveProfile(system, requested) {
     : "economy";
 }
 
-export function modeReadiness(system, engine, profile, mode) {
+export function modeReadiness(system, engine, profile, mode, upsampler = true) {
   const setup = system?.engines?.[engine];
-  const configured = setup?.profiles?.[profile] ?? setup;
+  let configured = setup?.profiles?.[profile] ?? setup;
+  if (engine === "flux3-klein" && !upsampler && configured?.caption_only)
+    configured = configured.caption_only;
   return { ...configured, ...configured?.modes?.[mode] };
 }
 
@@ -35,7 +37,7 @@ export function renderDevice(system) {
     : t("deviceUnknown");
 }
 
-export function renderEquipment(system, profile, mode) {
+export function renderEquipment(system, profile, mode, upsampler = true) {
   const content = document.getElementById("models-content");
   content.replaceChildren();
   const note = (text) => {
@@ -45,6 +47,7 @@ export function renderEquipment(system, profile, mode) {
     content.append(paragraph);
   };
   note(t(system?.connected ? "filesLocal" : "startComfy"));
+  if (system?.version) note(`MOSS GO ${system.version}`);
   const hardware = system?.hardware;
   if (hardware) {
     note(
@@ -61,13 +64,14 @@ export function renderEquipment(system, profile, mode) {
     if (profile === "economy") note(t("cpuEncoderMemory"));
   }
   for (const [id, label] of [
+    ["flux3-klein", t("flux3Recommended")],
     ["moss", "MOSS · SFT"],
     ["moss-charref", "MOSS · CharRef"],
     ["flux-klein", "FLUX.2 Klein · 4B"],
   ]) {
     const engine = system?.engines?.[id];
     if (!engine) continue;
-    const configured = modeReadiness(system, id, profile, mode);
+    const configured = modeReadiness(system, id, profile, mode, upsampler);
     const section = document.createElement("section");
     section.className = "model-engine";
     const title = document.createElement("h3");
@@ -97,6 +101,7 @@ export function renderEquipment(system, profile, mode) {
         text.textContent = `${t("missingNodes")}: ${configured.missing_nodes.join(", ")}`;
         section.append(text);
       }
+      for (const issue of configured.missing_capabilities || []) note(issue);
     }
     content.append(section);
   }

@@ -51,6 +51,9 @@ class Store:
                     job_id TEXT PRIMARY KEY REFERENCES jobs(id),
                     graph TEXT NOT NULL, models TEXT NOT NULL,
                     effective_settings TEXT NOT NULL, created REAL NOT NULL);
+                CREATE TABLE IF NOT EXISTS execution_results(
+                    job_id TEXT PRIMARY KEY REFERENCES jobs(id),
+                    metadata TEXT NOT NULL, created REAL NOT NULL);
             """)
             version = db.execute("SELECT value FROM metadata WHERE key='schema_version'").fetchone()[0]
             if version == "1":
@@ -187,7 +190,20 @@ class Store:
         self.job(job_id)
         with self.connect() as db:
             row = db.execute("SELECT * FROM executions WHERE job_id=?", (job_id,)).fetchone()
-        return {"graph": json.loads(row["graph"]), "models": json.loads(row["models"]), "settings": json.loads(row["effective_settings"]), "recorded_at": row["created"]} if row else None
+            runtime = db.execute("SELECT metadata FROM execution_results WHERE job_id=?", (job_id,)).fetchone()
+        if row is None:
+            return None
+        result = {"graph": json.loads(row["graph"]), "models": json.loads(row["models"]), "settings": json.loads(row["effective_settings"]), "recorded_at": row["created"]}
+        if runtime:
+            result["runtime"] = json.loads(runtime["metadata"])
+        return result
+
+    def save_execution_result(self, job_id, metadata):
+        """Append immutable observed outputs without changing the launch snapshot."""
+        self.job(job_id)
+        with self.connect() as db:
+            db.execute("INSERT OR IGNORE INTO execution_results VALUES(?,?,?)",
+                       (job_id, json.dumps(metadata, ensure_ascii=False), time.time()))
 
     def update_job(self, job_id, **changes):
         identifier(job_id)

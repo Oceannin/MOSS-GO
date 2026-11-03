@@ -1,0 +1,30 @@
+[
+  {
+    "case": "legacy-0.1",
+    "recipes": 1,
+    "requires_review": true,
+    "missing_inputs": false,
+    "jobs_created": 0
+  },
+  {
+    "case": "create",
+    "recipes": 1,
+    "requires_review": true,
+    "missing_inputs": false,
+    "jobs_created": 0
+  },
+  {
+    "case": "reference",
+    "recipes": 1,
+    "requires_review": true,
+    "missing_inputs": false,
+    "jobs_created": 0
+  },
+  {
+    "case": "refine",
+    "recipes": 1,
+    "requires_review": true,
+    "missing_inputs": false,
+    "jobs_created": 0
+  }
+]

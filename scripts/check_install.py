@@ -57,7 +57,7 @@ def main():
     run([python, "-I", ROOT / "scripts/installed_smoke.py"])
     suffix = ".exe" if os.name == "nt" else ""
     run([executable_dir / ("moss-go" + suffix), "--help"])
-    run([executable_dir / ("moss-go-models" + suffix), "plan", "--models-dir", work / "missing-models", "--pack", "moss-balanced", "--pack", "flux-balanced"])
+    run([executable_dir / ("moss-go-models" + suffix), "plan", "--models-dir", work / "missing-models", "--pack", "flux3-balanced", "--pack", "moss-balanced", "--pack", "flux-balanced"])
     print(f"Installed-{'source' if args.source else 'wheel'} checks passed. Evidence environment retained at {work}")
 
 

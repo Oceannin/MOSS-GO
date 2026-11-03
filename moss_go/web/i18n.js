@@ -1,4 +1,15 @@
 const EN = {
+  flux3Recommended: "FLUX 3 Image Klein — Recommended",
+  flux3Steps: "FLUX 3 sampling steps",
+  flux3Upsampler: "Expand with the official local prompt upsampler",
+  flux3UpsamplerHint:
+    "Uses the reference image when present. Turn off only for an already detailed caption. Both descriptions are kept with the result.",
+  executionDetails: "Details",
+  expandedPrompt: "Description used by the image model",
+  modelComponents: "Executed model components",
+  runtimeVersions: "Runtime versions",
+  noExecutionMetadata: "This take has no recorded execution details.",
+  precision: "Precision",
   homeLabel: "MOSS GO home",
   modeLabel: "Workspace mode",
   workspaceSections: "Workspace sections",
@@ -167,7 +178,7 @@ const EN = {
   settingsLoaded: "Recipe loaded. Review your settings before generating.",
   exportWork: "Export work",
   exportHint:
-    "ZIP packs include source images, results, available native workflows and a contact sheet. JSON contains settings only.",
+    "ZIP packs include source images, results, available native workflows and a contact sheet. JSON keeps recipe settings and recorded execution details without image files.",
   exportTake: "Selected take · ZIP",
   exportPack: "Whole batch · ZIP",
   exportWait: "Complete all takes in this batch to export it together.",
@@ -317,6 +328,17 @@ const EN = {
   suggestionReady: "Suggestion ready. Review it before applying.",
 };
 const RU = {
+  flux3Recommended: "FLUX 3 Image Klein — Рекомендуется",
+  flux3Steps: "Шаги сэмплирования FLUX 3",
+  flux3Upsampler: "Расширить описание официальной локальной моделью",
+  flux3UpsamplerHint:
+    "Учитывает референс, если он выбран. Отключайте для уже подробной подписи. Оба описания сохраняются с результатом.",
+  executionDetails: "Подробности",
+  expandedPrompt: "Описание, полученное моделью изображения",
+  modelComponents: "Использованные компоненты модели",
+  runtimeVersions: "Версии окружения",
+  noExecutionMetadata: "У этого варианта нет записанных сведений о выполнении.",
+  precision: "Точность",
   homeLabel: "Главная MOSS GO",
   modeLabel: "Режим работы",
   workspaceSections: "Разделы рабочей области",
@@ -488,7 +510,7 @@ const RU = {
   settingsLoaded: "Рецепт загружен. Проверьте параметры перед генерацией.",
   exportWork: "Экспорт работы",
   exportHint:
-    "ZIP включает исходники, результаты, доступные нативные воркфлоу и контактный лист. JSON содержит только настройки.",
+    "ZIP включает исходники, результаты, доступные нативные воркфлоу и контактный лист. JSON сохраняет настройки рецепта и записанные сведения о выполнении без файлов изображений.",
   exportTake: "Выбранный вариант · ZIP",
   exportPack: "Весь набор · ZIP",
   exportWait:

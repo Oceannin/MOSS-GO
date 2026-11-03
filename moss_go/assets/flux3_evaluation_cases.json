@@ -1,0 +1,181 @@
+{
+  "status": "planned; not executed",
+  "hardware": "RTX 4070 Ti SUPER 16 GB / 32 GB RAM / Windows",
+  "create": [
+    {
+      "id": "portrait",
+      "prompt": "Character design reference of an original adult anime courier, age 26, shown as a single complete figure from head to boots, three-quarter front view. She has a short silver bob haircut, vivid green eyes, and a small red star hair clip above her left temple. She wears a mustard yellow hooded raincoat, navy blue trousers, plain red ankle boots, and a red messenger bag worn across the body. Her hands are relaxed and visible. Calm, attentive expression. Clean cel-shaded anime illustration with confident linework, restrained colors and soft natural shading. Neutral pale warm gray background, soft studio daylight. Keep the face clearly readable and the outfit simple and distinctive. One character only, no text, no logos, no watermark.",
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "environment",
+      "prompt": "A wide architectural photograph inside an old railway station conservatory at dawn. A glass vaulted ceiling, iron columns, wet terracotta floor, ferns on the left, a wooden ticket counter on the right, and three empty benches along the center aisle. Soft amber sunlight crosses the floor; cool mist beyond the far arched doors. Clear spatial separation, natural materials, no people, no signs or text.",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "id": "composition",
+      "prompt": "A clean editorial still-life illustration on a pale gray tabletop. Exactly three objects: a red ceramic teapot on the left, one blue cup at center, and a yellow folded cloth on the right. Each object is separate and fully visible, no overlapping silhouettes. Soft afternoon light from the upper left, restrained cel shading, no words or logos.",
+      "size": [
+        1024,
+        768
+      ]
+    }
+  ],
+  "reference": [
+    {
+      "id": "mira-1",
+      "character": "mira",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "mira-2",
+      "character": "mira",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "mira-3",
+      "character": "mira",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+      "identity_markers": [
+        "short silver bob",
+        "green eyes",
+        "red star hair clip",
+        "yellow raincoat with navy trousers",
+        "red messenger bag and red boots"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "theo-1",
+      "character": "theo",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character at a quiet railway station in morning sunlight. Full body at eye level, three-quarter front view. Hold one small ticket in the right hand. Preserve the exact face, hair, outfit and signature accessories from the reference.",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "theo-2",
+      "character": "theo",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character sitting at a clock repair workbench in warm afternoon window light. Waist-up view from a different camera angle, slightly above and from the side, with a readable three-quarter face. The character examines a brass pocket watch held near the face. Preserve facial identity, hair, outfit colors and signature accessories.",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    },
+    {
+      "id": "theo-3",
+      "character": "theo",
+      "prompt": "Create a new cel-shaded anime illustration of the reference character walking along a city street after rain at blue hour. Full-body view from a low camera angle, face readable, one foot stepping forward and the rear heel raised. Wet paving reflects cool blue light and a warm window behind. Preserve facial identity, hairstyle, exact clothing and distinctive accessories.",
+      "identity_markers": [
+        "short curly black hair",
+        "round brass glasses",
+        "brown work jacket",
+        "blue overalls",
+        "orange backpack"
+      ],
+      "seed": 42,
+      "size": [
+        768,
+        1024
+      ]
+    }
+  ],
+  "refine": [
+    {
+      "id": "recolor",
+      "character": "mira",
+      "prompt": "Change only the red messenger bag to teal blue. Preserve its shape, black buckle, strap, raincoat, pose and character identity.",
+      "rectangle": [
+        410,
+        350,
+        550,
+        520
+      ]
+    },
+    {
+      "id": "accessory",
+      "character": "mira",
+      "prompt": "Add one small round blue enamel pin on the yellow raincoat lapel. Keep the coat shape and folds, hair, skin, posture and illustration style.",
+      "rectangle": [
+        324,
+        205,
+        367,
+        258
+      ]
+    },
+    {
+      "id": "remove",
+      "character": "mira",
+      "prompt": "Remove the red star hair clip. Fill its place with the matching silver hair strands. Keep the hairstyle outline, face and everything else.",
+      "rectangle": [
+        356,
+        53,
+        398,
+        101
+      ]
+    },
+    {
+      "id": "clothing",
+      "character": "mira",
+      "prompt": "Change the small yellow rectangular raincoat pocket flap into a navy blue flap of the same shape and size. Preserve the coat folds and outline.",
+      "rectangle": [
+        326,
+        384,
+        418,
+        428
+      ]
+    }
+  ],
+  "acceptance": "Review every output. For all masked edits preserve dimensions and require zero changed pixels outside the effective softened mask. Report each failure without selecting only successes."
+}

@@ -1,13 +1,77 @@
 {
   "schema_version": 1,
   "runtime": {
-    "comfyui_revision": "08ff3c11b3a85eb07c2c06f21cb378ac2e086840",
+    "comfyui_revision": "b53f77a74e21091cbdebfdf7b85fc80326932646",
     "moss_plugin_repository": "https://github.com/OpenMOSS/MOSS-Image",
     "moss_plugin_revision": "599a039ec6f8108eecdd0d8c107ceade6863145e",
     "moss_plugin_path": "comfyui/moss-image",
-    "loader_family": "OpenMOSS plugin; not native moss_image loaders"
+    "loader_family": "Native FLUX 3; pinned OpenMOSS plugin loaders remain required for legacy MOSS engines.",
+    "flux3_comfyui_revision": "b53f77a74e21091cbdebfdf7b85fc80326932646",
+    "flux3_comfyui_version": "0.41.2",
+    "legacy_comfyui_revision": "08ff3c11b3a85eb07c2c06f21cb378ac2e086840",
+    "comfyui_version": "0.41.2"
   },
   "packs": {
+    "flux3-balanced": {
+      "engine": "flux3-klein",
+      "profile": "balanced",
+      "verified_on": "RTX 4070 Ti SUPER 16 GB / 32 GB RAM / Windows; actual Create, Reference and masked Refine with official upsampler, November 3, 2026",
+      "license_notice": "Checkpoint: FLUX Kommunity License v1.0; user acceptance required. Application code remains Apache-2.0.",
+      "files": [
+        {
+          "role": "model",
+          "category": "diffusion_models",
+          "filename": "flux3-image-klein-int8-convrot.safetensors",
+          "repository": "black-forest-labs/flux-3-image-klein-comfy",
+          "revision": "9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1",
+          "path": "diffusion_models/flux3-image-klein-int8-convrot.safetensors",
+          "size": 5827874779,
+          "sha256": "847d8933548afd93df4af2cac2498e70891bf28d9dae06d695f536992e168fe2",
+          "license": "FLUX Kommunity License v1.0",
+          "requires_hf_access": true,
+          "model_card": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/blob/9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1/README.md"
+        },
+        {
+          "role": "upsampler",
+          "category": "text_encoders",
+          "filename": "qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "repository": "black-forest-labs/flux-3-image-klein-comfy",
+          "revision": "9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1",
+          "path": "text_encoders/qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors",
+          "size": 9748113996,
+          "sha256": "cb8cb9b9dcd2569509de755dca54d96fd93a16a7aabfd2f4051f0a144230620f",
+          "license": "Apache-2.0",
+          "requires_hf_access": true,
+          "model_card": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/blob/9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1/README.md"
+        },
+        {
+          "role": "clip",
+          "category": "text_encoders",
+          "filename": "qwen3vl_4b_int8_convrot.safetensors",
+          "repository": "black-forest-labs/flux-3-image-klein-comfy",
+          "revision": "9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1",
+          "path": "text_encoders/qwen3vl_4b_int8_convrot.safetensors",
+          "size": 4858559240,
+          "sha256": "32de113cbf8282b02cbff0794b637b9d6676da09314a1db5a30bcea9bf4ee01c",
+          "license": "Apache-2.0",
+          "requires_hf_access": true,
+          "model_card": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/blob/9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1/README.md"
+        },
+        {
+          "role": "vae",
+          "category": "vae",
+          "filename": "flux3-vae.safetensors",
+          "repository": "black-forest-labs/flux-3-image-klein-comfy",
+          "revision": "9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1",
+          "path": "vae/flux2-vae.safetensors",
+          "size": 336211292,
+          "sha256": "868fe7b343cc8f3a19dbcfcafbc3d5f888802be3f89bd81b65b3621a066ce8f3",
+          "license": "Apache-2.0",
+          "requires_hf_access": true,
+          "model_card": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/blob/9d36114cf7a2e03a45c28f5cc4987d20ebfdb6c1/README.md"
+        }
+      ]
+    },
     "moss-balanced": {
       "engine": "moss",
       "profile": "balanced",

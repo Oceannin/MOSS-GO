@@ -10,6 +10,7 @@ from .store import TERMINAL
 from .settings import refinement_dimensions
 from .refinement import region_from_mask
 from .workflows import build_workflow, resolve_models
+from .flux3 import compatibility_issues
 
 log = logging.getLogger(__name__)
 
@@ -65,13 +66,16 @@ class Runner:
             settings["source_width"], settings["source_height"] = source["width"], source["height"]
             settings["width"], settings["height"] = refinement_dimensions(source["width"], source["height"], settings["profile"])
             settings["format"] = "portrait" if source["height"] > source["width"] else "landscape" if source["width"] > source["height"] else "square"
-            if settings["engine"] == "flux-klein" and settings.get("mask_id"):
+            if settings["engine"] in {"flux-klein", "flux3-klein"} and settings.get("mask_id"):
                 region = await asyncio.to_thread(region_from_mask, self.store.image_path(settings["mask_id"]), source["width"], source["height"], settings["feather"])
                 if region:
                     settings["edit_region"] = region
                     settings["width"], settings["height"] = refinement_dimensions(region["width"], region["height"], settings["profile"], focus=True)
         inv = await self.comfy.inventory()
-        models, missing = resolve_models(settings["engine"], inv, settings["profile"])
+        issues = compatibility_issues(inv) if settings["engine"] == "flux3-klein" else []
+        if issues:
+            raise StudioError("Update ComfyUI: " + ", ".join(issues), code="runtime_incompatible", status=409)
+        models, missing = resolve_models(settings["engine"], inv, settings["profile"], prompt_upsampler=settings.get("prompt_upsampler", True))
         if missing:
             raise StudioError("Install missing models: " + ", ".join(item["filename"] for item in missing), code="models_missing", status=409)
         for lora in settings["loras"]:
@@ -151,7 +155,9 @@ class Runner:
                 self.store.update_job(job["id"], status="done", output_id=settings["input_id"], elapsed=0.)
                 return
             inv = await self.comfy.inventory()
-            models, missing = resolve_models(settings["engine"], inv, settings["profile"])
+            if settings["engine"] == "flux3-klein" and compatibility_issues(inv):
+                raise StudioError("ComfyUI no longer provides the FLUX 3 loader. Update it and reconnect.", code="runtime_incompatible")
+            models, missing = resolve_models(settings["engine"], inv, settings["profile"], prompt_upsampler=settings.get("prompt_upsampler", True))
             if missing:
                 raise StudioError("A required model is no longer installed.", code="models_missing")
             paths = {}
@@ -160,6 +166,10 @@ class Runner:
                     paths[field] = await self.comfy.upload(self.store.image_path(settings[field]).read_bytes(), settings[field] + ".png")
             effective = dict(settings)
             effective["prompt"] = compose_prompt(settings["prompt"], settings["character"])
+            if settings["engine"] == "flux3-klein":
+                effective["original_prompt"] = settings["prompt"]
+                effective["runtime_versions"] = {key: inv.get("system", {}).get(key) for key in
+                                                 ("comfyui_version", "python_version", "pytorch_version")}
             graph = build_workflow(effective, models, input_image=paths.get("input_id"), mask_image=paths.get("mask_id"), prefix="MOSS-GO/" + job["id"])
             if self.store.job(job["id"])["status"] == "cancelled":
                 return
@@ -183,6 +193,14 @@ class Runner:
                 history = await self.comfy.json("/history/" + job["prompt_id"])
                 entry = history.get(job["prompt_id"])
                 if entry:
+                    if settings["engine"] == "flux3-klein":
+                        captions = entry.get("outputs", {}).get("expanded_prompt", {}).get("text", [])
+                        self.store.save_execution_result(job["id"], {
+                            "original_prompt": settings["prompt"],
+                            "expanded_prompt": captions[0] if captions else None,
+                            "prompt_upsampler": settings.get("prompt_upsampler", True),
+                            "metadata_source": "ComfyUI execution history / PreviewAny",
+                        })
                     events = entry.get("status", {}).get("messages", [])
                     error = next((detail for name, detail in events if name == "execution_error"), None)
                     interrupted = any(name == "execution_interrupted" for name, _ in events)

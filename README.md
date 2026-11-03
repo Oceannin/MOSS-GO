@@ -1,175 +1,136 @@
 # MOSS GO
 
-[![Core checks](https://github.com/Oceannin/MOSS-GO/actions/workflows/checks.yml/badge.svg)](https://github.com/Oceannin/MOSS-GO/actions/workflows/checks.yml)
+**One character. Many scenes. Every detail under control.**
 
-A local studio for images, character scenes and masked refinements, powered by ComfyUI.
+An open-weight image studio powered by **FLUX 3 Image Klein and ComfyUI**.
+Create original characters, carry their visual identity into new scenes, edit a
+painted detail, and keep the result together with its actual execution graph.
 
-**Contest preview · 0.1.0-rc.1.** Create images, keep an original character across
-scenes, refine a selected area and export the recipe and ComfyUI graph. The default
-reference engine is FLUX.2 Klein 4B; MOSS SFT is available for creation.
+[Watch the demo](https://oceannin.github.io/MOSS-GO/) · [Get 0.2.0-rc.1](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.2.0-rc.1) · [Measured results](docs/FLUX3_BENCHMARK.md)
 
-Tested on Windows with RTX 4070 Ti SUPER 16 GB and 32 GB RAM. The standalone
-studio also passed fresh Windows source and wheel installation without Torch.
-See [measured results](docs/BENCHMARK.md), [known limits](docs/RELEASE_NOTES.md)
-and the [Russian submission guide](docs/SUBMISSION_RU.md).
-The [example API graphs](workflows/README.md) show the ComfyUI pipeline directly.
+![Original Theo reference and three actual FLUX 3 scenes](docs/assets/flux3-scenes.jpg)
 
-[Watch the 1:48 demo](https://oceannin.github.io/MOSS-GO/) · [Download the preview](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.1.0-rc.1)
+The same original character at a station, examining a watch, and walking after rain.
+These are local model outputs, not interface mockups or promotional generations.
+The complete evaluation includes less successful cases too.
 
-![MOSS GO after a local masked refinement](docs/assets/contest-preview.jpg)
+## Change a detail. Keep the rest.
 
-## Run from source
+![Actual before, painted mask and FLUX 3 edit](docs/assets/flux3-refine.jpg)
 
-Use Python 3.11 or newer and a separate virtual environment. Follow the
-[installation guide](docs/INSTALL.md) for the pinned dependencies and package checks.
-After installation, run the studio from that environment:
+Refine includes nearby context, restores the generated crop to the source
+coordinates, and composites through the feathered mask. The demonstrated bag
+edit kept the original 768×1024 canvas with **zero changed pixels outside the
+effective mask**. Nearby details inside the selection can change.
+
+## A studio, with its work intact
+
+- **Create, Reference and Refine** use FLUX 3 by default. FLUX.2 Klein and MOSS remain
+  explicit alternatives; a failed FLUX 3 request never silently switches models.
+- **Official local prompt upsampling** uses Qwen3.5 9B, including image context.
+  Already detailed captions can bypass it. Original and actual expanded text are
+  saved; **Details** shows models, precision, steps, seed and runtime versions.
+- **Takes, scene packs and related versions** persist in a separate SQLite catalog.
+  Jobs run sequentially; launch identifiers support recovery without duplicate batches.
+- **Portable ZIP recipes** include inputs, masks, results, a contact sheet and the
+  saved ComfyUI API graphs. Import prepares settings for review; it never generates automatically.
+- **Original character references and optional traits** provide a starting point.
+  Pins preserve text while randomizing; they do not guarantee a model's visual adherence.
+- **English on first launch**, optional Russian, two original themes, local Inter,
+  keyboard rectangle masks, image inspection and input/result comparison.
+
+The optional Ollama prompt assistant remains a separate, manual review tool. It
+is not the FLUX 3 upsampler, and Ollama is not required by the image workflows.
+
+## Quick start
+
+Use a compatible **ComfyUI 0.41.2 or newer** and install this checkout as
+`ComfyUI/custom_nodes/moss-go`. The standalone wheel does not replace the node
+pack needed for masks and addressed cancellation. Keep your existing runtime and
+catalog recoverable when upgrading. The tested runtime is recorded in the
+[model guide](docs/MODELS.md).
+
+Create a separate studio environment from the checkout:
 
 ```powershell
-.\.venv\Scripts\moss-go.exe
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --require-hashes --only-binary=:all: -r requirements.lock -r build-requirements.lock
+.\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation .
 ```
 
-```sh
-.venv/bin/moss-go
+FLUX 3 weights require your own accepted Hugging Face access. Read the model's
+[conditions](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy),
+then authenticate with `hf auth login` or your local `HF_TOKEN`. The installer
+never accepts terms for you or sends the token to download redirects.
+
+```powershell
+.\.venv\Scripts\moss-go-models.exe download --models-dir "C:\ComfyUI\models" --pack flux3-balanced
+.\.venv\Scripts\moss-go.exe --comfy http://127.0.0.1:8188
 ```
 
-Connect a compatible ComfyUI on `http://127.0.0.1:8188` when ready to generate.
+Replace the model directory with your own. Start/restart ComfyUI after installing
+nodes and weights. Open **http://127.0.0.1:8191/moss-go/**. On Linux, the equivalent
+studio commands are `.venv/bin/python`, `.venv/bin/moss-go-models` and `.venv/bin/moss-go`.
+See the [complete installation guide](docs/INSTALL.md).
 
-Open **http://127.0.0.1:8191/moss-go/**. English is the initial language, independent
-of browser and system settings. Language and theme choices are saved explicitly.
+The interface can be explored before ComfyUI is connected. **Models & connection**
+reports missing files, nodes and loader compatibility. An incomplete setup cannot
+enqueue a generation. High precision requires its own files; it does not substitute INT8.
 
-You can explore the interface without ComfyUI. **Try an original example** opens
-three character references made for this project. Choose and load an image, then
-review the starter scene. Preview and loading never run a model. Your description
-is retained when present; loading explicitly clears the previous character traits.
+## Hardware and measured limits
 
-![Original reference picker](docs/assets/original-examples.png)
+Tested locally on **RTX 4070 Ti SUPER 16 GB, 32 GB RAM, Windows**. The default
+pinned pack is distilled INT8 with an INT8 Qwen3-VL encoder, INT8 official
+upsampler and compatible VAE: **20.77 GB of files**. No NVFP4 is used on this Ada GPU.
 
-ComfyUI portable Python can also run `run.py` directly when its environment includes
-the dependencies. The launcher handles portable Python's isolated module search path.
+A 13-case evaluation covers three Create prompts, six scenes with two original
+characters, and four local edits. Every job completed; all four edits preserved
+pixels outside the feathered mask. Identity and action adherence are separate:
+one initial Mira walking case kept a standing pose. See the
+[complete results and limitations](docs/FLUX3_BENCHMARK.md), not just the showcase.
 
-Data defaults to `%LOCALAPPDATA%/MOSS-GO` on Windows or `~/.local/share/MOSS-GO` on
-Linux. Use `--data /path/to/catalog` to choose another catalog. The studio binds only
-to `127.0.0.1`; its local HTTP endpoint is not intended for direct public hosting.
+Other physical GPU sizes and Linux GPU execution remain unverified. Profiles are
+memory budgets, not hardware guarantees. The 32 GB machine had limited spare RAM
+while upsampling; keep enough system memory available. Model caching can retain
+memory between jobs. The app preserves work and holds the affected batch on memory failure.
 
-Catalog schema 2 adds structured failure reasons. A schema 1 catalog is upgraded
-without changing jobs, execution snapshots or images. Keep a copy of an existing
-catalog before updating; older builds cannot open the upgraded catalog.
+## Reproduce a take
 
-## ComfyUI node pack
+Open **Recipe** on a saved output. The ZIP contains the exact saved graph and
+observed prompt metadata, together with the source and mask. For another ComfyUI
+installation, upload the bundled input images and bind the graph's image loader
+filenames to those uploads. Model identifiers and sampling parameters stay explicit.
 
-Place this checkout in `ComfyUI/custom_nodes/moss-go` or link it there. Restart
-ComfyUI after installation. The pack uses distinct `MossGo*` names and does not
-replace the personal MOSS Image Studio extension.
+[Example native API graphs](workflows/README.md) · [Model sources and hashes](docs/MODELS.md) · [Launch recovery](docs/RELEASE_NOTES.md)
 
-The current MOSS workflow also needs the OpenMOSS `moss-image` plugin loaders.
-The [model setup guide](docs/MODELS.md) records the tested plugin and ComfyUI
-revisions and provides pinned, checksum-verified model downloads. A fresh GPU
-runtime installation and additional physical GPUs remain unverified.
-The built-in connection panel reports missing files and nodes instead of pretending
-an incomplete setup is ready.
+Existing FLUX.2/MOSS recipes and explicit saved engine choices remain supported.
+Catalog schema 2 is retained; observed captions use an additive table without
+changing old launch snapshots. Data defaults to `%LOCALAPPDATA%/MOSS-GO` on Windows
+or `~/.local/share/MOSS-GO` elsewhere; `--data` selects a different catalog.
 
-## Hardware and models
-
-- Reference development machine: RTX 4070 Ti SUPER 16 GB, 32 GB system RAM, Windows.
-- 12 and 24+ GB profiles are **unverified recommendations**, not measured support claims.
-- The high-precision profile requires its own weights; it does not silently substitute INT8.
-- Variations run sequentially. Refinement and image generation do not require a language model.
-- Automatic uses GPU capacity, with Memory saver as the fallback when capacity is
-  unknown. Free RAM and VRAM are shown separately in Models & connection.
-- Readiness is checked for the selected mode and precision. A missing edit node
-  does not disable creation; absent high-precision weights never fall back to INT8.
-
-If a job runs out of memory, the worker holds only its batch's unsubmitted takes.
-The failure and hold are saved in one database transaction.
-Inputs, settings, completed results and unrelated batches remain available. Select
-a failed or held take to load one attempt for review; GPU-memory failures offer
-Memory saver, while system-RAM failures retain the original profile and explain
-that CPU encoding may increase RAM use. Loading settings never starts a generation.
-The new attempt stays linked to the original take in Related versions.
-
-MOSS SFT is used for text-to-image. FLUX.2 Klein 4B is the default reference and refinement engine:
-17/18 usable results in the assistant-reviewed follow-up on three original anime
-characters. MOSS CharRef remains experimental. See [the complete method and limitations](docs/BENCHMARK.md).
-
-## Masked refinements
-
-Choose **Refine**, add an image, then **Paint an area**. Paint close to the detail
-you want to change. FLUX processes small selections with nearby context, then
-returns the edit to the original image coordinates and dimensions. The final
-composite protects pixels outside the softened mask. **Whole image** uses the
-full frame; saving an empty mask returns the unchanged input without running a model.
-
-Reopening the painter retains the mask. Undo, Redo and reversible Clear work on
-the current draft; closing without **Use this mask** discards draft changes.
-**Select rectangle · keyboard** offers a keyboard-accessible alternative to painting.
-MOSS SFT remains selectable, with its own refinement-strength control. FLUX uses
-its native four-step edit workflow, so strength, quality and negative-prompt
-controls are hidden for that engine.
-
-Six development cases passed the localized-edit check on three illustrated
-characters. This is limited coverage: nearby details inside the painted region
-can also change. See the [comparison and qualification](docs/BENCHMARK.md#localized-refinement).
-
-## Launch recovery
-
-The studio records a launch before sending it. If confirmation is lost, settings
-are held while it checks the existing request. **Recover previous launch** reuses
-the same settings and identifier; it does not create another batch. The pending
-request survives a page reload when browser storage is available. If storage is
-blocked, the interface asks you to keep the tab open for recovery. Accepted batches
-remain in the studio catalog independently of the browser.
-
-The worker reconciles an uncertain ComfyUI launch against the existing queue and
-history. Temporary disconnections and interrupted image downloads retain the
-same native prompt ID. A missing launch is never silently resubmitted. Finished,
-failed, interrupted and cancelled catalog entries cannot be overwritten by a late
-queue response.
-
-## Optional prompt assistant
-
-The optional assistant uses local Ollama with the pinned
-`qwen3:4b-instruct-2507-q4_K_M` model. It proposes text for review;
-it does not modify a prompt without Apply. It runs on CPU, unloads after the request,
-and is kept outside the image workflow. The image studio works without Ollama.
-The review shows additions/removals and an editable suggestion; closing it keeps
-the original. Clear descriptions may need no changes. See the
-[setup, measured checks and limitations](docs/ASSISTANT.md). Character traits remain
-separate from the editable scene and are attached by the image-request builder.
-
-## Character descriptions
-
-Open **Character traits** to start from Mira, Theo, Nia or a custom description.
-Twelve optional fields cover identity, wardrobe, expression and medium. Pin the
-details you want to keep, then use **Randomize unlocked** to explore the rest.
-Pins preserve selected text during randomization; they do not guarantee a model's
-visual adherence. Nothing reaches the workspace until **Apply traits**.
-
-**Export preset** saves the draft and its pins as portable JSON. **Import preset**
-first shows a clean draft and reports unsupported legacy fields. Closing the dialog
-discards unapplied changes. The interface can be Russian while the model-facing
-description and portable values stay in English. Applied values and pins survive
-a page reload. Importing or editing a character does not enqueue image generation.
-
-## Development checks
+## Development and release evidence
 
 ```sh
 python run_tests.py
 npm ci
 npm test
 npm run check
+npm run format:check
 ```
 
-These are CPU checks. They do not prove image quality or GPU compatibility. The
-benchmark script in `scripts/benchmark.py` submits real jobs and records their IDs;
-it distinguishes unapproved/rejected reference fixtures from engine comparison runs.
+CPU checks do not establish GPU compatibility or visual quality. The real-job
+benchmark has a resumable ledger and preserves failures. Source and wheel checks,
+release limits and manual checks are in [INSTALL](docs/INSTALL.md),
+[RELEASE_NOTES](docs/RELEASE_NOTES.md) and [MANUAL_CHECK_RU](docs/MANUAL_CHECK_RU.md).
 
-## Credits and licenses
+## Licenses and credits
 
-The application is licensed under Apache-2.0. The two default model packs have
-pinned sources, hashes and license references; experimental CharRef weights are
-not part of those packs or the contest demonstration.
-Inter is distributed under its included SIL Open Font License. Reference attention
-adapts the Ostris design; its MIT notice is preserved in `moss_go/nodes/`.
-Model weights and ComfyUI retain their own licenses and are not included in this repository.
-The [dependency record](docs/DEPENDENCIES.md) lists the pinned studio dependencies
-and their packaged license declarations.
+Application code: **Apache-2.0**. FLUX 3 transformer weights: **FLUX Kommunity
+License v1.0**, separately from the application. Encoder, official prompt upsampler
+and compatible VAE retain their own upstream licenses. No weights or credentials
+are bundled. [Third-party notices](THIRD_PARTY_NOTICES.md) include the MIT workflow
+attribution, reference-attention attribution, Inter OFL and dependency records.
+
+Independent project; no endorsement by Comfy or Black Forest Labs is implied.
+The [previous 0.1.0-rc.1 release](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.1.0-rc.1)
+and its FLUX.2 demonstration remain available for rollback.

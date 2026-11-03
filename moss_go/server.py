@@ -128,7 +128,8 @@ def create_app(*, data_root, comfy_url="http://127.0.0.1:8188", ollama_url="http
 
     @routes.get(API + "/jobs/{job_id}")
     async def job(request):
-        return web.json_response(public_job(store.job(request.match_info["job_id"])))
+        job_id = request.match_info["job_id"]
+        return web.json_response({**public_job(store.job(job_id)), "execution": store.execution(job_id)})
 
     @routes.post(API + "/jobs/{job_id}/cancel")
     async def cancel(request):

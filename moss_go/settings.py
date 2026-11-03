@@ -14,7 +14,7 @@ PROFILES = {
 }
 FORMATS = {"portrait": (768, 1024), "square": (1024, 1024), "landscape": (1024, 768)}
 MODES = {"create", "reference", "refine"}
-ENGINES = {"moss", "moss-charref", "flux-klein"}
+ENGINES = {"moss", "moss-charref", "flux-klein", "flux3-klein"}
 
 
 def identifier(value, field="id"):
@@ -81,13 +81,13 @@ def refinement_dimensions(width, height, profile, *, focus=False):
 def validate_request(data, *, total_vram=None):
     if not isinstance(data, dict):
         raise StudioError("Expected generation settings.")
-    allowed = {"request_id", "mode", "engine", "profile", "quality", "format", "size", "prompt", "negative", "seed", "variants", "input_id", "mask_id", "parent_id", "strength", "feather", "scenes", "character", "loras"}
+    allowed = {"request_id", "mode", "engine", "profile", "quality", "format", "size", "prompt", "negative", "seed", "variants", "input_id", "mask_id", "parent_id", "strength", "feather", "scenes", "character", "loras", "prompt_upsampler", "flux3_steps"}
     if set(data) - allowed:
         raise StudioError("Unknown generation setting.")
     mode = data.get("mode", "reference")
     if mode not in MODES:
         raise StudioError("Choose a known generation mode.", field="mode")
-    engine = data.get("engine", "moss" if mode == "create" else "flux-klein")
+    engine = data.get("engine", "flux3-klein")
     if engine not in ENGINES or mode == "reference" and engine == "moss":
         raise StudioError("Choose an engine that supports this mode.", field="engine")
     if mode != "reference" and engine == "moss-charref":
@@ -95,6 +95,10 @@ def validate_request(data, *, total_vram=None):
     quality = data.get("quality", "standard")
     if quality not in {"draft", "standard", "detailed"}:
         raise StudioError("Choose a known quality setting.", field="quality")
+    upsampler = data.get("prompt_upsampler", True)
+    if type(upsampler) is not bool:
+        raise StudioError("Prompt upsampling must be enabled or disabled.", field="prompt_upsampler")
+    flux3_steps = integer(data.get("flux3_steps", 16), "flux3_steps", 4, 16)
     profile = choose_profile(data.get("profile", "auto"), total_vram)
     width, height = dimensions(data.get("format", "portrait"), profile, data.get("size"))
     prompt = text(data.get("prompt", ""), "prompt", required=True)
@@ -112,8 +116,10 @@ def validate_request(data, *, total_vram=None):
               "prompt": prompt, "negative": text(data.get("negative", ""), "negative", 4000),
               "seed": integer(data.get("seed", 42), "seed", 0, SEED_MAX),
               "variants": integer(data.get("variants", 4), "variants", 1, 4), "scenes": scenes,
-              "steps": 4 if engine == "flux-klein" else {"draft": 20, "standard": 30, "detailed": 50}[quality],
+              "steps": flux3_steps if engine == "flux3-klein" else 4 if engine == "flux-klein" else {"draft": 20, "standard": 30, "detailed": 50}[quality],
               "text_device": PROFILES[profile]["text_device"]}
+    if engine == "flux3-klein":
+        result.update(prompt_upsampler=upsampler, flux3_steps=flux3_steps)
     for key in ("input_id", "mask_id", "parent_id"):
         result[key] = identifier(data[key], key) if data.get(key) is not None else None
     if mode in {"reference", "refine"} and not result["input_id"]:

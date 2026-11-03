@@ -15,6 +15,7 @@ import { scenePresets } from "./scene-presets.js";
 import { openCharacterEditor } from "./character-editor.js";
 import { LaunchController } from "./launch-controller.js";
 import { chooseExample } from "./examples.js";
+import { openExecutionDetails } from "./execution-details.js";
 import { workspaceStatus } from "./workspace-status.js";
 import {
   effectiveProfile,
@@ -54,7 +55,11 @@ const state = {
   scenes: [],
   recipeExtras: {},
   maskRequired: false,
-  engines: { create: "moss", reference: "flux-klein", refine: "flux-klein" },
+  engines: {
+    create: "flux3-klein",
+    reference: "flux3-klein",
+    refine: "flux3-klein",
+  },
   failedJob: null,
   notifiedFailures: new Set(),
 };
@@ -123,6 +128,8 @@ function persist() {
         negative: $("negative").value,
         format: $("format").value,
         quality: $("quality").value,
+        flux3_steps: Number($("flux3-steps").value),
+        prompt_upsampler: $("flux3-upsampler").checked,
         variants: $("variants").value,
         profile: $("profile").value,
         seed: $("seed").value,
@@ -176,6 +183,7 @@ function mode(next, { keepInput = true } = {}) {
             ["flux-klein", "FLUX.2 Klein · 4B"],
             ["moss", "MOSS · SFT"],
           ];
+  choices.unshift(["flux3-klein", t("flux3Recommended")]);
   for (const [value, label] of choices) {
     const option = document.createElement("option");
     option.value = value;
@@ -292,14 +300,15 @@ function updateControls() {
       engine,
       memoryProfile(),
       state.mode,
+      $("flux3-upsampler").checked,
     ).ready;
   $("format").closest("label").hidden = state.mode === "refine";
-  $("quality").closest("label").hidden = engine === "flux-klein";
-  $("strength").closest("label").hidden = engine === "flux-klein";
-  $("negative").closest("label").hidden = engine === "flux-klein";
-  $("mask-hint").textContent = t(
-    engine === "flux-klein" ? "focusedMaskHint" : "maskHint",
-  );
+  const flux = ["flux-klein", "flux3-klein"].includes(engine);
+  $("quality").closest("label").hidden = flux;
+  $("strength").closest("label").hidden = flux;
+  $("negative").closest("label").hidden = flux;
+  $("flux3-controls").hidden = engine !== "flux3-klein";
+  $("mask-hint").textContent = t(flux ? "focusedMaskHint" : "maskHint");
   $("generate").disabled =
     !connected ||
     state.requesting ||
@@ -312,9 +321,11 @@ function updateControls() {
     activeStatuses.has(job.status),
   );
   const steps =
-    engine === "flux-klein"
-      ? 4
-      : { draft: 20, standard: 30, detailed: 50 }[$("quality").value];
+    engine === "flux3-klein"
+      ? Number($("flux3-steps").value)
+      : engine === "flux-klein"
+        ? 4
+        : { draft: 20, standard: 30, detailed: 50 }[$("quality").value];
   let [width, height] = state.recipeExtras.size
     ? [state.recipeExtras.size.width, state.recipeExtras.size.height]
     : {
@@ -388,6 +399,7 @@ function showJob(job) {
   }
   $("download").hidden = !job.output_id;
   $("recipe").hidden = !job.output_id;
+  $("execution-details").hidden = !job.output_id;
   $("use-result").hidden = !job.output_id;
   $("zoom-open").hidden = !job.output_id;
   $("compare").hidden = !job.output_id || !job.settings.input_id;
@@ -405,7 +417,7 @@ function renderSelectionLabel() {
     ? `${t("nextTake")} ${job.variant + 1} · ${job.settings.source_width || job.settings.width} × ${job.settings.source_height || job.settings.height}`
     : t("noSelection");
   $("image-label").title = job?.output_id
-    ? `${t(job.settings.mode)} · ${job.settings.engine} · Seed ${job.settings.seed}`
+    ? `${t(job.settings.mode)} · ${job.settings.engine} · ${job.settings.steps} ${t("steps")} · Seed ${job.settings.seed}`
     : "";
 }
 function renderJobs(force = false) {
@@ -548,7 +560,12 @@ function renderDevice() {
   renderDeviceInfo(state.system);
 }
 function renderModels() {
-  renderEquipment(state.system, memoryProfile(), state.mode);
+  renderEquipment(
+    state.system,
+    memoryProfile(),
+    state.mode,
+    $("flux3-upsampler").checked,
+  );
 }
 async function submit(event) {
   event.preventDefault();
@@ -593,6 +610,10 @@ async function submit(event) {
     ...state.recipeExtras,
     scenes: scenePlan(state.scenes, $("variants").value, state.mode).scenes,
   };
+  if (settings.engine === "flux3-klein") {
+    settings.flux3_steps = Number($("flux3-steps").value);
+    settings.prompt_upsampler = $("flux3-upsampler").checked;
+  }
   if (state.mode !== "create") settings.input_id = state.input.id;
   if (state.mode === "refine" && state.mask) settings.mask_id = state.mask.id;
   const parent = launchParent(state.mode, state.parent, state.recoveryParent);
@@ -713,6 +734,8 @@ function applyRecipe(item) {
     if (settings[key] != null) state.recipeExtras[key] = settings[key];
   }
   mode(settings.mode);
+  $("flux3-steps").value = String(settings.flux3_steps ?? 16);
+  $("flux3-upsampler").checked = settings.prompt_upsampler !== false;
   for (const key of [
     "prompt",
     "negative",
@@ -752,6 +775,12 @@ $("profile").onchange = () => {
   updateControls();
   renderModels();
 };
+for (const id of ["flux3-steps", "flux3-upsampler"])
+  $(id).onchange = () => {
+    updateControls();
+    renderModels();
+    persist();
+  };
 $("recover-take").onclick = async () => {
   const job = state.failedJob;
   if (!job || launches.pending || isBusy()) return;
@@ -942,11 +971,14 @@ $("compare-slider").oninput = () =>
 $("recipe").onclick = () => {
   openExport(state.selected, state.jobs);
 };
+$("execution-details").onclick = () => openExecutionDetails(state.selected);
 try {
   const saved = JSON.parse(
     localStorage.getItem("moss-go.workspace.v1") || "null",
   );
   if (saved) {
+    $("flux3-steps").value = String(saved.flux3_steps ?? 16);
+    $("flux3-upsampler").checked = saved.prompt_upsampler !== false;
     for (const key of [
       "prompt",
       "negative",

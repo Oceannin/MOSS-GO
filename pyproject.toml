@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "moss-go"
-version = "0.1.0rc1"
+version = "0.2.0rc1"
 description = "A local image and character scene studio powered by ComfyUI"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["aiohttp>=3.11,<4", "Pillow>=11,<13"]
 license = "Apache-2.0"
-license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "moss_go/web/fonts/OFL.txt", "moss_go/nodes/THIRD_PARTY_OSTRIS_LICENSE.txt"]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "moss_go/web/fonts/OFL.txt", "moss_go/nodes/THIRD_PARTY_OSTRIS_LICENSE.txt", "moss_go/assets/flux3_workflow_LICENSE.txt"]
 
 [project.scripts]
 moss-go = "moss_go.__main__:main"

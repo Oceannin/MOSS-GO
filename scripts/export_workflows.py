@@ -19,6 +19,9 @@ def main():
     character = cases["characters"][0]["description"]
     scene = cases["scenes"][0]["description"]
     examples = [
+        ("flux3-create-api", "flux3-klein", "create", character),
+        ("flux3-reference-api", "flux3-klein", "reference", scene),
+        ("flux3-masked-refine-api", "flux3-klein", "refine", "Change only the raincoat to deep blue. Preserve the character, pose and all unmasked details."),
         ("moss-create-api", "moss", "create", character),
         ("flux-create-api", "flux-klein", "create", character),
         ("flux-reference-api", "flux-klein", "reference", scene),
@@ -38,7 +41,7 @@ def main():
     mask = Image.new("L", (768, 1024), 0)
     ImageDraw.Draw(mask).rectangle((260, 250, 490, 650), fill=255)
     mask.save(destination / "mira-edit-mask.png")
-    print("Exported four API graphs and one example mask. No model was run.")
+    print(f"Exported {len(examples)} API graphs and one example mask. No model was run.")
 
 
 if __name__ == "__main__":

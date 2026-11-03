@@ -15,7 +15,7 @@ from moss_go.workflows import build_workflow, resolve_models
 
 
 def settings(**changes):
-    return validate_request({"mode": "create", "prompt": "An original clockmaker in a workshop.", **changes})
+    return validate_request({"mode": "create", "engine": "moss", "prompt": "An original clockmaker in a workshop.", **changes})
 
 
 def png(color="red", size=(64, 64), mode="RGB"):

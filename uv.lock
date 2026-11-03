@@ -309,7 +309,7 @@ wheels = [
 
 [[package]]
 name = "moss-go"
-version = "0.1.0rc1"
+version = "0.2.0rc1"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },

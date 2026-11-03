@@ -16,7 +16,7 @@ from .settings import validate_request
 
 MAX_BUNDLE_BYTES = 100 * 1024 * 1024
 MAX_BUNDLE_FILES = 80
-LAUNCH_FIELDS = {"mode", "engine", "profile", "quality", "format", "prompt", "negative", "seed", "variants", "strength", "feather", "scenes", "character", "loras", "input_id", "mask_id"}
+LAUNCH_FIELDS = {"mode", "engine", "profile", "quality", "format", "prompt", "negative", "seed", "variants", "strength", "feather", "scenes", "character", "loras", "input_id", "mask_id", "prompt_upsampler", "flux3_steps"}
 
 
 def recipe_for_job(store, job_id):

@@ -1,8 +1,17 @@
 """Small explicit API graphs; disabled features do not create dependencies."""
 
 from .errors import StudioError
+from .refinement import edit_mask, finish_refinement
 
 MODEL_ROLES = {
+    "flux3-klein": {
+        "model": ("diffusion_models", ["flux3-image-klein-int8-convrot.safetensors"]),
+        "clip": ("text_encoders", ["qwen3vl_4b_int8_convrot.safetensors"]),
+        "upsampler": ("text_encoders", ["qwen3.5_9b_flux3_prompt_upsampler_int8_convrot.safetensors"]),
+        # The official upstream filename is flux2-vae.safetensors. A distinct
+        # installation name preserves the previous FLUX.2 VAE's exact bytes.
+        "vae": ("vae", ["flux3-vae.safetensors"]),
+    },
     "moss": {
         "model": ("diffusion_models", ["moss_image_sft_int8_convrot.safetensors"]),
         "clip": ("text_encoders", ["qwen3.5_9b_moss_image_sft_w4a8_gptq.safetensors", "qwen3.5_9b_w4a8_gptq.safetensors"]),
@@ -23,6 +32,11 @@ MODEL_ROLES = {
 
 
 QUALITY_OVERRIDES = {
+    "flux3-klein": {
+        "model": ("diffusion_models", ["flux3-image-klein-bf16.safetensors"]),
+        "clip": ("text_encoders", ["qwen3vl_4b_bf16.safetensors"]),
+        "upsampler": ("text_encoders", ["qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors"]),
+    },
     "moss": {
         "model": ("diffusion_models", ["moss_image_sft_bf16.safetensors"]),
         "clip": ("text_encoders", ["qwen3.5_9b_int8_convrot.safetensors"]),
@@ -39,10 +53,12 @@ QUALITY_OVERRIDES = {
 }
 
 
-def resolve_models(engine, inventory, profile="balanced"):
+def resolve_models(engine, inventory, profile="balanced", *, prompt_upsampler=True):
     result, missing = {}, []
     roles = {**MODEL_ROLES[engine], **(QUALITY_OVERRIDES[engine] if profile == "quality" else {})}
     for role, (category, aliases) in roles.items():
+        if role == "upsampler" and not prompt_upsampler:
+            continue
         available = inventory.get("models", {}).get(category, [])
         match = next((name for alias in aliases for name in available if name.replace("\\", "/").split("/")[-1] == alias), None)
         if match:
@@ -53,6 +69,11 @@ def resolve_models(engine, inventory, profile="balanced"):
 
 
 def build_workflow(settings, models, *, input_image=None, mask_image=None, prefix="MOSS-GO/result"):
+    if settings["mode"] != "create" and not input_image:
+        raise StudioError("This mode requires an input image.", field="input_id")
+    if settings["engine"] == "flux3-klein":
+        from .flux3 import build_flux3_workflow
+        return build_flux3_workflow(settings, models, input_image=input_image, mask_image=mask_image, prefix=prefix)
     graph = {}
     def add(key, kind, **inputs):
         graph[key] = {"class_type": kind, "inputs": inputs}
@@ -97,10 +118,7 @@ def build_workflow(settings, models, *, input_image=None, mask_image=None, prefi
         base = add("base_size", "ImageScale", image=edit_source, upscale_method="lanczos", width=width, height=height, crop="disabled")
         latent = add("encode", "VAEEncodeTiled", pixels=base, vae=vae, tile_size=512, overlap=64, temporal_size=64, temporal_overlap=8) if engine == "moss" else add("latent", "EmptyFlux2LatentImage", width=width, height=height, batch_size=1)
         if mask_image:
-            mask = add("mask", "LoadImageMask", image=mask_image, channel="red")
-            mask = add("feather", "MossGoFeatherMask", mask=mask, width=settings.get("source_width", width), height=settings.get("source_height", height), radius=settings["feather"])
-            if region:
-                mask = add("focus_mask", "CropMask", mask=mask, **region)
+            mask = edit_mask(add, settings, mask_image)
             if engine == "moss":
                 latent = add("noise_mask", "SetLatentNoiseMask", samples=latent, mask=mask)
     else:
@@ -115,10 +133,6 @@ def build_workflow(settings, models, *, input_image=None, mask_image=None, prefi
         sampled = add("sample", "KSampler", model=model, seed=seed, steps=settings["steps"], cfg=3., sampler_name="euler", scheduler="simple" if engine == "moss-charref" else "sgm_uniform", positive=positive, negative=negative, latent_image=latent, denoise=settings["strength"] if mode == "refine" else 1.)
     result = add("decode", "VAEDecodeTiled", samples=sampled, vae=vae, tile_size=512, overlap=64, temporal_size=64, temporal_overlap=8)
     if mode == "refine":
-        original_size = (region["width"], region["height"]) if region else (settings.get("source_width", width), settings.get("source_height", height))
-        if original_size != (width, height):
-            result = add("restore_size", "ImageScale", image=result, upscale_method="lanczos", width=original_size[0], height=original_size[1], crop="disabled")
-        if mask_image:
-            result = add("composite", "ImageCompositeMasked", destination=source if "source_width" in settings else base, source=result, x=region["x"] if region else 0, y=region["y"] if region else 0, resize_source=False, mask=mask)
+        result = finish_refinement(add, settings, source, base, result, mask if mask_image else None)
     add("save", "SaveImage", images=result, filename_prefix=prefix)
     return graph

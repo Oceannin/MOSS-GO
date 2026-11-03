@@ -1606,3 +1606,28 @@ input[type="number"] {
 #assistant-content .primary {
   margin-top: 16px;
 }
+
+.checkbox-row {
+  display: flex;
+  min-height: 44px;
+  padding-block: 8px;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px 0 8px;
+  line-height: 1.45;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+.execution-value {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 42vh;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}

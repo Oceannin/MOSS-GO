@@ -129,4 +129,5 @@ class ComfyClient:
             "vae": options("VAELoader", "vae_name"),
             "loras": options("LoraLoaderModelOnly", "lora_name"),
         }
-        return {"connected": True, "system": stats.get("system", {}), "devices": stats.get("devices", []), "models": models, "nodes": set(schemas)}
+        return {"connected": True, "system": stats.get("system", {}), "devices": stats.get("devices", []),
+                "models": models, "nodes": set(schemas), "clip_types": options("CLIPLoader", "type")}

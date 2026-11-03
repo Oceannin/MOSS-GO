@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import io
 import json
 from pathlib import Path
 import sys
@@ -15,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=["references", "smoke", "compare", "status"])
+    parser.add_argument("stage", choices=["references", "smoke", "compare", "evaluate", "status"])
     parser.add_argument("--server", default="http://127.0.0.1:8191")
     parser.add_argument("--report", type=Path, default=ROOT / ".local/benchmark/report.json")
     parser.add_argument("--wait", action="store_true")
@@ -24,7 +25,8 @@ def main():
     parser.add_argument("--case", help="Run one exact comparison key before expanding a repaired benchmark")
     parser.add_argument("--summary", action="store_true")
     parser.add_argument("--cases", type=Path, default=ROOT / "moss_go/assets/benchmark_cases.json")
-    parser.add_argument("--engine", action="append", choices=["moss-charref", "flux-klein"], help="Bound a follow-up round to explicit engines")
+    parser.add_argument("--engine", action="append", choices=["moss-charref", "flux-klein", "flux3-klein"], help="Bound a follow-up round to explicit engines")
+    parser.add_argument("--measure-pid", type=int, help="Sample memory for this ComfyUI process during evaluation")
     parser.add_argument("--references-from", type=Path, help="Reuse inspected reference fixtures in a separate new report")
     args = parser.parse_args()
     CASES = json.loads(args.cases.read_text(encoding="utf-8"))
@@ -56,6 +58,15 @@ def main():
                 return json.load(response)
         except urllib.error.HTTPError as exc:
             raise RuntimeError(exc.read().decode("utf-8", errors="replace")) from exc
+
+    def upload_mask(raw):
+        boundary = "moss-go-benchmark-" + uuid.uuid4().hex
+        body = (f'--{boundary}\r\nContent-Disposition: form-data; name="mask"; filename="mask.png"\r\nContent-Type: image/png\r\n\r\n'.encode()
+                + raw + f'\r\n--{boundary}--\r\n'.encode())
+        request = urllib.request.Request(endpoint + "/images", data=body,
+                                         headers={"Content-Type": "multipart/form-data; boundary=" + boundary})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.load(response)
 
     def launch(key, settings, **metadata):
         if args.case and key != args.case:
@@ -93,7 +104,38 @@ def main():
         save()
         print("Queued", key, job["id"], flush=True)
 
-    if args.stage == "references":
+    if args.stage == "evaluate":
+        from PIL import Image, ImageDraw
+        # Use only the project's original, checksum-validated bundled references.
+        for character in sorted({c["character"] for key in ("reference", "refine") for c in CASES.get(key, [])}):
+            if character not in report["references"]:
+                image = api("/examples/" + character + "/use", {})
+                report["references"][character] = {"output_id": image["id"], "width": image["width"],
+                    "height": image["height"], "source": "bundled original; checksum checked by studio"}
+                save()
+        for mode in ("create", "reference", "refine"):
+            for case in CASES.get(mode, []):
+                launch_settings = {"mode": mode, "engine": "flux3-klein", "profile": "balanced",
+                                   "prompt": case["prompt"], "seed": case.get("seed", 42),
+                                   "prompt_upsampler": True, "flux3_steps": 16, "format": "portrait"}
+                if mode != "create":
+                    launch_settings["input_id"] = report["references"][case["character"]]["output_id"]
+                if "size" in case:
+                    launch_settings["size"] = dict(zip(("width", "height"), case["size"]))
+                if mode == "refine":
+                    masks = report.setdefault("masks", {})
+                    if case["id"] not in masks:
+                        source = report["references"][case["character"]]
+                        mask = Image.new("L", (source["width"], source["height"]), 0)
+                        ImageDraw.Draw(mask).rectangle(case["rectangle"], fill=255)
+                        raw = io.BytesIO(); mask.save(raw, "PNG")
+                        masks[case["id"]] = upload_mask(raw.getvalue())["id"]
+                        save()
+                    launch_settings["mask_id"] = masks[case["id"]]
+                    launch_settings["feather"] = 8
+                launch(mode + "/" + case["id"], launch_settings, purpose="evaluation", engine="flux3-klein",
+                       identity_markers=case.get("identity_markers"), mode=mode)
+    elif args.stage == "references":
         for character in CASES["characters"]:
             revision = "/v" + str(character["revision"]) if character.get("revision", 1) > 1 else ""
             launch("reference/" + character["id"] + revision, {"mode": "create", "engine": "moss", "prompt": character["description"], "negative": character.get("negative", ""), "seed": character["seed"], "format": "portrait", "quality": "standard"}, character=character["id"], purpose="reference")
@@ -114,12 +156,30 @@ def main():
                         prompt = scene["description"] + "\nCharacter appearance: " + character["appearance"] + "."
                         launch(key, {"mode": "reference", "engine": engine, "input_id": report["references"][character["id"]]["output_id"], "prompt": prompt, "seed": seed, "format": "portrait", "quality": "standard"}, character=character["id"], scene=scene["id"], purpose="comparison", engine=engine, seed=seed)
 
+    measurement = None
+    if args.measure_pid:
+        import psutil
+        import subprocess
+        process = psutil.Process(args.measure_pid)
+        def measurement():
+            used = subprocess.check_output(["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits"],
+                                           text=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+            return {"gpu_device_used_bytes": int(used.strip().splitlines()[0]) * 1024**2,
+                    "comfy_rss_bytes": process.memory_info().rss, "system_used_bytes": psutil.virtual_memory().used}
+        report["measurement_scope"] = "Sampled device-wide VRAM, ComfyUI RSS and system RAM; includes other applications. Not Torch allocation peaks."
     previous = {}
     while True:
         active = 0
+        metrics = measurement() if measurement else None
         for run in report["runs"]:
             job = api("/jobs/" + run["job_id"])
             run["result"] = {key: job.get(key) for key in ("status", "output_id", "elapsed", "error", "prompt_id")}
+            if metrics and job["status"] == "running":
+                peaks = run.setdefault("sampled_peak", {})
+                for key, value in metrics.items():
+                    peaks[key] = max(peaks.get(key, 0), value)
+            if job["status"] in {"done", "error", "cancelled", "interrupted"} and job.get("execution"):
+                run["execution"] = job["execution"]
             if run["purpose"] == "reference" and job["status"] == "done":
                 approved = report["references"].get(run["character"], {})
                 report["references"][run["character"]] = {**approved, "job_id": job["id"], "output_id": job["output_id"], "visually_approved": approved.get("visually_approved", False)}
@@ -137,7 +197,7 @@ def main():
             print("Active:", active, "Report:", args.report, flush=True)
         if not args.wait or not active:
             break
-        time.sleep(15)
+        time.sleep(.5 if measurement else 15)
 
 
 if __name__ == "__main__":

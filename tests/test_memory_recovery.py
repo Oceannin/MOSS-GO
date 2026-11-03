@@ -52,8 +52,8 @@ class MemoryRecoveryTests(unittest.IsolatedAsyncioTestCase):
     async def test_ram_failure_does_not_recommend_moving_more_weights_to_cpu(self):
         with tempfile.TemporaryDirectory() as root:
             store = Store(root)
-            jobs = store.create_batch(validate_request({"mode": "create", "prompt": "A cup.", "profile": "balanced", "variants": 2}))["jobs"]
-            other = store.create_batch(validate_request({"mode": "create", "prompt": "Another task.", "variants": 1}))["jobs"][0]
+            jobs = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "A cup.", "profile": "balanced", "variants": 2}))["jobs"]
+            other = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "Another task.", "variants": 1}))["jobs"][0]
             native = MemorySimulation(jobs[0]["id"], system_memory=True)
             runner = Runner(store, native)
             runner.start()
@@ -72,12 +72,12 @@ class MemoryRecoveryTests(unittest.IsolatedAsyncioTestCase):
         with tempfile.TemporaryDirectory() as root:
             store = Store(root)
             source = store.add_image(picture())
-            original = validate_request({"mode": "create", "prompt": "A blue ceramic cup.", "variants": 4,
+            original = validate_request({"mode": "create", "engine": "moss", "prompt": "A blue ceramic cup.", "variants": 4,
                                          "profile": "balanced", "seed": 55})
             batch = store.create_batch(original)
             completed, failed, *held = batch["jobs"]
             store.update_job(completed["id"], status="done", output_id=source["id"])
-            other = store.create_batch(validate_request({"mode": "create", "prompt": "An unrelated job.", "variants": 1}))["jobs"][0]
+            other = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "An unrelated job.", "variants": 1}))["jobs"][0]
             native = MemorySimulation(failed["id"])
             runner = Runner(store, native)
             runner.start()
@@ -109,7 +109,7 @@ class MemoryRecoveryTests(unittest.IsolatedAsyncioTestCase):
     async def test_batch_hold_never_changes_completed_cancelled_or_submitted_takes(self):
         with tempfile.TemporaryDirectory() as root:
             store = Store(root)
-            jobs = store.create_batch(validate_request({"mode": "create", "prompt": "A cup.", "variants": 4}))["jobs"]
+            jobs = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "A cup.", "variants": 4}))["jobs"]
             store.update_job(jobs[0]["id"], status="done")
             store.update_job(jobs[1]["id"], status="cancelled")
             store.update_job(jobs[2]["id"], status="queued", prompt_id="already-submitted")
@@ -121,7 +121,7 @@ class MemoryClassificationTests(unittest.TestCase):
     def test_failure_and_sibling_hold_are_one_transaction(self):
         with tempfile.TemporaryDirectory() as root:
             store = Store(root)
-            jobs = store.create_batch(validate_request({"mode": "create", "prompt": "A cup.", "variants": 2}))["jobs"]
+            jobs = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "A cup.", "variants": 2}))["jobs"]
             store.update_job(jobs[0]["id"], status="queued", prompt_id="native-failed")
             with store.connect() as db:
                 db.execute("CREATE TRIGGER reject_hold BEFORE UPDATE ON jobs WHEN new.error_code='batch_memory_hold' BEGIN SELECT RAISE(ABORT,'synthetic hold failure'); END")
@@ -134,7 +134,7 @@ class MemoryClassificationTests(unittest.TestCase):
             store.fail_job(jobs[0]["id"], error="Out of memory", code="out_of_memory")
             self.assertEqual([store.job(job["id"])["status"] for job in jobs], ["error", "interrupted"])
             # A delayed error for a cancelled take cannot hold its siblings.
-            other = store.create_batch(validate_request({"mode": "create", "prompt": "Other batch.", "variants": 2}))["jobs"]
+            other = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "Other batch.", "variants": 2}))["jobs"]
             store.update_job(other[0]["id"], status="cancelled")
             store.fail_job(other[0]["id"], error="Late failure", code="out_of_memory")
             self.assertEqual(store.job(other[1]["id"])["status"], "pending")
@@ -154,7 +154,7 @@ class MemoryClassificationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             store = Store(root)
             source = store.add_image(picture())
-            job = store.create_batch(validate_request({"mode": "create", "prompt": "An archived cup.", "variants": 1}))["jobs"][0]
+            job = store.create_batch(validate_request({"mode": "create", "engine": "moss", "prompt": "An archived cup.", "variants": 1}))["jobs"][0]
             store.save_execution(job["id"], graph={"original": True}, models={"model": "original"}, settings=job["settings"])
             store.update_job(job["id"], status="done", output_id=source["id"])
             # Recreate the exact prior jobs layout: all other columns unchanged.

@@ -1,11 +1,11 @@
 # Install and verify MOSS GO
 
-This is the 0.1.0-rc.1 contest preview. Both wheel and source installation have been tested
-in fresh Windows Python 3.12 environments without Torch or ComfyUI. A full
-new ComfyUI GPU environment remains unverified. The installed-wheel CPU matrix
-passed on GitHub for Windows/Ubuntu and Python 3.11/3.13. See
-[release limits](RELEASE_NOTES.md). The studio can run without a GPU
-runtime; image generation requires a separately configured ComfyUI.
+This is the **0.2.0-rc.1 FLUX 3 release candidate**. Create, Reference and
+Refine have completed real GPU runs on Windows / RTX 4070 Ti SUPER 16 GB /
+32 GB RAM. The studio uses a separate lightweight environment; generation needs
+a compatible external ComfyUI. The GPU validation used an isolated ComfyUI
+0.41.2 checkout with the existing Torch/CUDA stack, not a clean driver install.
+See [measured evidence](FLUX3_BENCHMARK.md) and [release limits](RELEASE_NOTES.md).
 
 ## Studio from source
 
@@ -48,7 +48,8 @@ ComfyUI runs in its own environment. Install this source checkout as
 The standalone studio wheel is not a substitute for that custom-node directory.
 The pack uses `MossGo*` node names and preserves the personal MOSS Image Studio.
 
-MOSS uses the pinned OpenMOSS plugin loader family. Follow
+FLUX 3 uses native ComfyUI 0.41.2 model nodes plus this MOSS GO node pack.
+The pinned OpenMOSS plugin is required only for the legacy MOSS engines. Follow
 [MODELS.md](MODELS.md) for exact tested runtime/plugin revisions, model sources,
 SHA-256 values, hardware limitations and the download command. The manifest tool
 will not overwrite different existing files. It does not install GPU drivers or
@@ -86,6 +87,16 @@ tests the packaging path rather than only an editable checkout.
 
 The GitHub workflow uses the same installed-wheel checks on Windows/Linux with
 Python 3.11/3.13, plus JavaScript tests, syntax and formatting. The official actions
-are pinned to immutable commits. The first successful hosted run is
+are pinned to immutable commits. The previous 0.1 release's first successful hosted run is
 [Core checks](https://github.com/Oceannin/MOSS-GO/actions/runs/41044203888).
-These CPU checks do not establish GPU-runtime compatibility.
+These CPU checks do not establish GPU-runtime compatibility. Check the current
+release commit's Actions result rather than treating the old run as new evidence.
+
+## 0.2.0rc1 local package evidence
+
+Both fresh Windows Python 3.12 wheel and source installations passed 120 tests
+(one symlink-permission skip), packaged HTTP/assets/examples smoke checks and
+both CLI entry points outside the source checkout, without Torch in the studio
+environment. Archive validation passed for wheel and source distribution.
+The installed wheel also completed a real new-seed FLUX 3 Refine against the
+external GPU runtime. See [DEMO](DEMO.md) and [FLUX3_BENCHMARK](FLUX3_BENCHMARK.md).
