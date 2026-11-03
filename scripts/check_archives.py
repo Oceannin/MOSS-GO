@@ -20,8 +20,8 @@ PACKAGE_FILES.update(path.relative_to(ROOT).as_posix() for path in (ROOT / "moss
 SOURCE_FILES = {"__init__.py", "run.py", "models.py", "run_tests.py", "README.md", "LICENSE",
                 "THIRD_PARTY_NOTICES.md", "pyproject.toml", "requirements.lock", "build-requirements.lock",
                 "uv.lock", "package-lock.json", "scripts/check_install.py", "scripts/installed_smoke.py",
-                "scripts/check_archives.py", "tests/test_examples.py", "docs/MODELS.md", "docs/SUBMISSION_RU.md"}
-SOURCE_FILES.update({"CHANGELOG.md", "docs/RELEASE_NOTES.md", "docs/MANUAL_CHECK_RU.md", "workflows/README.md",
+                "scripts/check_archives.py", "tests/test_examples.py", "docs/MODELS.md"}
+SOURCE_FILES.update({"CHANGELOG.md", "docs/RELEASE_NOTES.md", "workflows/README.md",
                      "docs/FLUX3_BENCHMARK.md", "docs/licenses/FLUX-KOMMUNITY-LICENSE.md", "docs/licenses/FLUX3-NOTICE.md",
                      "workflows/flux3-create-api.json", "workflows/flux3-reference-api.json", "workflows/flux3-masked-refine-api.json",
                      "workflows/moss-create-api.json", "workflows/flux-create-api.json", "workflows/flux-reference-api.json",
@@ -37,7 +37,7 @@ def check(files, read, required):
         path = PurePosixPath(name)
         if path.is_absolute() or ".." in path.parts or "\\" in name:
             raise ValueError("Unexpected archive path: " + name)
-        if set(path.parts) & {".local", ".git", "node_modules", "data", "__pycache__"} or path.suffix in {".safetensors", ".sqlite3", ".pyc", ".log"} or path.name in {".env", "PROJECT_STATUS.md"}:
+        if set(path.parts) & {".local", ".git", "node_modules", "data", "__pycache__"} or path.suffix in {".safetensors", ".sqlite3", ".pyc", ".log"} or path.name in {".env", "PROJECT_STATUS.md", "SUBMISSION_RU.md", "MANUAL_CHECK_RU.md", "PUBLIC_RELEASE_AUDIT.md"}:
             raise ValueError("Private or runtime data in distribution: " + name)
     examples = json.loads(read("moss_go/assets/illustrated_examples.json"))
     assert len(examples["images"]) == 3

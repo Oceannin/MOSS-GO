@@ -9,3 +9,4 @@ recursive-include workflows *.json *.md *.png
 recursive-include .github/workflows *.yml
 global-exclude __pycache__ *.py[cod]
 exclude PROJECT_STATUS.md
+exclude docs/SUBMISSION_RU.md docs/MANUAL_CHECK_RU.md docs/PUBLIC_RELEASE_AUDIT.md

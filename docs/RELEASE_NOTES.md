@@ -52,14 +52,10 @@ complete rollback; do not overwrite the original ComfyUI installation.
   not establish every runtime's live sampling cancellation behavior.
 - The studio binds to loopback; no public inference service is supplied.
 
-See [manual checks](MANUAL_CHECK_RU.md) for explicitly unverified cases.
-
-## November 3 public presentation audit
+## November 3 presentation update
 
 The application release/tag and downloadable binaries retain commit `8bf02fb`.
 The presentation update adds a dated FLUX 3 release identity, an actual studio
 capture, a versioned 117.4-second narrated demo, English captions and audio
-provenance. Both GitHub main and Pages were already serving FLUX 3 when audited;
-the search retrieval returned an older README snapshot. The October 30 FLUX.2
-video remains clearly separated in the previous release. See
-[the public audit](PUBLIC_RELEASE_AUDIT.md) for verified and unverified scope.
+provenance. The October 30 FLUX.2 video remains clearly separated in the previous
+release. See [the benchmark](FLUX3_BENCHMARK.md) for measured results and limitations.

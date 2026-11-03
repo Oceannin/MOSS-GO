@@ -132,8 +132,8 @@ npm run format:check
 
 CPU checks do not establish GPU compatibility or visual quality. The real-job
 benchmark has a resumable ledger and preserves failures. Source and wheel checks,
-release limits and manual checks are in [INSTALL](docs/INSTALL.md),
-[RELEASE_NOTES](docs/RELEASE_NOTES.md) and [MANUAL_CHECK_RU](docs/MANUAL_CHECK_RU.md).
+release limits and unverified cases are in [INSTALL](docs/INSTALL.md) and
+[RELEASE_NOTES](docs/RELEASE_NOTES.md).
 
 ## Licenses and credits
 

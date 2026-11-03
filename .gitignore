@@ -11,3 +11,6 @@ artifacts/
 build/
 dist/
 *.egg-info/
+docs/SUBMISSION_RU.md
+docs/MANUAL_CHECK_RU.md
+docs/PUBLIC_RELEASE_AUDIT.md
