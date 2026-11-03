@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.200 --> 00:00:06.677
+One character. Many scenes. Every detail under control.
+
+00:00:07.100 --> 00:00:13.415
+A local Flux Three studio. One original character, in three new scenes.
+
+00:00:14.100 --> 00:00:17.755
+Create an original design from your description.
+
+00:00:21.100 --> 00:00:26.772
+Keep the original reference as your identity anchor. Create a new setting.
+
+00:00:29.100 --> 00:00:35.607
+The official local upsampler reads your request and reference. Both descriptions are saved.
+
+00:00:37.100 --> 00:00:44.687
+Paint one detail. Nearby context guides the edit. A keyboard rectangle works too.
+
+00:00:45.100 --> 00:00:49.825
+Generation runs locally. Waiting is shortened here.
+
+00:00:50.300 --> 00:00:55.727
+The bag is teal. Original dimensions are preserved.
+
+00:00:57.300 --> 00:01:03.320
+Compare the result with its source. Details inside your selection may also change.
+
+00:01:07.300 --> 00:01:11.879
+Four tested edits changed zero pixels outside their effective feathered masks.
+
+00:01:14.300 --> 00:01:27.013
+Export the input, mask, result, observed prompt and actual workflow together.
+
+00:01:27.500 --> 00:01:35.569
+Our contribution: recoverable jobs, persistent history, precise local edits, and reproducible recipes.
+
+00:01:37.500 --> 00:01:47.618
+Thirteen jobs completed. Six recognizable reference identities. One walking pose failed. We kept that case.
+
+00:01:48.100 --> 00:01:57.115
+Run the studio locally. Find the source, setup, model licenses and measured limits on GitHub.

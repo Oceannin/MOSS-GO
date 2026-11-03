@@ -1,0 +1,124 @@
+{
+  "video": "demo-flux3-voiced-20261103.mp4",
+  "duration_seconds": 117.4,
+  "narration_speed": 1.02,
+  "cue_slots": [
+    {
+      "cue": 0,
+      "start": 0.2,
+      "end": 6.677,
+      "slot_seconds": 6.9,
+      "text": "One character. Many scenes. Every detail under control."
+    },
+    {
+      "cue": 1,
+      "start": 7.1,
+      "end": 13.415,
+      "slot_seconds": 7,
+      "text": "A local Flux Three studio. One original character, in three new scenes."
+    },
+    {
+      "cue": 2,
+      "start": 14.1,
+      "end": 17.755,
+      "slot_seconds": 7,
+      "text": "Create an original design from your description."
+    },
+    {
+      "cue": 3,
+      "start": 21.1,
+      "end": 26.772,
+      "slot_seconds": 8,
+      "text": "Keep the original reference as your identity anchor. Create a new setting."
+    },
+    {
+      "cue": 4,
+      "start": 29.1,
+      "end": 35.607,
+      "slot_seconds": 8,
+      "text": "The official local upsampler reads your request and reference. Both descriptions are saved."
+    },
+    {
+      "cue": 5,
+      "start": 37.1,
+      "end": 44.687,
+      "slot_seconds": 8,
+      "text": "Paint one detail. Nearby context guides the edit. A keyboard rectangle works too."
+    },
+    {
+      "cue": 6,
+      "start": 45.1,
+      "end": 49.825,
+      "slot_seconds": 5.2,
+      "text": "Generation runs locally. Waiting is shortened here."
+    },
+    {
+      "cue": 7,
+      "start": 50.3,
+      "end": 55.727,
+      "slot_seconds": 7,
+      "text": "The bag is teal. Original dimensions are preserved."
+    },
+    {
+      "cue": 8,
+      "start": 57.3,
+      "end": 63.32,
+      "slot_seconds": 10,
+      "text": "Compare the result with its source. Details inside your selection may also change."
+    },
+    {
+      "cue": 9,
+      "start": 67.3,
+      "end": 71.879,
+      "slot_seconds": 7,
+      "text": "Four tested edits changed zero pixels outside their effective feathered masks."
+    },
+    {
+      "cue": 10,
+      "start": 74.3,
+      "end": 87.013,
+      "slot_seconds": 13.2,
+      "text": "Export the input, mask, result, observed prompt and actual workflow together."
+    },
+    {
+      "cue": 11,
+      "start": 87.5,
+      "end": 95.569,
+      "slot_seconds": 10,
+      "text": "Our contribution: recoverable jobs, persistent history, precise local edits, and reproducible recipes."
+    },
+    {
+      "cue": 12,
+      "start": 97.5,
+      "end": 107.618,
+      "slot_seconds": 10.6,
+      "text": "Thirteen jobs completed. Six recognizable reference identities. One walking pose failed. We kept that case."
+    },
+    {
+      "cue": 13,
+      "start": 108.1,
+      "end": 117.115,
+      "slot_seconds": 9.5,
+      "text": "Run the studio locally. Find the source, setup, model licenses and measured limits on GitHub."
+    }
+  ],
+  "voice_model": "Fish Audio Drama 3 W4A8",
+  "voice_anchor": "Original synthetic Drama 3 voice; no real person imitated.",
+  "music_model": "m-a-p/YuE2-3B; installed yue2_3b_bf16.safetensors",
+  "music_use": "Author confirmed permission for the contest promotional video.",
+  "music_original_duration_seconds": 112.0,
+  "mix": "Speech -18 LUFS per cue; music -32 LUFS and sidechain ducking; final target -16 LUFS / -1.5 dBTP.",
+  "sha256": "4ee95a247354e6afa4fb82becf65106426c4beb469e40eb9e75bfa1033aebffa",
+  "measured_audio": {
+    "integrated_lufs": -16.48,
+    "true_peak_dbtp": -4.36
+  },
+  "mixed_transcript_verification": {
+    "recognized": "One character, many scenes, every detail under control. A local FLUX 3 studio. One original character in three new scenes. Create an original design from your description. Keep the original reference as your identity anchor. Create a new setting. The official local up sampler reads your request and reference. Both descriptions are saved. Paint one detail. Nearby context guides the edit. A keyboard rectangle works too. Generation runs locally. Waiting is shortened here. The bag is teal. Original dimensions are preserved. Compare the result with its source. Details inside your selection may also change. Four tested edits changed zero pixels outside their effective feathered masks. Export the input, mask, result, observed prompt, and actual workflow. Together. Our contribution: recoverable jobs, persistent history, precise local edits, and reproducible recipes. Thirteen jobs completed, six recognizable reference identities, one walking pose failed. We kept that case. Run the studio locally. Find the source, setup, model licenses, and measured limits on GitHub.",
+    "normalized_token_similarity": 1.0,
+    "critical_claims_present": true
+  },
+  "drama_plugin_revision": "67a733a96890637dc27b1914974ad00c569405fb",
+  "image_application_commit": "8bf02fbaff54ee24364fba478687cd571c325d6d",
+  "postproduction_only": true
+}

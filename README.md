@@ -2,17 +2,29 @@
 
 **One character. Many scenes. Every detail under control.**
 
+**FLUX 3 release · November 3, 2026 · 0.2.0-rc.1**
+
 An open-weight image studio powered by **FLUX 3 Image Klein and ComfyUI**.
 Create original characters, carry their visual identity into new scenes, edit a
 painted detail, and keep the result together with its actual execution graph.
 
-[Watch the demo](https://oceannin.github.io/MOSS-GO/) · [Get 0.2.0-rc.1](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.2.0-rc.1) · [Measured results](docs/FLUX3_BENCHMARK.md)
+[Watch the 1:57 narrated demo](https://oceannin.github.io/MOSS-GO/) · [Get 0.2.0-rc.1](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.2.0-rc.1) · [Measured results](docs/FLUX3_BENCHMARK.md)
 
 ![Original Theo reference and three actual FLUX 3 scenes](docs/assets/flux3-scenes.jpg)
 
 The same original character at a station, examining a watch, and walking after rain.
 These are local model outputs, not interface mockups or promotional generations.
 The complete evaluation includes less successful cases too.
+
+## See the studio in action
+
+[![Actual MOSS GO interface with a completed FLUX 3 local edit](docs/assets/studio-flux3.jpg)](https://oceannin.github.io/MOSS-GO/#demo)
+
+[Watch the narrated walkthrough](https://oceannin.github.io/MOSS-GO/?release=flux3-20261103#demo): Create an
+original design, direct a reference scene, paint one detail, then export the take
+with its actual workflow. This capture is from the installed 0.2.0rc1 studio. The demo uses real application
+captures, with synthetic narration and original accompaniment; see
+[audio provenance](docs/AUDIO_PROVENANCE.md).
 
 ## Change a detail. Keep the rest.
 

@@ -87,10 +87,10 @@ tests the packaging path rather than only an editable checkout.
 
 The GitHub workflow uses the same installed-wheel checks on Windows/Linux with
 Python 3.11/3.13, plus JavaScript tests, syntax and formatting. The official actions
-are pinned to immutable commits. The previous 0.1 release's first successful hosted run is
-[Core checks](https://github.com/Oceannin/MOSS-GO/actions/runs/41044203888).
-These CPU checks do not establish GPU-runtime compatibility. Check the current
-release commit's Actions result rather than treating the old run as new evidence.
+are pinned to immutable commits. The FLUX 3 application commit passed
+[all four Windows/Ubuntu × Python 3.11/3.13 jobs](https://github.com/Oceannin/MOSS-GO/actions/runs/41630755942).
+These CPU checks do not establish GPU-runtime compatibility; real executions
+are documented separately in [FLUX3_BENCHMARK](FLUX3_BENCHMARK.md).
 
 ## 0.2.0rc1 local package evidence
 

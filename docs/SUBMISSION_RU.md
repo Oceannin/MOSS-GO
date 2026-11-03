@@ -13,7 +13,7 @@
 - [GitHub](https://github.com/Oceannin/MOSS-GO)
 - [Релиз](https://github.com/Oceannin/MOSS-GO/releases/tag/v0.2.0-rc.1)
 - [Демо](https://oceannin.github.io/MOSS-GO/)
-- [Прямой MP4](https://oceannin.github.io/MOSS-GO/demo.mp4)
+- [Прямой MP4](https://oceannin.github.io/MOSS-GO/demo-flux3-voiced-20261103.mp4)
 - [Установка](https://github.com/Oceannin/MOSS-GO/blob/main/docs/INSTALL.md)
 - [Измерения](https://github.com/Oceannin/MOSS-GO/blob/main/docs/FLUX3_BENCHMARK.md)
 - [Подача](https://form.typeform.com/to/V1dSQrkS)
@@ -33,7 +33,7 @@
 
 **GitHub repo URL:** https://github.com/Oceannin/MOSS-GO
 
-**Demo video URL:** https://oceannin.github.io/MOSS-GO/demo.mp4
+**Demo video URL:** https://oceannin.github.io/MOSS-GO/demo-flux3-voiced-20261103.mp4
 
 **Social post link:** ссылка на ваш опубликованный пост с видео и
 `#OpenSourceHiggsfield`, не на профиль.
@@ -44,7 +44,7 @@ Cloud Agent и Comfy MCP: приложение их не использует. �
 
 **List all generative models used:**
 
-> Primary Create, Reference and Refine: FLUX 3 Image Klein distilled INT8 ConvRot, official Qwen3-VL 4B INT8 ConvRot encoder, official Qwen3.5 9B FLUX 3 prompt upsampler INT8 ConvRot, and the compatible FLUX VAE. All run locally through ComfyUI. Bundled original character anchors were generated with MOSS-Image SFT. Explicit legacy options include FLUX.2 Klein distilled 4B FP8 with Qwen3 4B, MOSS-Image SFT and experimental MOSS-Image CharRef LoRA. A separate optional Ollama Qwen3 4B Instruct 2507 assistant is not required or used by the demonstrated FLUX 3 path. Sources, hashes and separate licenses are documented.
+> Primary Create, Reference and Refine: FLUX 3 Image Klein distilled INT8 ConvRot, official Qwen3-VL 4B INT8 ConvRot encoder, official Qwen3.5 9B FLUX 3 prompt upsampler INT8 ConvRot, and the compatible FLUX VAE. All run locally through ComfyUI. Bundled original character anchors were generated with MOSS-Image SFT. Explicit legacy options include FLUX.2 Klein distilled 4B FP8 with Qwen3 4B, MOSS-Image SFT and experimental MOSS-Image CharRef LoRA. A separate optional Ollama Qwen3 4B Instruct 2507 assistant is not required or used by the demonstrated FLUX 3 path. Demo post-production only: Fish Audio Drama 3 W4A8 and its codec for an original synthetic narrator, YuE2-3B for original accompaniment with author-confirmed contest permission, and Qwen3-ASR 0.6B for transcript checks. Sources, hashes and separate licenses are documented.
 
 **Other tools or techniques used:**
 
@@ -94,3 +94,8 @@ Cloud Agent и Comfy MCP: приложение их не использует. �
 4. Отправьте/обновите работу разрешённым способом до дедлайна.
 5. Сохраните подтверждение, время, commit/tag и отправленные ссылки. Регистрация,
    черновик и GitHub сами по себе не означают отправленную конкурсную заявку.
+
+Новое основное видео: **1:57, FLUX 3, английская озвучка Drama 3 и музыка Yue2**.
+У музыки отдельная лицензия CC-BY-NC-4.0; автор подтвердил разрешение именно для
+конкурсного проморолика. Не называйте аудиомодели функциями приложения или
+весами Apache-2.0. Старые видео и артефакты сохранены со своими версиями.

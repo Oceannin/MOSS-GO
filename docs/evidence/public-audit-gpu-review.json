@@ -1,0 +1,167 @@
+{
+  "audit": "Existing real execution records rechecked; no new FLUX image generation claimed by this audit.",
+  "application_commit": "8bf02fbaff54ee24364fba478687cd571c325d6d",
+  "cases": [
+    {
+      "case": "create/portrait",
+      "native_prompt_id": "dd14e2e4-e4ec-4ded-9113-d9bcc837188a",
+      "job_id": "92e295bb9ca04d378a968f118d565ef9",
+      "native_history_success": true,
+      "elapsed_seconds": 26.85
+    },
+    {
+      "case": "create/environment",
+      "native_prompt_id": "6ecde443-345f-40fd-8442-60b4adeac46e",
+      "job_id": "fb7bdf294d8549239b0c14ced78886f5",
+      "native_history_success": true,
+      "elapsed_seconds": 28.78
+    },
+    {
+      "case": "create/composition",
+      "native_prompt_id": "dcef62e3-3732-4550-a516-f0497ac68410",
+      "job_id": "6e35263b61424b8683a6e89c8f174bc6",
+      "native_history_success": true,
+      "elapsed_seconds": 26.63
+    },
+    {
+      "case": "reference/mira-1",
+      "native_prompt_id": "8c4d9307-c00e-4f67-98e5-72ba05d25db1",
+      "job_id": "b6116d23e054492ba2da7f638e32b91b",
+      "native_history_success": true,
+      "elapsed_seconds": 35.06
+    },
+    {
+      "case": "reference/mira-2",
+      "native_prompt_id": "b8ab2241-20c1-4725-a442-66ba3355558d",
+      "job_id": "d05864fa2d264a67b96d85a6ab898fb8",
+      "native_history_success": true,
+      "elapsed_seconds": 34.96
+    },
+    {
+      "case": "reference/mira-3",
+      "native_prompt_id": "989a6ca8-f92e-40f1-b298-2aac70c4959a",
+      "job_id": "a8873f63dc1d4e879ccf9a2499d1bc86",
+      "native_history_success": true,
+      "elapsed_seconds": 35.07
+    },
+    {
+      "case": "reference/theo-1",
+      "native_prompt_id": "0bbfed0b-9e66-40b4-8c6d-9d4599c499fd",
+      "job_id": "fadc9dbc1c724ad8a798e9c7b58cd511",
+      "native_history_success": true,
+      "elapsed_seconds": 35.36
+    },
+    {
+      "case": "reference/theo-2",
+      "native_prompt_id": "6a76f449-8a17-442f-aefc-93f28052ce13",
+      "job_id": "04da1ab99b3c44e59cee8be69cd3a154",
+      "native_history_success": true,
+      "elapsed_seconds": 35.21
+    },
+    {
+      "case": "reference/theo-3",
+      "native_prompt_id": "01eeec4e-0a47-4eb9-bf04-3e364800d6ce",
+      "job_id": "32cb3a42aa2148f593c57cd2fa896ae1",
+      "native_history_success": true,
+      "elapsed_seconds": 35.0
+    },
+    {
+      "case": "refine/recolor",
+      "native_prompt_id": "b60728ba-56d7-4e3e-ace4-2f8f047aaf76",
+      "job_id": "81451df0560e4e46bf3bf6dcbcc4343a",
+      "native_history_success": true,
+      "elapsed_seconds": 33.2
+    },
+    {
+      "case": "refine/accessory",
+      "native_prompt_id": "c621d244-a61d-4c2a-be88-69f9034a6485",
+      "job_id": "64ee702818744615ae2b88f3cfc4b4d0",
+      "native_history_success": true,
+      "elapsed_seconds": 34.95
+    },
+    {
+      "case": "refine/remove",
+      "native_prompt_id": "5f191994-cba0-4415-beaa-b10c65fd1446",
+      "job_id": "5eed87c88c86498bb4f512cb4a4662e4",
+      "native_history_success": true,
+      "elapsed_seconds": 34.74
+    },
+    {
+      "case": "refine/clothing",
+      "native_prompt_id": "70129703-a8fd-42e5-a5c8-9ed3b336f237",
+      "job_id": "21c179d421a945728f2da941f7c2118a",
+      "native_history_success": true,
+      "elapsed_seconds": 30.51
+    }
+  ],
+  "replay": {
+    "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+    "elapsed_seconds": 64.87,
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705659215
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [],
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705659223
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "c2806b58-0b54-482c-96e3-57f2f4fb7262",
+            "timestamp": 1793705723737
+          }
+        ]
+      ]
+    },
+    "original_graph_sha256": "382b2dd74041e18e3dd73241349a02d9ec3075bbecc6d5f6fa274922e3e8479c",
+    "changes": "Node identifiers and their link references prefixed replay_; parameters unchanged.",
+    "dimensions": [
+      768,
+      1024
+    ],
+    "pixel_identical": true,
+    "difference_bbox": null
+  },
+  "legacy_import": [
+    {
+      "case": "legacy-0.1",
+      "recipes": 1,
+      "requires_review": true,
+      "missing_inputs": false,
+      "jobs_created": 0
+    },
+    {
+      "case": "create",
+      "recipes": 1,
+      "requires_review": true,
+      "missing_inputs": false,
+      "jobs_created": 0
+    },
+    {
+      "case": "reference",
+      "recipes": 1,
+      "requires_review": true,
+      "missing_inputs": false,
+      "jobs_created": 0
+    },
+    {
+      "case": "refine",
+      "recipes": 1,
+      "requires_review": true,
+      "missing_inputs": false,
+      "jobs_created": 0
+    }
+  ]
+}

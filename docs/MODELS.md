@@ -201,3 +201,13 @@ weight hash are recorded in [DEPENDENCIES.md](DEPENDENCIES.md). A clean GPU
 dependency installation and additional physical GPUs remain unverified.
 The standalone studio has its own hashed dependency locks, fresh Windows
 source/wheel checks and passing hosted Windows/Ubuntu CPU CI; see [INSTALL.md](INSTALL.md).
+
+## Demonstration soundtrack — post-production only
+
+The narrated contest video uses the already installed Fish Audio Drama 3 W4A8
+model and codec for an original synthetic voice, and `m-a-p/YuE2-3B` for an
+original instrumental accompaniment. Qwen3-ASR 0.6B checks the narration.
+These are not MOSS GO inference dependencies and are not bundled with the app.
+Drama 3 retains Fish Audio Community License v1.0; Yue2 weights are CC-BY-NC-4.0,
+with author-confirmed permission for this contest promotional video. This does
+not make either model Apache-2.0. See [audio provenance](AUDIO_PROVENANCE.md).
